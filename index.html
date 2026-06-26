@@ -1,319 +1,315 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="bn" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>প্রফেশনাল ডাইনামিক কিউআর কোড জেনারেটর</title>
-    <!-- Tailwind CSS CDN -->
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>ScanFlow Pro | প্রিমিয়াম ডাইনামিক কিউআর কোড প্ল্যাটফর্ম</title>
+    <meta name="title" content="ScanFlow Pro | প্রিমিয়াম ডাইনামিক কিউআর কোড প্ল্যাটফর্ম">
+    <meta name="description" content="আনলিমিটেড প্রফেশনাল ডাইনামিক কিউআর কোড তৈরি করুন। প্রিন্ট করার পরেও কিউআর কোডের ভেতরের তথ্য যেকোনো সময় পরিবর্তন করুন রিয়েল-টাইমে।">
+    <meta name="keywords" content="Dynamic QR Code, QR Code Generator, Smart QR, ScanFlow, PWA QR, ফায়ারবেস কিউআর, ডাইনামিক কিউআর">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Bengali">
+    <meta name="author" content="Omar">
+
+    <!-- Open Graph / Facebook (Social Media Share Preview) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dynamicqrcodegenerator.vercel.app/">
+    <meta property="og:title" content="ScanFlow Pro | ডাইনামিক কিউআর কোড পাওয়ার হাউজ">
+    <meta property="og:description" content="প্রিন্ট করার পরেও কিউআর কোডের ভেতরের তথ্য যেকোনো সময় পরিবর্তন করুন রিয়েল-টাইমে। সর্বোচ্চ কাস্টমাইজেশন সুবিধা।">
+    <meta property="og:image" content="https://dynamicqrcodegenerator.vercel.app/t.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dynamicqrcodegenerator.vercel.app/">
+    <meta property="twitter:title" content="ScanFlow Pro | ডাইনামিক কিউআর কোড">
+    <meta property="twitter:description" content="প্রিন্ট করা কিউআর কোড পরিবর্তন না করে ব্যাকএন্ড থেকে যেকোনো লেখা বা লিঙ্ক আপডেট করার প্রফেশনাল সমাধান।">
+    <meta property="twitter:image" content="https://dynamicqrcodegenerator.vercel.app/t.jpg">
+
+    <!-- Theme & Mobile App Capability -->
+    <meta name="theme-color" content="#090d16">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ScanFlow">
+
+    <!-- Favicon & PWA Icons -->
+    <link rel="icon" type="image/jpeg" href="https://dynamicqrcodegenerator.vercel.app/i.jpg">
+    <link rel="apple-touch-icon" href="https://dynamicqrcodegenerator.vercel.app/i.jpg">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Tailwind CSS & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Bengali & Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- QR Code Styling Library for premium customizations -->
-    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    
+    <!-- QR Code Styling Engine (Premium Core) -->
+    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     
     <style>
         body {
-            font-family: 'Inter', 'Hind Siliguri', sans-serif;
-            background: radial-gradient(circle at top right, #1e1b4b, #0f172a, #020617);
-            color: #f8fafc;
+            font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+            background-color: #090d16;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.08) 0, transparent 50%),
+                radial-gradient(at 50% 0%, rgba(147, 51, 234, 0.05) 0, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.08) 0, transparent 50%);
+            color: #f1f5f9;
             min-height: 100vh;
         }
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .premium-blur {
+            background: rgba(13, 18, 30, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
-        .glass-card {
-            background: rgba(30, 41, 59, 0.45);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .premium-card {
+            background: rgba(20, 26, 43, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .glass-card:hover {
+        .premium-card:hover {
+            border-color: rgba(99, 102, 241, 0.2);
+            background: rgba(20, 26, 43, 0.6);
             transform: translateY(-2px);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.7);
         }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
+        /* Custom UI Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
+        ::-webkit-scrollbar-track {
+            background: #090d16;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 999px;
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 99px;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.2);
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
         }
     </style>
 </head>
-<body class="custom-scrollbar overflow-x-hidden">
+<body class="flex flex-col justify-between overflow-x-hidden">
 
-    <!-- Notification Toast -->
-    <div id="toast" class="fixed top-5 right-5 z-50 transform translate-y-[-100px] opacity-0 transition-all duration-300 max-w-md">
-        <div class="glass-panel text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3 border-l-4 border-indigo-500">
-            <span id="toast-icon" class="text-indigo-400 text-lg"><i class="fas fa-info-circle"></i></span>
-            <p id="toast-message" class="text-sm font-medium text-slate-200"></p>
+    <!-- Notification Toast System -->
+    <div id="toast" class="fixed top-6 right-6 z-50 transform translate-y-[-100px] opacity-0 transition-all duration-500 max-w-sm pointer-events-none">
+        <div class="premium-blur text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-2 border-indigo-500">
+            <span id="toast-icon" class="text-indigo-400"><i class="fas fa-info-circle"></i></span>
+            <p id="toast-message" class="text-xs font-semibold text-slate-300"></p>
         </div>
     </div>
 
-    <!-- Main Router Container -->
-    <div id="app" class="min-h-vh flex flex-col justify-between">
-        <!-- Navigation bar (Will be hidden in public scan page) -->
-        <header id="app-header" class="w-full border-b border-white/5 py-4 px-6 flex justify-between items-center glass-panel sticky top-0 z-40">
-            <div class="flex items-center space-x-3">
-                <div class="bg-gradient-to-tr from-indigo-500 to-purple-500 p-2.5 rounded-xl shadow-lg shadow-indigo-500/30">
-                    <i class="fas fa-qrcode text-white text-xl animate-pulse"></i>
+    <!-- Layout Wrapper -->
+    <div id="app" class="flex flex-col min-h-screen">
+        
+        <!-- Premium Navigation Header -->
+        <header id="app-header" class="w-full border-b border-white/5 py-4 px-8 flex justify-between items-center premium-blur sticky top-0 z-40">
+            <div class="flex items-center space-x-3.5">
+                <div class="bg-gradient-to-tr from-indigo-500 to-indigo-700 p-2 rounded-lg shadow-xl shadow-indigo-500/10">
+                    <i class="fas fa-qrcode text-white text-base"></i>
                 </div>
                 <div>
-                    <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent">ScanFlow</span>
-                    <span class="text-[10px] block text-indigo-400 font-mono tracking-widest uppercase">Dynamic QR Pro</span>
+                    <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">ScanFlow</span>
+                    <span class="text-[9px] block text-indigo-400/80 font-mono tracking-widest uppercase font-semibold">Dynamic Engine</span>
                 </div>
             </div>
             
             <div id="auth-state-area" class="flex items-center space-x-4">
-                <!-- User profile info / Logout will inject here dynamically -->
-                <div class="animate-pulse bg-slate-800 h-8 w-24 rounded-lg"></div>
+                <div class="animate-pulse bg-slate-900 h-8 w-24 rounded-lg"></div>
             </div>
         </header>
 
-        <!-- Dynamic Page Workspace -->
+        <!-- Main Workplace -->
         <main class="flex-grow container mx-auto px-4 py-8 max-w-7xl">
-            <!-- Loading Screen -->
-            <div id="view-loading" class="flex flex-col items-center justify-center py-20">
-                <div class="relative w-16 h-16">
-                    <div class="absolute inset-0 border-4 border-indigo-500/20 rounded-full"></div>
-                    <div class="absolute inset-0 border-4 border-t-indigo-500 rounded-full animate-spin"></div>
-                </div>
-                <p class="mt-4 text-slate-400 font-medium">অপেক্ষা করুন, সিস্টেম লোড হচ্ছে...</p>
+            
+            <!-- Global Loader -->
+            <div id="view-loading" class="flex flex-col items-center justify-center py-24">
+                <div class="w-10 h-10 border-2 border-indigo-500/10 border-t-indigo-500 rounded-full animate-spin"></div>
+                <p class="mt-4 text-xs text-slate-400 font-medium font-mono">Loading Enterprise Core...</p>
             </div>
 
-            <!-- 1. Authentication View -->
-            <div id="view-auth" class="hidden max-w-md mx-auto my-10">
-                <div class="glass-panel p-8 rounded-2xl shadow-2xl border border-white/10">
-                    <div class="text-center mb-8">
-                        <h2 class="text-2xl font-bold text-white mb-2">স্বাগতম ScanFlow-তে</h2>
-                        <p class="text-slate-400 text-sm">ডাইনামিক কিউআর কোড তৈরি এবং যেকোনো সময় এডিট করতে লগইন করুন</p>
+            <!-- 1. Enterprise Authentication View -->
+            <div id="view-auth" class="hidden max-w-md mx-auto my-12">
+                <div class="premium-blur p-8 rounded-2xl shadow-2xl">
+                    <div class="text-center mb-6">
+                        <h2 class="text-xl font-bold text-white tracking-tight">সিস্টেমে লগইন করুন</h2>
+                        <p class="text-slate-400 text-xs mt-1.5">প্রফেশনাল ডাইনামিক কিউআর ইঞ্জিন অ্যাক্সেস করুন</p>
                     </div>
 
-                    <!-- Tabs switcher -->
-                    <div class="flex p-1 bg-slate-950/60 rounded-xl mb-6 border border-white/5">
-                        <button id="tab-login" class="w-1/2 py-2.5 text-sm font-medium rounded-lg text-white bg-indigo-600 shadow-md transition-all duration-200">লগইন</button>
-                        <button id="tab-register" class="w-1/2 py-2.5 text-sm font-medium rounded-lg text-slate-400 hover:text-white transition-all duration-200">নিবন্ধন</button>
+                    <!-- Auth Tabs -->
+                    <div class="flex p-0.5 bg-slate-950/60 rounded-lg mb-6 border border-white/5">
+                        <button id="tab-login" class="w-1/2 py-2 text-xs font-semibold rounded text-white bg-indigo-600/90 shadow transition-all">সাইন ইন</button>
+                        <button id="tab-register" class="w-1/2 py-2 text-xs font-semibold rounded text-slate-400 hover:text-white transition-all">নতুন অ্যাকাউন্ট</button>
                     </div>
 
-                    <!-- Email/Password Auth Forms -->
                     <form id="auth-form" class="space-y-4">
-                        <div id="name-field-group" class="hidden transition-all duration-300">
-                            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">পুরো নাম</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-user text-xs"></i></span>
-                                <input type="text" id="auth-name" class="w-full bg-slate-950/40 border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 text-sm transition-all" placeholder="আপনার নাম লিখুন">
-                            </div>
+                        <div id="name-field-group" class="hidden">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">আপনার নাম</label>
+                            <input type="text" id="auth-name" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="যেমন: ওমর">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">ইমেইল অ্যাড্রেস</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-envelope text-xs"></i></span>
-                                <input type="email" id="auth-email" required class="w-full bg-slate-950/40 border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 text-sm transition-all" placeholder="email@example.com">
-                            </div>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">ইমেইল ঠিকানা</label>
+                            <input type="email" id="auth-email" required class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="name@domain.com">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">পাসওয়ার্ড</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-lock text-xs"></i></span>
-                                <input type="password" id="auth-password" required class="w-full bg-slate-950/40 border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 text-sm transition-all" placeholder="••••••••">
-                            </div>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">পাসওয়ার্ড</label>
+                            <input type="password" id="auth-password" required class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="••••••••">
                         </div>
 
-                        <button type="submit" id="btn-submit-auth" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-medium py-3 rounded-xl shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30 transition-all duration-300 text-sm flex items-center justify-center space-x-2">
-                            <span>লগইন করুন</span>
-                            <i class="fas fa-arrow-right text-xs"></i>
+                        <button type="submit" id="btn-submit-auth" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-indigo-600/10">
+                            <span>অ্যাক্সেস করুন</span> <i class="fas fa-arrow-right text-[10px]"></i>
                         </button>
                     </form>
 
-                    <!-- Divider -->
-                    <div class="relative flex py-5 items-center">
+                    <div class="relative flex py-4 items-center">
                         <div class="flex-grow border-t border-white/5"></div>
-                        <span class="flex-shrink mx-4 text-xs text-slate-500 font-semibold uppercase tracking-widest">অথবা</span>
+                        <span class="flex-shrink mx-4 text-[9px] text-slate-500 font-bold uppercase tracking-widest">অথবা</span>
                         <div class="flex-grow border-t border-white/5"></div>
                     </div>
 
-                    <!-- Google Login Button -->
-                    <button id="btn-google-login" class="w-full bg-slate-900 hover:bg-slate-800 text-white border border-white/10 font-medium py-3 rounded-xl transition-all duration-300 text-sm flex items-center justify-center space-x-3 group">
-                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" class="w-5 h-5 group-hover:scale-105 transition-transform" alt="Google">
-                        <span>গুগল অ্যাকাউন্ট দিয়ে লগইন</span>
+                    <button id="btn-google-login" class="w-full bg-slate-900/50 hover:bg-slate-900 text-slate-300 border border-white/5 font-semibold py-2.5 rounded-lg transition-all duration-300 text-xs flex items-center justify-center space-x-2">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" class="w-4 h-4" alt="Google">
+                        <span>গুগল অ্যাকাউন্ট দিয়ে প্রবেশ করুন</span>
                     </button>
                 </div>
             </div>
 
-            <!-- 2. Admin Dashboard View -->
+            <!-- 2. Professional Dashboard View -->
             <div id="view-dashboard" class="hidden">
-                <!-- Overview Header -->
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 border-b border-white/5 pb-6">
                     <div>
-                        <h1 class="text-3xl font-extrabold text-white tracking-tight flex items-center gap-3">
+                        <h1 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
                             <span>ড্যাশবোর্ড</span>
-                            <span class="text-xs bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 px-2.5 py-1 rounded-full font-mono font-medium">PRO Active</span>
+                            <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-mono font-bold uppercase">SaaS Active</span>
                         </h1>
-                        <p class="text-slate-400 mt-1">আপনার সব কিউআর কোড এখান থেকে কাস্টমাইজ এবং রিয়েল-টাইমে আপডেট করুন</p>
+                        <p class="text-xs text-slate-400 mt-1">প্রফেশনাল ডাইনামিক কিউআর কোড রিয়েল-টাইমে নিয়ন্ত্রণ করুন</p>
                     </div>
-                    <button id="btn-open-creator" class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-5 py-3 rounded-xl font-medium shadow-lg shadow-indigo-500/20 flex items-center space-x-2 transition-all duration-300 transform hover:scale-[1.02]">
-                        <i class="fas fa-plus-circle"></i>
-                        <span>নতুন কিউআর কোড তৈরি করুন</span>
+                    <button id="btn-open-creator" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-lg text-xs font-semibold shadow-lg shadow-indigo-600/10 flex items-center space-x-1.5 transition-all">
+                        <i class="fas fa-plus"></i>
+                        <span>নতুন ডাইনামিক কিউআর</span>
                     </button>
                 </div>
 
-                <!-- Main Layout -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Left Sidebar - List of Existing QRs -->
-                    <div class="lg:col-span-1 flex flex-col space-y-4">
-                        <div class="glass-panel p-5 rounded-2xl flex flex-col max-h-[75vh]">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Left Sidebar - QR list -->
+                    <div class="lg:col-span-4 flex flex-col space-y-4">
+                        <div class="premium-blur p-5 rounded-xl flex flex-col max-h-[70vh]">
                             <div class="mb-4">
-                                <h3 class="text-lg font-bold text-white mb-1 flex items-center gap-2">
-                                    <i class="fas fa-folder-open text-indigo-400 text-sm"></i>
-                                    <span>আমার কিউআর কালেকশন</span>
-                                </h3>
-                                <p class="text-xs text-slate-400">আনলিমিটেড তৈরি এবং ইনস্ট্যান্ট ম্যানেজমেন্ট</p>
+                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">আমার কিউআর ফাইলসমূহ</h3>
                             </div>
 
-                            <!-- Search Bar -->
                             <div class="relative mb-4">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fas fa-search text-xs"></i></span>
-                                <input type="text" id="search-qr" class="w-full bg-slate-950/40 border border-white/5 rounded-xl pl-10 pr-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 text-xs transition-all" placeholder="অনুসন্ধান করুন...">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500"><i class="fas fa-search text-[10px]"></i></span>
+                                <input type="text" id="search-qr" class="w-full bg-slate-950/40 border border-white/5 rounded-lg pl-8 pr-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="অনুসন্ধান...">
                             </div>
 
-                            <!-- QR Code List Scrollable area -->
-                            <div id="qr-list-container" class="flex-grow overflow-y-auto custom-scrollbar space-y-3 pr-1">
-                                <!-- Dynamic dynamic cards will be injected here -->
-                                <div class="text-center py-10 text-slate-500">
-                                    <i class="fas fa-qrcode text-4xl mb-3 block opacity-20 animate-bounce"></i>
-                                    <p class="text-xs">কোনো কিউআর কোড পাওয়া যায়নি</p>
-                                </div>
+                            <div id="qr-list-container" class="flex-grow overflow-y-auto space-y-2 pr-1">
+                                <!-- Dynamic injected list items -->
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right Main Content - Creator & Live Customizer -->
-                    <div id="creator-panel" class="lg:col-span-2 hidden">
-                        <div class="glass-panel p-6 rounded-2xl border border-white/10 relative">
-                            <!-- Close panel on mobile option -->
-                            <button id="btn-close-creator" class="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800/50 p-2 rounded-full lg:hidden"><i class="fas fa-times"></i></button>
+                    <!-- Right Main Workdesk - Creator / Editor -->
+                    <div id="creator-panel" class="lg:col-span-8 hidden">
+                        <div class="premium-blur p-6 rounded-xl border border-white/5 relative">
+                            <button id="btn-close-creator" class="absolute top-4 right-4 text-slate-500 hover:text-white lg:hidden"><i class="fas fa-times"></i></button>
 
-                            <h2 id="creator-title" class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                                <i class="fas fa-magic text-indigo-400 text-sm"></i>
-                                <span>নতুন ডাইনামিক কিউআর কোড কাস্টমাইজ করুন</span>
-                            </h2>
+                            <h2 id="creator-title" class="text-sm font-bold text-slate-300 uppercase tracking-widest mb-6">নতুন ডাইনামিক কিউআর কাস্টমাইজেশন</h2>
 
                             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                                <!-- Customization Fields -->
-                                <div class="md:col-span-7 space-y-5">
-                                    <!-- Secret Key tracking for editing state -->
+                                <div class="md:col-span-7 space-y-4">
                                     <input type="hidden" id="edit-qr-id">
 
                                     <div>
-                                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">টাইটেল (আপনার চেনার সুবিধার্থে)</label>
-                                        <input type="text" id="qr-input-title" required class="w-full bg-slate-950/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 text-sm transition-all" placeholder="যেমন: আমার ফেসবুক পেজ বা প্রোফাইল লিংক">
+                                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">কিউআর কোডের টাইটেল</label>
+                                        <input type="text" id="qr-input-title" required class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="যেমন: ফেসবুক বিজনেস পেজ">
                                     </div>
 
                                     <div>
-                                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">কিউআর কোডের ডেটা / লেখা (ডাইনামিক কনটেন্ট)</label>
-                                        <textarea id="qr-input-content" required rows="3" class="w-full bg-slate-950/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 text-sm transition-all" placeholder="এখানে যা লিখবেন স্ক্যান করলে সেটাই দেখা যাবে (যেমন: S বা GUJJ) অথবা যেকোনো ওয়েবসাইট লিঙ্ক"></textarea>
-                                        <p class="text-[10px] text-indigo-400 mt-1"><i class="fas fa-info-circle mr-1"></i> এই লেখাটি পরবর্তীতে পরিবর্তন করলেও প্রিন্ট করা কিউআর কোড একই থাকবে!</p>
+                                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">কিউআর কোডের ভেতরের তথ্য (Dynamic Data)</label>
+                                        <textarea id="qr-input-content" required rows="2" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="যেকোনো টেক্সট বা ওয়েবসাইট লিঙ্ক (যেমন: GUJJ)"></textarea>
                                     </div>
 
-                                    <!-- Styling custom Accordion / Sections -->
-                                    <div class="border-t border-white/5 pt-4">
-                                        <h3 class="text-sm font-semibold text-white mb-4 flex items-center gap-1.5"><i class="fas fa-palette text-indigo-400 text-xs"></i> আল্ট্রা কাস্টমাইজেশন (রং ও ডিজাইন)</h3>
+                                    <!-- Ultra Styling Config -->
+                                    <div class="border-t border-white/5 pt-4 space-y-4">
+                                        <h4 class="text-[11px] font-bold text-indigo-400 uppercase tracking-widest">কালার ও ডিজাইন প্যালেট</h4>
                                         
                                         <div class="grid grid-cols-2 gap-4">
-                                            <!-- Color Picker foreground -->
                                             <div>
-                                                <label class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">কিউআর কোডের রঙ</label>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ফোরগ্রাউন্ড কালার</label>
                                                 <div class="flex items-center space-x-2">
-                                                    <input type="color" id="qr-color-foreground" value="#4f46e5" class="w-10 h-10 rounded-lg cursor-pointer bg-transparent border-0">
-                                                    <input type="text" id="qr-color-foreground-hex" value="#4f46e5" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-2.5 py-1.5 text-xs text-white uppercase focus:outline-none">
+                                                    <input type="color" id="qr-color-foreground" value="#4f46e5" class="w-8 h-8 rounded-lg cursor-pointer bg-transparent border-0">
+                                                    <input type="text" id="qr-color-foreground-hex" value="#4f46e5" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-2 py-1 text-[11px] text-white uppercase focus:outline-none font-mono">
                                                 </div>
                                             </div>
 
-                                            <!-- Color Picker background -->
                                             <div>
-                                                <label class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">ব্যাকগ্রাউন্ড রঙ</label>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ব্যাকগ্রাউন্ড কালার</label>
                                                 <div class="flex items-center space-x-2">
-                                                    <input type="color" id="qr-color-background" value="#ffffff" class="w-10 h-10 rounded-lg cursor-pointer bg-transparent border-0">
-                                                    <input type="text" id="qr-color-background-hex" value="#ffffff" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-2.5 py-1.5 text-xs text-white uppercase focus:outline-none">
+                                                    <input type="color" id="qr-color-background" value="#ffffff" class="w-8 h-8 rounded-lg cursor-pointer bg-transparent border-0">
+                                                    <input type="text" id="qr-color-background-hex" value="#ffffff" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-2 py-1 text-[11px] text-white uppercase focus:outline-none font-mono">
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Dot style & Corner Square design options -->
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">ডটের ধরন (Dot Style)</label>
-                                            <select id="qr-style-dots" class="w-full bg-slate-950/60 border border-white/10 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
-                                                <option value="square">Square (ক্লাসিক)</option>
-                                                <option value="dots" selected>Dots (বৃত্তাকার ডট)</option>
-                                                <option value="rounded">Rounded (মৃদু বাঁকানো)</option>
-                                                <option value="extra-rounded">Extra Rounded (বেশি বাঁকানো)</option>
-                                                <option value="classy">Classy (মডার্ন প্রফেশনাল)</option>
-                                                <option value="classy-rounded">Classy Rounded</option>
-                                            </select>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ডটের ধরন (Dots)</label>
+                                                <select id="qr-style-dots" class="w-full bg-slate-950/60 border border-white/5 rounded-lg px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
+                                                    <option value="square">Square</option>
+                                                    <option value="dots" selected>Dots</option>
+                                                    <option value="rounded">Rounded</option>
+                                                    <option value="classy">Classy</option>
+                                                </select>
+                                            </div>
+
+                                            <div>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">আই ফ্রেম (Eye Design)</label>
+                                                <select id="qr-style-corners" class="w-full bg-slate-950/60 border border-white/5 rounded-lg px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
+                                                    <option value="square">Square</option>
+                                                    <option value="dot">Dot</option>
+                                                    <option value="extra-rounded" selected>Extra Rounded</option>
+                                                </select>
+                                            </div>
                                         </div>
 
                                         <div>
-                                            <label class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">কর্নার স্কয়ার ডিজাইন</label>
-                                            <select id="qr-style-corners" class="w-full bg-slate-950/60 border border-white/10 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
-                                                <option value="square">Square (চারকোণা)</option>
-                                                <option value="dot">Dot (বৃত্তাকার)</option>
-                                                <option value="extra-rounded" selected>Extra Rounded (ডাবল রাউন্ড)</option>
-                                            </select>
+                                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">মাঝখানের আইকন লোগো (অপশনাল)</label>
+                                            <div class="grid grid-cols-5 gap-2">
+                                                <button type="button" class="btn-logo-preset py-1.5 rounded-lg border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-base" data-emoji="">❌</button>
+                                                <button type="button" class="btn-logo-preset py-1.5 rounded-lg border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-base" data-emoji="🔥">🔥</button>
+                                                <button type="button" class="btn-logo-preset py-1.5 rounded-lg border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-base" data-emoji="⚡">⚡</button>
+                                                <button type="button" class="btn-logo-preset py-1.5 rounded-lg border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-base" data-emoji="💼">💼</button>
+                                                <button type="button" class="btn-logo-preset py-1.5 rounded-lg border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-base" data-emoji="🌍">🌍</button>
+                                            </div>
+                                            <input type="hidden" id="qr-logo-emoji" value="">
                                         </div>
                                     </div>
-
-                                    <!-- Middle Icon/Logo input -->
-                                    <div>
-                                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">মাঝখানে লোগো বা ইমোজি (অপশনাল)</label>
-                                        <div class="grid grid-cols-5 gap-2">
-                                            <button type="button" class="btn-logo-preset py-2 rounded-xl border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-lg transition-all" data-emoji="">❌</button>
-                                            <button type="button" class="btn-logo-preset py-2 rounded-xl border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-lg transition-all" data-emoji="🔥">🔥</button>
-                                            <button type="button" class="btn-logo-preset py-2 rounded-xl border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-lg transition-all animate-bounce" data-emoji="⚡">⚡</button>
-                                            <button type="button" class="btn-logo-preset py-2 rounded-xl border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-lg transition-all" data-emoji="❤️">❤️</button>
-                                            <button type="button" class="btn-logo-preset py-2 rounded-xl border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-lg transition-all" data-emoji="⭐">⭐</button>
-                                        </div>
-                                        <input type="hidden" id="qr-logo-emoji" value="">
-                                    </div>
-
                                 </div>
 
-                                <!-- Live Preview Panel & Actions -->
-                                <div class="md:col-span-5 flex flex-col items-center justify-between bg-slate-950/40 border border-white/5 p-5 rounded-2xl">
+                                <!-- Live Interactive Preview -->
+                                <div class="md:col-span-5 flex flex-col justify-between items-center bg-slate-950/40 border border-white/5 p-4 rounded-xl">
                                     <div class="text-center w-full">
-                                        <span class="text-xs text-indigo-400 font-bold uppercase tracking-widest block mb-4">রিয়েল-টাইম লাইভ প্রিভিউ</span>
-                                        
-                                        <!-- QR canvas container -->
-                                        <div class="flex justify-center items-center bg-white p-4 rounded-2xl w-full aspect-square max-w-[240px] mx-auto shadow-inner shadow-slate-950/20" id="qr-preview-container">
-                                            <!-- Canvas generated dynamically here -->
+                                        <span class="text-[9px] text-slate-500 font-bold uppercase tracking-widest block mb-4">রিয়েল-টাইম প্রিভিউ</span>
+                                        <div class="bg-white p-3 rounded-lg w-full aspect-square max-w-[180px] mx-auto shadow-2xl" id="qr-preview-container">
+                                            <!-- Dynamically injected SVG QR canvas -->
                                         </div>
-
-                                        <p class="text-[10px] text-slate-400 mt-4 leading-relaxed px-4">আপনার ডিজাইন কাস্টমাইজ করার সাথে সাথে এটি রিয়েল-টাইমে এখানে পরিবর্তন হবে।</p>
                                     </div>
 
-                                    <div class="w-full mt-6 space-y-3">
-                                        <button id="btn-save-qr" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-xl transition-all duration-300 text-sm flex items-center justify-center space-x-2 shadow-lg shadow-indigo-600/20">
-                                            <i class="fas fa-save"></i>
-                                            <span id="save-btn-text">সংরক্ষণ করুন ও পাবলিশ করুন</span>
+                                    <div class="w-full mt-6 space-y-2">
+                                        <button id="btn-save-qr" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all flex items-center justify-center space-x-1 shadow-lg shadow-indigo-600/10">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span id="save-btn-text">পাবলিশ করুন</span>
                                         </button>
-                                        <button id="btn-download-qr" class="w-full bg-slate-900 hover:bg-slate-800 text-white border border-white/5 font-semibold py-3 rounded-xl transition-all duration-300 text-sm flex items-center justify-center space-x-2">
+                                        <button id="btn-download-qr" class="w-full bg-slate-900 hover:bg-slate-800 text-white border border-white/5 font-semibold py-2.5 rounded-lg text-xs transition-all flex items-center justify-center space-x-1">
                                             <i class="fas fa-download"></i>
-                                            <span>হাই-কোয়ালিটি PNG ডাউনলোড</span>
+                                            <span>ডাউনলোড (High-Res PNG)</span>
                                         </button>
                                     </div>
                                 </div>
@@ -321,68 +317,60 @@
                         </div>
                     </div>
 
-                    <!-- Static Onboarding/Guide view when no editor is open -->
-                    <div id="welcome-panel" class="lg:col-span-2 flex flex-col items-center justify-center p-12 glass-panel rounded-2xl border border-white/5 text-center">
-                        <div class="bg-indigo-500/10 p-5 rounded-full mb-6">
-                            <i class="fas fa-qrcode text-5xl text-indigo-400"></i>
+                    <!-- Sidebar default view -->
+                    <div id="welcome-panel" class="lg:col-span-8 flex flex-col items-center justify-center p-12 premium-blur rounded-xl text-center">
+                        <div class="bg-indigo-500/5 p-4 rounded-full mb-4">
+                            <i class="fas fa-qrcode text-3xl text-indigo-400/80"></i>
                         </div>
-                        <h2 class="text-2xl font-bold text-white mb-2">আপনার প্রফেশনাল কিউআর কোড পাওয়ার হাউস</h2>
-                        <p class="text-slate-400 max-w-md text-sm leading-relaxed mb-6">নতুন কিউআর কোড তৈরি করতে ডানপাশের বাটনে ক্লিক করুন অথবা বামপাশের তালিকা থেকে যেকোনো সক্রিয় কিউআর এডিট বা ডাউনলোড করুন।</p>
-                        <button id="btn-start-now" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-3 rounded-xl transition-all shadow-lg shadow-indigo-600/20">শুরু করা যাক</button>
+                        <h2 class="text-base font-bold text-white mb-1">প্রোফাইল প্যানেল</h2>
+                        <p class="text-xs text-slate-400 max-w-sm leading-relaxed mb-4">আপনার যেকোনো কিউআর কোড কাস্টমাইজ করতে বামদিকের তালিকা থেকে সিলেক্ট করুন অথবা নতুন কিউআর কোড জেনারেট করুন।</p>
                     </div>
                 </div>
             </div>
 
-            <!-- 3. Public Dynamic Scan Destination View -->
-            <div id="view-public-scan" class="hidden max-w-xl mx-auto my-12">
-                <div class="glass-panel p-8 rounded-3xl border border-white/10 relative overflow-hidden shadow-2xl">
-                    <!-- Futuristic accent element -->
-                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-indigo-500/20 rounded-full blur-3xl"></div>
+            <!-- 3. Professional Public Scan Redirector -->
+            <div id="view-public-scan" class="hidden max-w-md mx-auto my-16">
+                <div class="premium-blur p-8 rounded-2xl relative overflow-hidden shadow-2xl">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-full blur-3xl"></div>
                     
-                    <div class="text-center relative z-10 space-y-6">
-                        <!-- Dynamic Logo/Badge depending on content style -->
-                        <div class="mx-auto w-20 h-20 bg-indigo-600/10 rounded-2xl flex items-center justify-center border border-indigo-500/20">
-                            <i id="public-content-icon" class="fas fa-network-wired text-3xl text-indigo-400"></i>
+                    <div class="text-center space-y-5">
+                        <div class="mx-auto w-14 h-14 bg-indigo-600/10 rounded-xl flex items-center justify-center border border-indigo-500/10">
+                            <i id="public-content-icon" class="fas fa-network-wired text-xl text-indigo-400"></i>
                         </div>
 
                         <div>
-                            <span class="text-[11px] bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full font-mono font-bold tracking-widest border border-indigo-500/20">DYNAMIC REDIRECT SECURED</span>
-                            <h2 class="text-2xl font-black text-slate-100 mt-4 tracking-tight leading-tight">ডাইনামিক ডেটা ট্রান্সফার</h2>
-                            <p class="text-slate-400 text-xs mt-1">পাবলিশার দ্বারা রিয়েল-টাইমে আপডেট করা লেটেস্ট ইনফরমেশন</p>
+                            <span class="text-[9px] bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full font-mono font-bold tracking-widest border border-indigo-500/20">DYNAMIC ROUTE</span>
+                            <h2 class="text-lg font-bold text-slate-100 mt-3 tracking-tight">ScanFlow Smart Routing</h2>
                         </div>
 
-                        <!-- Main content container displayed beautifully -->
-                        <div class="bg-slate-950/60 border border-white/5 p-6 rounded-2xl text-left">
-                            <label class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-2">সক্রিয় তথ্য (Active Information):</label>
+                        <div class="bg-slate-950/60 border border-white/5 p-5 rounded-xl text-left">
+                            <label class="block text-[9px] text-slate-500 font-bold uppercase tracking-widest mb-2">সক্রিয় ডেটা (Live Output):</label>
                             
-                            <!-- Display text directly if not URL -->
                             <div id="public-text-wrapper" class="hidden">
-                                <p id="public-text-content" class="text-slate-200 text-lg font-semibold break-all whitespace-pre-line"></p>
-                                <button id="btn-copy-public-text" class="mt-4 flex items-center space-x-1.5 text-xs text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
+                                <p id="public-text-content" class="text-slate-300 text-sm font-semibold break-words whitespace-pre-line"></p>
+                                <button id="btn-copy-public-text" class="mt-3 flex items-center space-x-1 text-[10px] text-indigo-400 hover:text-indigo-300 font-semibold">
                                     <i class="fas fa-copy"></i>
-                                    <span>লেখাটি কপি করুন</span>
+                                    <span>কপি করুন</span>
                                 </button>
                             </div>
 
-                            <!-- Display Redirection message & button if it's a link -->
-                            <div id="public-link-wrapper" class="hidden text-center py-4 space-y-4">
-                                <div class="inline-flex items-center space-x-2 text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-lg text-xs font-semibold">
-                                    <span class="relative flex h-2 w-2">
+                            <div id="public-link-wrapper" class="hidden text-center py-2 space-y-3">
+                                <span class="inline-flex items-center space-x-1.5 text-emerald-400 bg-emerald-500/5 px-2.5 py-1 rounded text-[10px] font-bold">
+                                    <span class="relative flex h-1.5 w-1.5">
                                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
                                     </span>
-                                    <span>লিঙ্ক পাওয়া গেছে</span>
-                                </div>
-                                <h4 id="public-url-preview" class="text-sm font-mono text-slate-300 break-all truncate"></h4>
-                                <a id="btn-public-redirect" href="#" target="_blank" class="w-full bg-gradient-to-r from-emerald-500 to-indigo-600 hover:from-emerald-400 hover:to-indigo-500 text-white font-bold py-3.5 rounded-xl block shadow-lg shadow-emerald-500/10 transition-all transform hover:scale-[1.01] text-sm">
-                                    ওয়েবসাইটে প্রবেশ করুন <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                                    <span>লিঙ্ক সক্রিয় আছে</span>
+                                </span>
+                                <h4 id="public-url-preview" class="text-xs font-mono text-slate-400 truncate"></h4>
+                                <a id="btn-public-redirect" href="#" target="_blank" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-lg block shadow-lg shadow-indigo-600/10 text-xs">
+                                    লিঙ্কে প্রবেশ করুন <i class="fas fa-external-link-alt ml-1 text-[9px]"></i>
                                 </a>
                             </div>
                         </div>
 
-                        <!-- Footer notes -->
-                        <div class="pt-4 border-t border-white/5 flex justify-between items-center text-slate-500 text-[11px]">
-                            <span>পাওয়ার্ড বাই <a href="#" class="text-indigo-400 font-bold hover:underline">ScanFlow</a></span>
+                        <div class="pt-4 border-t border-white/5 flex justify-between items-center text-slate-500 text-[10px]">
+                            <span>পাওয়ার্ড বাই <span class="text-slate-400 font-bold">ScanFlow</span></span>
                             <span id="public-scan-time" class="font-mono"></span>
                         </div>
                     </div>
@@ -390,672 +378,23 @@
             </div>
         </main>
 
-        <!-- Dynamic Copyright Footer -->
-        <footer id="app-footer" class="w-full border-t border-white/5 py-4 px-6 text-center text-xs text-slate-500 glass-panel">
-            <p>© ২০২৬ ScanFlow - ওমর দ্বারা ডেভেলপকৃত। সর্বস্বত্ব সংরক্ষিত।</p>
+        <!-- Premium Footer -->
+        <footer id="app-footer" class="w-full border-t border-white/5 py-4 px-8 text-center text-[10px] text-slate-500 premium-blur">
+            <p>© ২০২৬ ScanFlow Pro - ওমর দ্বারা ডিজাইনকৃত ও ডেভেলপকৃত।</p>
         </footer>
     </div>
 
-    <!-- Firebase SDK Imports -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithCustomToken, signInAnonymously, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, collection, query, onSnapshot, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Firebase Configuration - Dynamic and Secure
-        const firebaseConfig = {
-            apiKey: "AIzaSyAtxWWl7Xhy4ueVfQ6TSDiadfx5K_Mo4Dg",
-            authDomain: "qrcodegeneratordynamic.firebaseapp.com",
-            projectId: "qrcodegeneratordynamic",
-            storageBucket: "qrcodegeneratordynamic.firebasestorage.app",
-            messagingSenderId: "772697258868",
-            appId: "1:772697258868:web:8973b097d1a39db9310a21"
-        };
-
-        // Initialize SDKs
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'qrcodegeneratordynamic-pro';
-
-        // Application State State
-        let currentUser = null;
-        let authMode = 'login'; // 'login' or 'register'
-        let currentQRStylingInstance = null;
-        let myQrCodesList = [];
-
-        // Dynamic System Config
-        const CONFIG_PUBLIC_COLL = "qrcodes";
-
-        // Toast Helper
-        function showNotification(message, type = 'info') {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            const toastIcon = document.getElementById('toast-icon');
-            
-            toastMsg.innerText = message;
-            
-            if (type === 'success') {
-                toastIcon.innerHTML = '<i class="fas fa-check-circle text-emerald-400"></i>';
-                toast.firstElementChild.className = "glass-panel text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3 border-l-4 border-emerald-500";
-            } else if (type === 'error') {
-                toastIcon.innerHTML = '<i class="fas fa-exclamation-triangle text-rose-400"></i>';
-                toast.firstElementChild.className = "glass-panel text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3 border-l-4 border-rose-500";
-            } else {
-                toastIcon.innerHTML = '<i class="fas fa-info-circle text-indigo-400"></i>';
-                toast.firstElementChild.className = "glass-panel text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3 border-l-4 border-indigo-500";
-            }
-
-            // Slide in animation
-            toast.classList.remove('opacity-0', 'translate-y-[-100px]');
-            toast.classList.add('opacity-100', 'translate-y-0');
-
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-[-100px]');
-                toast.classList.remove('opacity-100', 'translate-y-0');
-            }, 4000);
-        }
-
-        // Check if QR URL redirect has been triggered
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-
-        // Dynamic Navigation Views Router
-        function switchView(viewName) {
-            const views = {
-                loading: document.getElementById('view-loading'),
-                auth: document.getElementById('view-auth'),
-                dashboard: document.getElementById('view-dashboard'),
-                scan: document.getElementById('view-public-scan')
-            };
-
-            // Hide all
-            Object.values(views).forEach(view => view.classList.add('hidden'));
-
-            // Show selected
-            if (views[viewName]) {
-                views[viewName].classList.remove('hidden');
-            }
-
-            // Adjust Header and Footer visibility for Public/Private modes
-            const header = document.getElementById('app-header');
-            if (viewName === 'scan') {
-                header.classList.add('hidden');
-            } else {
-                header.classList.remove('hidden');
-            }
-        }
-
-        // Setup Authentication States
-        async function setupAuthSystem() {
-            // First auth trigger as instructed
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                }
-            } catch (err) {
-                console.warn("Custom token invalid, continuing as standard listener.", err);
-            }
-
-            // Track Auth change
-            onAuthStateChanged(auth, (user) => {
-                currentUser = user;
-                updateAuthStateUI();
-
-                // If on public QR redirection route, do not load Dashboard
-                const qrRedirectId = getQueryParam('id');
-                if (qrRedirectId) {
-                    loadPublicQRDetails(qrRedirectId);
-                } else {
-                    if (user) {
-                        switchView('dashboard');
-                        startRealtimeQRListener();
-                    } else {
-                        switchView('auth');
-                    }
-                }
+    <!-- PWA & Modular JS Loader -->
+    <script type="module" src="app.js"></script>
+    <script>
+        // Service Worker registration for "Add to Home Screen"
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service Worker Registered successfully.'))
+                    .catch(err => console.warn('Service Worker registration failed: ', err));
             });
         }
-
-        // Auth UI Dynamic Render
-        function updateAuthStateUI() {
-            const container = document.getElementById('auth-state-area');
-            if (currentUser) {
-                const displayName = currentUser.displayName || currentUser.email.split('@')[0];
-                const avatar = currentUser.photoURL || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(displayName)}`;
-                
-                container.innerHTML = `
-                    <div class="flex items-center space-x-3 bg-slate-900/50 px-3 py-1.5 rounded-xl border border-white/5">
-                        <img src="${avatar}" class="w-8 h-8 rounded-full border border-indigo-500/30 shadow-md" alt="profile">
-                        <div class="hidden md:block text-left">
-                            <h4 class="text-xs font-bold text-slate-200">${displayName}</h4>
-                            <p class="text-[9px] text-indigo-400 font-mono">Premium Account</p>
-                        </div>
-                        <button id="btn-logout" class="text-slate-400 hover:text-rose-400 p-1.5 transition-colors" title="লগআউট">
-                            <i class="fas fa-sign-out-alt"></i>
-                        </button>
-                    </div>
-                `;
-
-                // Handle Logout
-                document.getElementById('btn-logout').addEventListener('click', async () => {
-                    try {
-                        await signOut(auth);
-                        showNotification('সফলভাবে লগআউট করা হয়েছে!', 'success');
-                        window.location.search = ''; // clear parameters on logout
-                    } catch (error) {
-                        showNotification('লগআউট করতে সমস্যা হয়েছে: ' + error.message, 'error');
-                    }
-                });
-            } else {
-                container.innerHTML = `
-                    <span class="text-xs text-slate-500 flex items-center space-x-1">
-                        <i class="fas fa-lock text-[10px]"></i>
-                        <span>সুরক্ষিত সেশন</span>
-                    </span>
-                `;
-            }
-        }
-
-        // Dynamic public scan resolver
-        async function loadPublicQRDetails(id) {
-            switchView('loading');
-            try {
-                // Rule 1: Static Dynamic path syntax compliant
-                const docRef = doc(db, 'artifacts', appId, 'public', 'data', CONFIG_PUBLIC_COLL, id);
-                const docSnap = await getDoc(docRef);
-
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    switchView('scan');
-
-                    // Set time
-                    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-                    document.getElementById('public-scan-time').innerText = new Date(data.updatedAt || data.createdAt).toLocaleDateString('bn-BD', options);
-
-                    const content = data.content || "";
-                    
-                    // Check if content is a valid Web URL
-                    const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i;
-                    const isUrl = urlPattern.test(content.trim());
-
-                    if (isUrl) {
-                        let finalUrl = content.trim();
-                        if (!/^https?:\/\//i.test(finalUrl)) {
-                            finalUrl = 'https://' + finalUrl;
-                        }
-                        document.getElementById('public-content-icon').className = "fas fa-globe text-3xl text-emerald-400";
-                        document.getElementById('public-link-wrapper').classList.remove('hidden');
-                        document.getElementById('public-text-wrapper').classList.add('hidden');
-                        document.getElementById('public-url-preview').innerText = finalUrl;
-                        
-                        const redirectBtn = document.getElementById('btn-public-redirect');
-                        redirectBtn.href = finalUrl;
-                    } else {
-                        document.getElementById('public-content-icon').className = "fas fa-quote-right text-3xl text-indigo-400";
-                        document.getElementById('public-text-wrapper').classList.remove('hidden');
-                        document.getElementById('public-link-wrapper').classList.add('hidden');
-                        document.getElementById('public-text-content').innerText = content;
-                    }
-                } else {
-                    showNotification('দুঃখিত, কিউআর কোডটি পাওয়া যায়নি বা মুছে ফেলা হয়েছে!', 'error');
-                    setTimeout(() => {
-                        window.location.href = window.location.origin + window.location.pathname;
-                    }, 4000);
-                }
-            } catch (err) {
-                console.error(err);
-                showNotification('ফায়ারস্টোর থেকে তথ্য লোড করতে সমস্যা হয়েছে!', 'error');
-            }
-        }
-
-        // Realtime Listener for Admin collection items
-        function startRealtimeQRListener() {
-            if (!currentUser) return;
-
-            // Rule 1: Always use strictly defined paths
-            const qrcodesQuery = query(collection(db, 'artifacts', appId, 'public', 'data', CONFIG_PUBLIC_COLL));
-
-            onSnapshot(qrcodesQuery, (snapshot) => {
-                myQrCodesList = [];
-                snapshot.forEach((doc) => {
-                    const data = doc.data();
-                    // Filter in-memory for user specific data (No complex query used - RULE 2 compliant)
-                    if (data.userId === currentUser.uid) {
-                        myQrCodesList.push({ id: doc.id, ...data });
-                    }
-                });
-                renderQRCodesList();
-            }, (error) => {
-                console.error("Firestore Listener error: ", error);
-                showNotification("কালেকশন লোড করার সময় জটিলতা তৈরি হয়েছে।", "error");
-            });
-        }
-
-        // Render QR cards inside the left sidebar panel list
-        function renderQRCodesList() {
-            const listContainer = document.getElementById('qr-list-container');
-            const searchVal = document.getElementById('search-qr').value.toLowerCase();
-            const filtered = myQrCodesList.filter(item => 
-                (item.title && item.title.toLowerCase().includes(searchVal)) || 
-                (item.content && item.content.toLowerCase().includes(searchVal))
-            );
-
-            if (filtered.length === 0) {
-                listContainer.innerHTML = `
-                    <div class="text-center py-12 text-slate-500">
-                        <i class="fas fa-search text-3xl mb-2 block opacity-30"></i>
-                        <p class="text-xs">মিল পাওয়া যায়নি!</p>
-                    </div>
-                `;
-                return;
-            }
-
-            listContainer.innerHTML = '';
-            filtered.forEach(item => {
-                const card = document.createElement('div');
-                card.className = "glass-card p-4 rounded-xl cursor-pointer flex justify-between items-center group relative overflow-hidden";
-                card.setAttribute('data-id', item.id);
-                
-                // Construct scan redirection link
-                const scanLink = `${window.location.origin}${window.location.pathname}?id=${item.id}`;
-
-                card.innerHTML = `
-                    <div class="space-y-1 pr-6 flex-grow">
-                        <div class="flex items-center space-x-2">
-                            <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${item.color || '#4f46e5'}"></span>
-                            <h4 class="text-sm font-bold text-slate-200 truncate max-w-[150px]">${item.title || 'শিরোনামহীন কিউআর'}</h4>
-                        </div>
-                        <p class="text-[11px] text-slate-400 truncate max-w-[180px]">কনটেন্ট: <span class="text-indigo-300 font-semibold font-mono">${item.content}</span></p>
-                        <p class="text-[9px] text-indigo-400 font-mono tracking-wider">ID: ${item.id}</p>
-                    </div>
-                    <div class="flex items-center space-x-1 z-10">
-                        <button class="btn-copy-link p-1.5 text-slate-400 hover:text-indigo-400 transition-colors" data-link="${scanLink}" title="স্ক্যান লিঙ্ক কপি">
-                            <i class="fas fa-copy text-xs"></i>
-                        </button>
-                        <button class="btn-delete-qr p-1.5 text-slate-400 hover:text-rose-400 transition-colors" data-id="${item.id}" title="মুছে ফেলুন">
-                            <i class="fas fa-trash-alt text-xs"></i>
-                        </button>
-                    </div>
-                    <div class="absolute right-0 bottom-0 top-0 w-1 opacity-0 group-hover:opacity-100 bg-indigo-500 transition-opacity"></div>
-                `;
-
-                // Handle clicking the item to trigger edit view loader
-                card.addEventListener('click', (e) => {
-                    if (e.target.closest('.btn-copy-link') || e.target.closest('.btn-delete-qr')) {
-                        return; // do not open card if action button clicked
-                    }
-                    openQREditor(item);
-                });
-
-                listContainer.appendChild(card);
-            });
-
-            // Bind links copying click event
-            document.querySelectorAll('.btn-copy-link').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const link = btn.getAttribute('data-link');
-                    
-                    // Simple input element clipboard fallback
-                    const tempInput = document.createElement('input');
-                    tempInput.value = link;
-                    document.body.appendChild(tempInput);
-                    tempInput.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(tempInput);
-
-                    showNotification('স্ক্যান করার ডাইনামিক লিঙ্কটি সফলভাবে কপি করা হয়েছে!', 'success');
-                });
-            });
-
-            // Bind deleting options
-            document.querySelectorAll('.btn-delete-qr').forEach(btn => {
-                btn.addEventListener('click', async (e) => {
-                    const id = btn.getAttribute('data-id');
-                    const confirmation = confirm("আপনি কি নিশ্চিতভাবে এই ডাইনামিক কিউআর কোডটি চিরতরে ডিলিট করতে চান? প্রিন্ট করা কিউআর কোডটি আর কাজ করবে না!");
-                    if (confirmation) {
-                        try {
-                            const docRef = doc(db, 'artifacts', appId, 'public', 'data', CONFIG_PUBLIC_COLL, id);
-                            await deleteDoc(docRef);
-                            showNotification('কিউআর কোডটি সফলভাবে ডিলিট করা হয়েছে!', 'success');
-                            
-                            // Clear and reset Creator view if active deleted item
-                            if (document.getElementById('edit-qr-id').value === id) {
-                                resetCreatorForm();
-                            }
-                        } catch (err) {
-                            showNotification('ডিলিট করতে জটিলতা হয়েছে: ' + err.message, 'error');
-                        }
-                    }
-                });
-            });
-        }
-
-        // Live Preview Renderer Controller
-        function updateLiveQRPreview() {
-            const container = document.getElementById('qr-preview-container');
-            container.innerHTML = ''; // clean previous contents
-
-            const fgColor = document.getElementById('qr-color-foreground').value;
-            const bgColor = document.getElementById('qr-color-background').value;
-            const dotType = document.getElementById('qr-style-dots').value;
-            const cornerType = document.getElementById('qr-style-corners').value;
-            const logoEmoji = document.getElementById('qr-logo-emoji').value;
-
-            // Generate temporary unique scan page URL for preview visualization
-            const activeId = document.getElementById('edit-qr-id').value || 'preview_id_placeholder';
-            const previewUrl = `${window.location.origin}${window.location.pathname}?id=${activeId}`;
-
-            // Initialize QR styling setup
-            currentQRStylingInstance = new QRCodeStyling({
-                width: 240,
-                height: 240,
-                type: "svg",
-                data: previewUrl,
-                dotsOptions: {
-                    color: fgColor,
-                    type: dotType
-                },
-                backgroundOptions: {
-                    color: bgColor,
-                },
-                cornersSquareOptions: {
-                    color: fgColor,
-                    type: cornerType
-                },
-                cornersDotOptions: {
-                    color: fgColor,
-                    type: dotType
-                },
-                imageOptions: {
-                    crossOrigin: "anonymous",
-                    margin: 4,
-                    imageSize: 0.4
-                }
-            });
-
-            // Generate center logo dynamically with custom canvas rendering of emojis
-            if (logoEmoji) {
-                const canvas = document.createElement('canvas');
-                canvas.width = 64;
-                canvas.height = 64;
-                const ctx = canvas.getContext('2d');
-                ctx.font = '48px serif';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(logoEmoji, 32, 32);
-                currentQRStylingInstance.update({
-                    image: canvas.toDataURL()
-                });
-            }
-
-            currentQRStylingInstance.append(container);
-        }
-
-        // Open layout editor (create or update item mode)
-        function openQREditor(item = null) {
-            document.getElementById('welcome-panel').classList.add('hidden');
-            document.getElementById('creator-panel').classList.remove('hidden');
-
-            if (item) {
-                // Editing existing mode
-                document.getElementById('creator-title').innerHTML = `<i class="fas fa-edit text-indigo-400 text-sm"></i> <span>এডিট করুন: ${item.title}</span>`;
-                document.getElementById('edit-qr-id').value = item.id;
-                document.getElementById('qr-input-title').value = item.title || "";
-                document.getElementById('qr-input-content').value = item.content || "";
-                document.getElementById('qr-color-foreground').value = item.color || "#4f46e5";
-                document.getElementById('qr-color-foreground-hex').value = item.color || "#4f46e5";
-                document.getElementById('qr-color-background').value = item.bgColor || "#ffffff";
-                document.getElementById('qr-color-background-hex').value = item.bgColor || "#ffffff";
-                document.getElementById('qr-style-dots').value = item.dotType || "dots";
-                document.getElementById('qr-style-corners').value = item.cornerType || "extra-rounded";
-                document.getElementById('qr-logo-emoji').value = item.logoEmoji || "";
-                document.getElementById('save-btn-text').innerText = "আপডেট এবং পরিবর্তন সেভ করুন";
-
-                // Highlight preset emoji if selected
-                updatePresetEmojiHighlight(item.logoEmoji || "");
-            } else {
-                // Creating new dynamic setup
-                resetCreatorForm();
-            }
-
-            updateLiveQRPreview();
-        }
-
-        // Reset all fields inside Editor layout
-        function resetCreatorForm() {
-            document.getElementById('creator-title').innerHTML = `<i class="fas fa-magic text-indigo-400 text-sm"></i> <span>নতুন ডাইনামিক কিউআর কোড কাস্টমাইজ করুন</span>`;
-            document.getElementById('edit-qr-id').value = '';
-            document.getElementById('qr-input-title').value = '';
-            document.getElementById('qr-input-content').value = '';
-            document.getElementById('qr-color-foreground').value = '#4f46e5';
-            document.getElementById('qr-color-foreground-hex').value = '#4f46e5';
-            document.getElementById('qr-color-background').value = '#ffffff';
-            document.getElementById('qr-color-background-hex').value = '#ffffff';
-            document.getElementById('qr-style-dots').value = 'dots';
-            document.getElementById('qr-style-corners').value = 'extra-rounded';
-            document.getElementById('qr-logo-emoji').value = '';
-            document.getElementById('save-btn-text').innerText = "সংরক্ষণ করুন ও পাবলিশ করুন";
-            
-            updatePresetEmojiHighlight("");
-            updateLiveQRPreview();
-        }
-
-        // Highlight selected Emoji preset
-        function updatePresetEmojiHighlight(activeEmoji) {
-            document.querySelectorAll('.btn-logo-preset').forEach(btn => {
-                const emoji = btn.getAttribute('data-emoji');
-                if (emoji === activeEmoji) {
-                    btn.classList.add('border-indigo-500', 'bg-indigo-500/10');
-                } else {
-                    btn.classList.remove('border-indigo-500', 'bg-indigo-500/10');
-                }
-            });
-        }
-
-        // Event listener bindings initialization helper
-        function initAppEvents() {
-            // Live Search
-            document.getElementById('search-qr').addEventListener('input', renderQRCodesList);
-
-            // Preset Logo emoji selection
-            document.querySelectorAll('.btn-logo-preset').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const emoji = btn.getAttribute('data-emoji');
-                    document.getElementById('qr-logo-emoji').value = emoji;
-                    updatePresetEmojiHighlight(emoji);
-                    updateLiveQRPreview();
-                });
-            });
-
-            // Live Change Customizers (colors, style types)
-            const liveChangeInputs = [
-                'qr-color-foreground', 'qr-color-background', 'qr-style-dots', 'qr-style-corners'
-            ];
-            liveChangeInputs.forEach(id => {
-                document.getElementById(id).addEventListener('change', () => {
-                    // Update matching HEX text fields
-                    if (id === 'qr-color-foreground') {
-                        document.getElementById('qr-color-foreground-hex').value = document.getElementById(id).value;
-                    }
-                    if (id === 'qr-color-background') {
-                        document.getElementById('qr-color-background-hex').value = document.getElementById(id).value;
-                    }
-                    updateLiveQRPreview();
-                });
-            });
-
-            // Manual Hex Color edits
-            document.getElementById('qr-color-foreground-hex').addEventListener('input', (e) => {
-                const val = e.target.value;
-                if (/^#[0-9A-F]{6}$/i.test(val)) {
-                    document.getElementById('qr-color-foreground').value = val;
-                    updateLiveQRPreview();
-                }
-            });
-            document.getElementById('qr-color-background-hex').addEventListener('input', (e) => {
-                const val = e.target.value;
-                if (/^#[0-9A-F]{6}$/i.test(val)) {
-                    document.getElementById('qr-color-background').value = val;
-                    updateLiveQRPreview();
-                }
-            });
-
-            // Main Creator triggers
-            document.getElementById('btn-open-creator').addEventListener('click', () => openQREditor(null));
-            document.getElementById('btn-start-now').addEventListener('click', () => openQREditor(null));
-            document.getElementById('btn-close-creator').addEventListener('click', () => {
-                document.getElementById('creator-panel').classList.add('hidden');
-                document.getElementById('welcome-panel').classList.remove('hidden');
-            });
-
-            // Auth Login vs Register selection buttons
-            document.getElementById('tab-login').addEventListener('click', () => {
-                authMode = 'login';
-                document.getElementById('tab-login').className = "w-1/2 py-2.5 text-sm font-medium rounded-lg text-white bg-indigo-600 shadow-md transition-all duration-200";
-                document.getElementById('tab-register').className = "w-1/2 py-2.5 text-sm font-medium rounded-lg text-slate-400 hover:text-white transition-all duration-200";
-                document.getElementById('name-field-group').classList.add('hidden');
-                document.getElementById('btn-submit-auth').innerHTML = `<span>লগইন করুন</span> <i class="fas fa-arrow-right text-xs"></i>`;
-            });
-
-            document.getElementById('tab-register').addEventListener('click', () => {
-                authMode = 'register';
-                document.getElementById('tab-register').className = "w-1/2 py-2.5 text-sm font-medium rounded-lg text-white bg-indigo-600 shadow-md transition-all duration-200";
-                document.getElementById('tab-login').className = "w-1/2 py-2.5 text-sm font-medium rounded-lg text-slate-400 hover:text-white transition-all duration-200";
-                document.getElementById('name-field-group').classList.remove('hidden');
-                document.getElementById('btn-submit-auth').innerHTML = `<span>নিবন্ধন করুন</span> <i class="fas fa-user-plus text-xs"></i>`;
-            });
-
-            // Email/Password Submit
-            document.getElementById('auth-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const email = document.getElementById('auth-email').value;
-                const password = document.getElementById('auth-password').value;
-                const name = document.getElementById('auth-name').value;
-
-                switchView('loading');
-
-                try {
-                    if (authMode === 'login') {
-                        await signInWithEmailAndPassword(auth, email, password);
-                        showNotification('সাফল্যজনক লগইন সম্পন্ন হয়েছে!', 'success');
-                    } else {
-                        const userCred = await createUserWithEmailAndPassword(auth, email, password);
-                        // Save basic profile name if register
-                        if (name) {
-                            userCred.user.displayName = name;
-                        }
-                        showNotification('অ্যাকাউন্ট নিবন্ধন সফল হয়েছে!', 'success');
-                    }
-                } catch (error) {
-                    switchView('auth');
-                    showNotification('অথেন্টিকেশন ব্যর্থ: ' + error.message, 'error');
-                }
-            });
-
-            // Google Authenticaton Trigger
-            document.getElementById('btn-google-login').addEventListener('click', async () => {
-                const provider = new GoogleAuthProvider();
-                switchView('loading');
-                try {
-                    await signInWithPopup(auth, provider);
-                    showNotification('গুগল অ্যাকাউন্ট দিয়ে সফলভাবে লগইন হয়েছে!', 'success');
-                } catch (error) {
-                    switchView('auth');
-                    showNotification('গুগল লগইন ব্যর্থ হয়েছে: ' + error.message, 'error');
-                }
-            });
-
-            // Submit Creator Action
-            document.getElementById('btn-save-qr').addEventListener('click', async () => {
-                const title = document.getElementById('qr-input-title').value.trim();
-                const content = document.getElementById('qr-input-content').value.trim();
-                
-                if (!title || !content) {
-                    showNotification('দয়া করে টাইটেল এবং কিউআর কোডের মূল টেক্সট/কনটেন্ট প্রদান করুন!', 'error');
-                    return;
-                }
-
-                const fgColor = document.getElementById('qr-color-foreground').value;
-                const bgColor = document.getElementById('qr-color-background').value;
-                const dotType = document.getElementById('qr-style-dots').value;
-                const cornerType = document.getElementById('qr-style-corners').value;
-                const logoEmoji = document.getElementById('qr-logo-emoji').value;
-                const existingId = document.getElementById('edit-qr-id').value;
-
-                // Rule 3 Verification
-                if (!currentUser) {
-                    showNotification('অনুগ্রহ করে আগে লগইন সম্পন্ন করুন!', 'error');
-                    return;
-                }
-
-                // Create a unique id for new qr code
-                const qrId = existingId || crypto.randomUUID();
-
-                // Firestore Document structure representation
-                const qrDocData = {
-                    userId: currentUser.uid,
-                    title: title,
-                    content: content,
-                    color: fgColor,
-                    bgColor: bgColor,
-                    dotType: dotType,
-                    cornerType: cornerType,
-                    logoEmoji: logoEmoji,
-                    updatedAt: Date.now()
-                };
-
-                if (!existingId) {
-                    qrDocData.createdAt = Date.now();
-                }
-
-                try {
-                    // Rule 1 Compliant Strict Public path write operation
-                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', CONFIG_PUBLIC_COLL, qrId);
-                    await setDoc(docRef, qrDocData, { merge: true });
-
-                    showNotification(existingId ? 'কিউআর কোডটি সফলভাবে আপডেট করা হয়েছে!' : 'নতুন ডাইনামিক কিউআর কোড তৈরি করা হয়েছে!', 'success');
-                    
-                    // Reset to onboarding panel view
-                    document.getElementById('creator-panel').classList.add('hidden');
-                    document.getElementById('welcome-panel').classList.remove('hidden');
-                } catch (err) {
-                    showNotification('সংরক্ষণ ব্যর্থ: ' + err.message, 'error');
-                }
-            });
-
-            // Download Canvas Button
-            document.getElementById('btn-download-qr').addEventListener('click', () => {
-                if (currentQRStylingInstance) {
-                    const title = document.getElementById('qr-input-title').value || 'dynamic-qr';
-                    const cleanTitle = title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
-                    currentQRStylingInstance.download({ name: `${cleanTitle}-scanflow`, extension: "png" });
-                    showNotification('হাই-কোয়ালিটি PNG ফাইল ডাউনলোড শুরু হয়েছে!', 'success');
-                } else {
-                    showNotification('আগে কিউআর কোডটি জেনারেট করুন!', 'error');
-                }
-            });
-
-            // Copy Action from scan redirection page content
-            document.getElementById('btn-copy-public-text').addEventListener('click', () => {
-                const text = document.getElementById('public-text-content').innerText;
-                const tempInput = document.createElement('textarea');
-                tempInput.value = text;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-                showNotification('লেখাটি ক্লিপবোর্ডে কপি করা হয়েছে!', 'success');
-            });
-        }
-
-        // Initialize application workflow when page loads fully
-        window.addEventListener('DOMContentLoaded', () => {
-            initAppEvents();
-            setupAuthSystem();
-        });
     </script>
 </body>
 </html>
