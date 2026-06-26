@@ -1,12 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="bn" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Premium SEO Meta Tags -->
-    <title>ScanFlow Pro | এন্টারপ্রাইজ ডাইনামিক কিউআর ইঞ্জিন</title>
-    <meta name="title" content="ScanFlow Pro | এন্টারপ্রাইজ ডাইনামিক কিউআর ইঞ্জিন">
+    <!-- Primary SEO Meta Tags -->
+    <title>ScanFlow Pro | প্রিমিয়াম ডাইনামিক কিউআর ইঞ্জিন</title>
+    <meta name="title" content="ScanFlow Pro | প্রিমিয়াম ডাইনামিক কিউআর ইঞ্জিন">
     <meta name="description" content="পেশাদার ডাইনামিক কিউআর কোড জেনারেটর। কাস্টম লোগো, ইমোজি এবং আল্ট্রা-কাস্টমাইজেশন সহ আনলিমিটেড এডিটেবল কিউআর কোড।">
     <meta name="keywords" content="Dynamic QR Code, Enterprise QR, ScanFlow, Custom Logo QR, PWA QR, ফায়ারবেস কিউআর">
     <meta name="robots" content="index, follow">
@@ -41,30 +42,30 @@
             font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
             background-color: #030712;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.05) 0, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.04) 0, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.04) 0, transparent 50%);
             color: #f3f4f6;
             min-height: 100vh;
         }
         .premium-border {
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
         .premium-bg {
-            background: rgba(11, 15, 26, 0.8);
+            background: rgba(11, 15, 26, 0.85);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
         }
         .sidebar-card {
-            background: rgba(17, 24, 39, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            background: rgba(17, 24, 39, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.01);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .sidebar-card:hover {
-            border-color: rgba(99, 102, 241, 0.25);
-            background: rgba(17, 24, 39, 0.7);
+            border-color: rgba(99, 102, 241, 0.2);
+            background: rgba(17, 24, 39, 0.6);
         }
         .sidebar-card.active-card {
-            border-color: rgba(99, 102, 241, 0.6);
+            border-color: rgba(99, 102, 241, 0.5);
             background: rgba(99, 102, 241, 0.08);
         }
     </style>
@@ -226,7 +227,7 @@
                                             </div>
 
                                             <div>
-                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ব্যাকগ্রাউন্ড কালার</label>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ব্যাকগ্রাউন্ড কালার (১:১ সলিড)</label>
                                                 <div class="flex items-center space-x-2">
                                                     <input type="color" id="qr-color-background" value="#ffffff" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0">
                                                     <input type="text" id="qr-color-background-hex" value="#ffffff" class="w-full bg-slate-950/40 border border-white/5 rounded px-2 py-1 text-[11px] text-white uppercase focus:outline-none font-mono">
@@ -236,7 +237,7 @@
 
                                         <div class="grid grid-cols-2 gap-4">
                                             <div>
-                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ডটের ধরন (Dots)</label>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ডটের ধরন (Dots Style)</label>
                                                 <select id="qr-style-dots" class="w-full bg-slate-950/60 border border-white/5 rounded px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
                                                     <option value="square">Square (চারকোণা)</option>
                                                     <option value="dots" selected>Dots (বৃত্তাকার ডট)</option>
@@ -258,35 +259,34 @@
 
                                         <div class="grid grid-cols-2 gap-4">
                                             <div>
-                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">সেফ জোন প্যাডিং (Padding/Margin)</label>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">সেফ জোন প্যাডিং (Margin)</label>
                                                 <select id="qr-padding" class="w-full bg-slate-950/60 border border-white/5 rounded px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
-                                                    <option value="0">No Padding (0px)</option>
-                                                    <option value="10">Standard (10px)</option>
-                                                    <option value="15" selected>Safe Margin (15px) - Recommended</option>
-                                                    <option value="25">Wide (25px)</option>
+                                                    <option value="5">Compact Padding (5px)</option>
+                                                    <option value="15" selected>Standard Margin (15px)</option>
+                                                    <option value="25">Wide Space (25px)</option>
                                                 </select>
                                             </div>
                                             <div>
-                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">মাঝখানের আইকন টাইপ</label>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">মাঝখানের কাস্টম আইকন</label>
                                                 <select id="qr-icon-type" class="w-full bg-slate-950/60 border border-white/5 rounded px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
-                                                    <option value="none" selected>No Icon</option>
-                                                    <option value="emoji">Custom Emoji</option>
-                                                    <option value="upload">Upload Custom Image/Logo</option>
+                                                    <option value="none" selected>কোনো আইকন নেই</option>
+                                                    <option value="emoji">কাস্টম ইমোজি লিখুন</option>
+                                                    <option value="upload">কাস্টম লোগো আপলোড</option>
                                                 </select>
                                             </div>
                                         </div>
 
                                         <!-- Custom Emoji Area -->
                                         <div id="emoji-custom-area" class="hidden space-y-2">
-                                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest">কাস্টম ইমোজি লিখুন</label>
+                                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest">কাস্টম ইমোজি টাইপ করুন</label>
                                             <div class="flex gap-2">
-                                                <input type="text" id="qr-custom-emoji-input" maxlength="2" class="w-20 bg-slate-950/40 border border-white/5 rounded-lg px-3 py-2 text-center text-lg text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50" placeholder="🔥">
+                                                <input type="text" id="qr-custom-emoji-input" maxlength="2" class="w-16 bg-slate-950/40 border border-white/5 rounded-lg px-2 py-2 text-center text-lg text-white focus:outline-none focus:border-indigo-500/50" placeholder="⭐">
                                                 <div class="flex-grow flex items-center gap-1.5 overflow-x-auto py-1">
                                                     <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="⚡">⚡</button>
                                                     <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="🔥">🔥</button>
-                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="💼">💼</button>
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="👑">👑</button>
                                                     <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="🎯">🎯</button>
-                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="⭐">⭐</button>
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="❤️">❤️</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -314,7 +314,7 @@
                                 <!-- Live Interactive Preview -->
                                 <div class="md:col-span-5 flex flex-col justify-between items-center bg-slate-950/40 border border-white/5 p-4 rounded-xl">
                                     <div class="text-center w-full">
-                                        <span class="text-[9px] text-slate-500 font-bold uppercase tracking-widest block mb-4">রিয়েল-টাইম প্রিভিউ</span>
+                                        <span class="text-[9px] text-slate-500 font-bold uppercase tracking-widest block mb-4">রিয়েল-টাইমে প্রিভিউ</span>
                                         
                                         <!-- Solid Frame to check actual transparency and spacing -->
                                         <div class="relative bg-slate-900 p-4 rounded-xl border border-white/5 shadow-inner">
@@ -322,7 +322,7 @@
                                                 <!-- Dynamic generated SVG QR canvas -->
                                             </div>
                                         </div>
-                                        <p class="text-[10px] text-slate-500 mt-3 leading-relaxed">উপরের ফ্রেমে যেমন মার্জিন এবং কালার প্রিভিউ দেখছেন, ঠিক এভাবেই ইমেজটি ডাউনলোড হবে।</p>
+                                        <p class="text-[10px] text-slate-500 mt-3 leading-relaxed">উপরের ফ্রেমের ডিজাইন অনুযায়ী আপনার কিউআর কোডটি জেনারেট হবে।</p>
                                     </div>
 
                                     <div class="w-full mt-6 space-y-2">
@@ -332,7 +332,7 @@
                                         </button>
                                         <button id="btn-download-qr" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all flex items-center justify-center space-x-1 shadow-lg shadow-emerald-600/10">
                                             <i class="fas fa-download"></i>
-                                            <span>ডাউনলোড (High-Res PNG)</span>
+                                            <span>ডাউনলোড করুন (১:১ সলিড PNG)</span>
                                         </button>
                                     </div>
                                 </div>
@@ -351,44 +351,31 @@
                 </div>
             </div>
 
-            <!-- Professional Public Scan Redirector -->
+            <!-- Professional Public Scan Display (Bypasses URL redirect instantly) -->
             <div id="view-public-scan" class="hidden max-w-md mx-auto my-16">
                 <div class="premium-bg p-8 rounded-2xl relative overflow-hidden shadow-2xl premium-border">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-full blur-3xl"></div>
                     
                     <div class="text-center space-y-5">
                         <div class="mx-auto w-12 h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center border border-indigo-500/10">
-                            <i id="public-content-icon" class="fas fa-network-wired text-lg text-indigo-400"></i>
+                            <i id="public-content-icon" class="fas fa-file-alt text-lg text-indigo-400"></i>
                         </div>
 
                         <div>
-                            <span class="text-[9px] bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full font-mono font-bold tracking-widest border border-indigo-500/20">SECURED ROUTE</span>
-                            <h2 class="text-base font-bold text-slate-100 mt-3 tracking-tight">ScanFlow Dynamic System</h2>
+                            <span class="text-[9px] bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full font-mono font-bold tracking-widest border border-indigo-500/20">LIVE DATA DISPLAY</span>
+                            <h2 class="text-base font-bold text-slate-100 mt-3 tracking-tight">ScanFlow Dynamic output</h2>
                         </div>
 
+                        <!-- Only used to render plain text dynamically and securely -->
                         <div class="bg-slate-950/60 border border-white/5 p-5 rounded-xl text-left">
-                            <label class="block text-[9px] text-slate-500 font-bold uppercase tracking-widest mb-2">সক্রিয় ডেটা (Active Data):</label>
+                            <label class="block text-[9px] text-slate-500 font-bold uppercase tracking-widest mb-2">সক্রিয় তথ্য (Active Text):</label>
                             
-                            <div id="public-text-wrapper" class="hidden">
+                            <div id="public-text-wrapper">
                                 <p id="public-text-content" class="text-slate-300 text-xs font-semibold break-words whitespace-pre-line"></p>
                                 <button id="btn-copy-public-text" class="mt-3 flex items-center space-x-1 text-[10px] text-indigo-400 hover:text-indigo-300 font-semibold">
                                     <i class="fas fa-copy"></i>
                                     <span>কপি করুন</span>
                                 </button>
-                            </div>
-
-                            <div id="public-link-wrapper" class="hidden text-center py-2 space-y-3">
-                                <span class="inline-flex items-center space-x-1.5 text-emerald-400 bg-emerald-500/5 px-2.5 py-1 rounded text-[9px] font-bold">
-                                    <span class="relative flex h-1.5 w-1.5">
-                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-                                    </span>
-                                    <span>লিঙ্ক সক্রিয় আছে</span>
-                                </span>
-                                <h4 id="public-url-preview" class="text-xs font-mono text-slate-400 truncate"></h4>
-                                <a id="btn-public-redirect" href="#" target="_blank" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-lg block shadow-lg shadow-indigo-600/10 text-xs">
-                                    লিঙ্কে প্রবেশ করুন <i class="fas fa-external-link-alt ml-1 text-[9px]"></i>
-                                </a>
                             </div>
                         </div>
 
