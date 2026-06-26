@@ -146,7 +146,7 @@ function updateAuthStateUI() {
     }
 }
 
-// Public scanning target visualizer
+// Public scanning target visualizer with INSTANT AUTO-REDIRECT BYPASS
 async function loadPublicQRDetails(id) {
     switchView('loading');
     try {
@@ -155,29 +155,27 @@ async function loadPublicQRDetails(id) {
 
         if (docSnap.exists()) {
             const data = docSnap.data();
-            switchView('scan');
-
-            const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-            document.getElementById('public-scan-time').innerText = new Date(data.updatedAt || data.createdAt).toLocaleDateString('bn-BD', options);
-
             const content = data.content || "";
+            
+            // Regex to check if the data inside QR is a valid Web URL
             const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i;
             const isUrl = urlPattern.test(content.trim());
 
             if (isUrl) {
                 let finalUrl = content.trim();
+                // Ensure protocol is attached for secure instant window.location replace redirect
                 if (!/^https?:\/\//i.test(finalUrl)) {
                     finalUrl = 'https://' + finalUrl;
                 }
-                document.getElementById('public-content-icon').className = "fas fa-globe text-lg text-emerald-400";
-                document.getElementById('public-link-wrapper').classList.remove('hidden');
-                document.getElementById('public-text-wrapper').classList.add('hidden');
-                document.getElementById('public-url-preview').innerText = finalUrl;
-                document.getElementById('btn-public-redirect').href = finalUrl;
+                
+                // CRITICAL CHANGE: Bypass intermediate UI and perform instant redirect
+                window.location.replace(finalUrl);
+                return; // Stop thread execution immediately
             } else {
-                document.getElementById('public-content-icon').className = "fas fa-quote-right text-lg text-indigo-400";
-                document.getElementById('public-text-wrapper').classList.remove('hidden');
-                document.getElementById('public-link-wrapper').classList.add('hidden');
+                // If it is regular plain text data, render clean fullscreen layout
+                switchView('scan');
+                const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                document.getElementById('public-scan-time').innerText = new Date(data.updatedAt || data.createdAt).toLocaleDateString('bn-BD', options);
                 document.getElementById('public-text-content').innerText = content;
             }
         } else {
@@ -323,7 +321,7 @@ function updateLiveQRPreview() {
         backgroundOptions: { color: bgColor }, // Pure solid background color configuration
         cornersSquareOptions: { color: fgColor, type: cornerType },
         cornersDotOptions: { color: fgColor, type: dotType },
-        imageOptions: { crossOrigin: "anonymous", margin: 3, imageSize: 0.4 }
+        imageOptions: { crossOrigin: "anonymous", margin: 3, imageSize: 0.38 }
     };
 
     currentQRStylingInstance = new QRCodeStyling(qrConfig);
@@ -620,19 +618,33 @@ function initAppEvents() {
         }
     });
 
-    // Image PNG Downloader trigger
-    document.getElementById('btn-download-qr').addEventListener('click', () => {
+    // 1:1 SOLID HIGH-RESOLUTION PNG DOWNLOADER
+    document.getElementById('btn-download-qr').addEventListener('click', async () => {
         if (currentQRStylingInstance) {
             const title = document.getElementById('qr-input-title').value || 'dynamic-qr';
             const cleanTitle = title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
             
-            // To guarantee that background options are preserved and NO transparency issue occurs,
-            // we configure the exact same specifications inside the download wrapper.
-            currentQRStylingInstance.download({ 
-                name: `${cleanTitle}-scanflow-pro`, 
+            showNotification('১:১ হাই-রেজোলিউশন সলিড কিউআর কোড জেনারেট হচ্ছে...', 'info');
+
+            // Pro Tip: Temporarily scale up to 1000x1000 for extremely crisp print quality
+            await currentQRStylingInstance.update({
+                width: 1000,
+                height: 1000
+            });
+
+            // Trigger the native downloader
+            await currentQRStylingInstance.download({ 
+                name: `${cleanTitle}-pwa-1to1`, 
                 extension: "png"
             });
-            showNotification('হাই-কোয়ালিটি PNG ডাউনলোড শুরু হয়েছে!', 'success');
+
+            // Immediately scale back down to 180x180 for the browser's dashboard preview
+            await currentQRStylingInstance.update({
+                width: 180,
+                height: 180
+            });
+
+            showNotification('১:১ প্রফেশনাল পিএনজি ডাউনলোড সফল হয়েছে!', 'success');
         }
     });
 
