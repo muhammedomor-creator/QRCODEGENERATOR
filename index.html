@@ -33,39 +33,43 @@
     <style>
         body {
             font-family: "Plus Jakarta Sans", "Noto Sans Bengali", sans-serif;
-            background-color: #f1f5f9;
+            background-color: #f8fafc;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.04) 0, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.04) 0, transparent 50%);
-            color: #1e293b;
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0, transparent 40%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.05) 0, transparent 40%);
+            color: #0f172a;
             min-height: 100vh;
         }
-        .premium-shadow {
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+        /* Extra Crisp Shadows & Borders */
+        .premium-shadow-sm {
+            box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
         }
-        .premium-border {
-            border: 1px solid rgba(226, 232, 240, 0.8);
+        .premium-shadow-lg {
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 1px 4px rgba(15, 23, 42, 0.02);
+        }
+        .premium-border-main {
+            border: 1px solid #e2e8f0;
         }
         .sidebar-card {
             background: #ffffff;
-            border: 1px solid rgba(226, 232, 240, 0.7);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .sidebar-card:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            background: #f8fafc;
-            transform: translateY(-1px);
+            border-color: #cbd5e1;
+            background: #f1f5f9;
+            transform: translateY(-1.5px);
         }
         .sidebar-card.active-card {
             border-color: #4f46e5;
             background: rgba(79, 70, 229, 0.04);
-            box-shadow: 0 4px 12px -2px rgba(79, 70, 229, 0.05);
+            box-shadow: 0 4px 15px -3px rgba(79, 70, 229, 0.08);
         }
         .custom-scrollbar::-webkit-scrollbar {
             width: 5px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f5f9;
+            background: #f8fafc;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #cbd5e1;
@@ -74,9 +78,13 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
-        /* Fixed Aspect Ratio for 3:4 canvas container */
         .aspect-3-4 {
             aspect-ratio: 3 / 4;
+        }
+        /* Crisp non-blurred SVG container */
+        svg {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
     </style>
 </head>
@@ -84,7 +92,7 @@
 
     <!-- Toast Notification -->
     <div id="toast" class="fixed top-6 right-6 z-50 transform translate-y-[-100px] opacity-0 transition-all duration-500 max-w-sm pointer-events-none">
-        <div class="bg-white text-slate-800 px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-4 border-indigo-600 premium-border">
+        <div class="bg-white text-slate-800 px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-4 border-indigo-600 premium-border-main">
             <span id="toast-icon" class="text-indigo-600 text-lg"><i class="fas fa-info-circle"></i></span>
             <p id="toast-message" class="text-xs font-semibold text-slate-700"></p>
         </div>
@@ -93,13 +101,13 @@
     <div id="app" class="flex flex-col min-h-screen">
         
         <!-- Header -->
-        <header id="app-header" class="w-full border-b border-slate-200 py-4 px-6 md:px-12 flex justify-between items-center bg-white/80 backdrop-blur-md sticky top-0 z-40">
+        <header id="app-header" class="w-full border-b border-slate-200 py-4 px-6 md:px-12 flex justify-between items-center bg-white/95 backdrop-blur-md sticky top-0 z-40">
             <div class="flex items-center space-x-3">
-                <div class="bg-gradient-to-tr from-indigo-500 to-violet-600 p-2.5 rounded-xl shadow-md shadow-indigo-500/10">
+                <div class="bg-gradient-to-tr from-indigo-600 to-indigo-700 p-2.5 rounded-xl shadow-md shadow-indigo-600/10">
                     <i class="fas fa-qrcode text-white text-base"></i>
                 </div>
                 <div>
-                    <span class="font-extrabold text-lg tracking-tight text-slate-900">ScanFlow<span class="text-indigo-600 font-medium">Pro</span></span>
+                    <span class="font-extrabold text-lg tracking-tight text-slate-900">ScanFlow<span class="text-indigo-600 font-semibold">Pro</span></span>
                     <span class="text-[9px] block text-indigo-600 font-mono tracking-widest uppercase font-bold">Premium Canvas Suite</span>
                 </div>
             </div>
@@ -120,7 +128,7 @@
 
             <!-- Authentication View -->
             <div id="view-auth" class="hidden max-w-md mx-auto my-12">
-                <div class="bg-white p-8 rounded-2xl shadow-xl premium-border">
+                <div class="bg-white p-8 rounded-2xl shadow-xl premium-border-main">
                     <div class="text-center mb-6">
                         <div class="bg-indigo-50 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-3">
                             <i class="fas fa-shield-alt text-indigo-600 text-lg"></i>
@@ -175,9 +183,9 @@
                     <div>
                         <h1 class="text-2xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
                             <span>কন্ট্রোল ড্যাশবোর্ড</span>
-                            <span class="text-[9px] bg-indigo-50 text-indigo-600 border border-indigo-200 px-2 py-1 rounded font-mono font-bold uppercase">PRO ACCESS</span>
+                            <span class="text-[9px] bg-indigo-50 text-indigo-600 border border-indigo-200 px-2.5 py-1 rounded-full font-mono font-bold uppercase">PRO ACCESS</span>
                         </h1>
-                        <p class="text-xs text-slate-500 mt-1">৩:৪ আল্ট্রা-রেজোলিউশন ক্যানভাস কার্ড জেনারেটর এবং রিয়েলটাইম পোর্টাল</p>
+                        <p class="text-xs text-slate-500 mt-1">৩:৪ ক্রিস্টাল ক্লিয়ার প্রফেশনাল ক্যানভাস কার্ড ডিজাইনার ও লাইভ এডিটর</p>
                     </div>
                     <button id="btn-open-creator" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-3 rounded-xl text-xs font-semibold flex items-center space-x-2 transition-all shadow-md shadow-indigo-600/10">
                         <i class="fas fa-plus"></i>
@@ -188,7 +196,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     <!-- Left Sidebar - QR list -->
                     <div class="lg:col-span-4 flex flex-col space-y-4">
-                        <div class="bg-white p-5 rounded-2xl flex flex-col max-h-[78vh] premium-border premium-shadow">
+                        <div class="bg-white p-5 rounded-2xl flex flex-col max-h-[78vh] premium-border-main premium-shadow-sm">
                             <div class="mb-3 flex justify-between items-center">
                                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">আমার ডাইনামিক কালেকশন</h3>
                                 <span id="qr-count-badge" class="text-[10px] bg-slate-100 px-2.5 py-0.5 rounded-full font-bold text-indigo-600 font-mono">0</span>
@@ -207,7 +215,7 @@
 
                     <!-- Right Main Workdesk - Creator / Editor -->
                     <div id="creator-panel" class="lg:col-span-8 hidden">
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 relative premium-shadow">
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 relative premium-shadow-lg">
                             <button id="btn-close-creator" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 lg:hidden"><i class="fas fa-times"></i></button>
 
                             <h2 id="creator-title" class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 border-b border-slate-100 pb-3">নতুন কিউআর কাস্টমাইজেশন</h2>
@@ -299,19 +307,19 @@
                                                 <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">মাঝখানের কাস্টম আইকন</label>
                                                 <select id="qr-icon-type" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 text-xs text-slate-700 focus:outline-none focus:bg-white">
                                                     <option value="none" selected>কোনো আইকন নেই</option>
-                                                    <option value="emoji">কাস্টম ইমোজি (কিবোর্ড দিয়ে)</option>
+                                                    <option value="emoji">কাস্টম ইমোজি (কীবোর্ড দিয়ে)</option>
                                                     <option value="upload">কাস্টম লোগো আপলোড</option>
                                                 </select>
                                             </div>
                                         </div>
 
                                         <!-- Custom Keyboard Emoji Input Area -->
-                                        <div id="emoji-custom-area" class="hidden bg-slate-50 p-3.5 rounded-xl border border-slate-100 space-y-2">
+                                        <div id="emoji-custom-area" class="hidden bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 space-y-2">
                                             <div class="flex items-center justify-between">
                                                 <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">কিবোর্ড থেকে যেকোনো ইমোজি লিখুন বা নিচেরটি সিলেক্ট করুন</label>
                                             </div>
                                             <div class="flex gap-3">
-                                                <input type="text" id="qr-custom-emoji-input" maxlength="4" class="w-20 bg-white border border-slate-200 rounded-xl px-2 py-2 text-center text-xl focus:outline-none focus:border-indigo-500" placeholder="⭐">
+                                                <input type="text" id="qr-custom-emoji-input" maxlength="4" class="w-20 bg-white border border-slate-200 rounded-xl px-2 py-2 text-center text-xl focus:outline-none focus:border-indigo-500" placeholder="⭐" value="⭐">
                                                 <div class="flex-grow flex items-center gap-2 overflow-x-auto py-1">
                                                     <button type="button" class="btn-emoji-preset text-lg p-1.5 bg-white rounded-lg border border-slate-200 hover:border-indigo-300 transition" data-val="⚡">⚡</button>
                                                     <button type="button" class="btn-emoji-preset text-lg p-1.5 bg-white rounded-lg border border-slate-200 hover:border-indigo-300 transition" data-val="🔥">🔥</button>
@@ -348,31 +356,31 @@
                                         
                                         <!-- Preset Themes -->
                                         <div>
-                                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">ডিফল্ট চমৎকার কালার কম্বিনেশন (Preset Themes)</label>
-                                            <div class="grid grid-cols-3 sm:grid-cols-4 gap-2">
-                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#ffffff] text-slate-800" data-canvas-bg="#ffffff" data-canvas-text="#1e293b">
-                                                    <span class="w-2.5 h-2.5 rounded-full border border-slate-200" style="background-color: #ffffff"></span> Pure Clean
+                                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">ডিফল্ট কাস্টম থিম কম্বিনেশন (Preset Themes)</label>
+                                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-xl border border-slate-200 flex items-center justify-center gap-1.5 bg-[#ffffff] text-slate-800" data-canvas-bg="#ffffff" data-canvas-text="#0f172a">
+                                                    <span class="w-3 h-3 rounded-full border border-slate-200" style="background-color: #ffffff"></span> Pure Clean
                                                 </button>
-                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#EEF2FF] text-slate-800" data-canvas-bg="#EEF2FF" data-canvas-text="#312E81">
-                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #EEF2FF"></span> Soft Blue
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-xl border border-slate-200 flex items-center justify-center gap-1.5 bg-[#EEF2FF] text-[#1e1b4b]" data-canvas-bg="#EEF2FF" data-canvas-text="#1e1b4b">
+                                                    <span class="w-3 h-3 rounded-full" style="background-color: #EEF2FF"></span> Soft Indigo
                                                 </button>
-                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#F5F3FF] text-slate-800" data-canvas-bg="#F5F3FF" data-canvas-text="#4C1D95">
-                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #F5F3FF"></span> Soft Purple
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-xl border border-slate-200 flex items-center justify-center gap-1.5 bg-[#ECFDF5] text-[#064e3b]" data-canvas-bg="#ECFDF5" data-canvas-text="#064e3b">
+                                                    <span class="w-3 h-3 rounded-full" style="background-color: #ECFDF5"></span> Crisp Mint
                                                 </button>
-                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#FEF2F2] text-slate-800" data-canvas-bg="#FEF2F2" data-canvas-text="#7F1D1D">
-                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #FEF2F2"></span> Soft Red
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-xl border border-slate-200 flex items-center justify-center gap-1.5 bg-[#FFFBEB] text-[#78350f]" data-canvas-bg="#FFFBEB" data-canvas-text="#78350f">
+                                                    <span class="w-3 h-3 rounded-full" style="background-color: #FFFBEB"></span> Soft Amber
                                                 </button>
-                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#ECFDF5] text-slate-800" data-canvas-bg="#ECFDF5" data-canvas-text="#064E3B">
-                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #ECFDF5"></span> Emerald Light
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-xl border border-slate-200 flex items-center justify-center gap-1.5 bg-[#FFF1F2] text-[#881337]" data-canvas-bg="#FFF1F2" data-canvas-text="#881337">
+                                                    <span class="w-3 h-3 rounded-full" style="background-color: #FFF1F2"></span> Rose Pearl
                                                 </button>
-                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#FFFBEB] text-slate-800" data-canvas-bg="#FFFBEB" data-canvas-text="#78350F">
-                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #FFFBEB"></span> Amber Soft
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-xl border border-slate-200 flex items-center justify-center gap-1.5 bg-[#F5F3FF] text-[#3b0764]" data-canvas-bg="#F5F3FF" data-canvas-text="#3b0764">
+                                                    <span class="w-3 h-3 rounded-full" style="background-color: #F5F3FF"></span> Royal Violet
                                                 </button>
-                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#FFF1F2] text-slate-800" data-canvas-bg="#FFF1F2" data-canvas-text="#881337">
-                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #FFF1F2"></span> Rose Pearl
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-xl border border-slate-200 flex items-center justify-center gap-1.5 bg-[#F0FDF4] text-[#14532d]" data-canvas-bg="#F0FDF4" data-canvas-text="#14532d">
+                                                    <span class="w-3 h-3 rounded-full" style="background-color: #F0FDF4"></span> Pure Green
                                                 </button>
-                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#1E293B] text-white" data-canvas-bg="#1E293B" data-canvas-text="#F8FAFC">
-                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #1E293B"></span> Slate Deep
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-xl border border-slate-200 flex items-center justify-center gap-1.5 bg-[#0f172a] text-white" data-canvas-bg="#0f172a" data-canvas-text="#f8fafc">
+                                                    <span class="w-3 h-3 rounded-full" style="background-color: #0f172a"></span> Slate Onyx
                                                 </button>
                                             </div>
                                         </div>
@@ -390,8 +398,8 @@
                                             <div>
                                                 <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ক্যানভাস টেক্সট কালার</label>
                                                 <div class="flex items-center space-x-2">
-                                                    <input type="color" id="canvas-color-text" value="#1e293b" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0">
-                                                    <input type="text" id="canvas-color-text-hex" value="#1e293b" class="w-full bg-slate-50 border border-slate-200 rounded px-2 py-1 text-[11px] text-slate-700 uppercase focus:outline-none font-mono">
+                                                    <input type="color" id="canvas-color-text" value="#0f172a" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0">
+                                                    <input type="text" id="canvas-color-text-hex" value="#0f172a" class="w-full bg-slate-50 border border-slate-200 rounded px-2 py-1 text-[11px] text-slate-700 uppercase focus:outline-none font-mono">
                                                 </div>
                                             </div>
                                         </div>
@@ -402,18 +410,18 @@
                                                 <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest">ক্যানভাসে কিউআর কোডের আকার (QR Code Size)</label>
                                                 <span id="qr-size-val" class="text-xs font-mono font-bold text-indigo-600">180px</span>
                                             </div>
-                                            <input type="range" id="qr-canvas-size" min="120" max="230" value="180" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                                            <input type="range" id="qr-canvas-size" min="110" max="220" value="175" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600">
                                         </div>
 
                                         <!-- Custom Text on Card -->
                                         <div class="grid grid-cols-2 gap-4">
                                             <div>
                                                 <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">কার্ড টাইটেল (যেমন: SCAN ME)</label>
-                                                <input type="text" id="canvas-title-input" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500/50" placeholder="SCAN ME">
+                                                <input type="text" id="canvas-title-input" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500/50" placeholder="SCAN ME" value="SCAN ME">
                                             </div>
                                             <div>
-                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">কার্ড সাবটাইটেল (যেমন: To visit website)</label>
-                                                <input type="text" id="canvas-subtitle-input" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500/50" placeholder="To visit website">
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">কার্ড সাবটাইটেল (যেমন: To view content)</label>
+                                                <input type="text" id="canvas-subtitle-input" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500/50" placeholder="To view content" value="To view dynamic content">
                                             </div>
                                         </div>
                                     </div>
@@ -425,31 +433,31 @@
                                         <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest block mb-4">৩:৪ ক্যানভাস লাইভ প্রিভিউ</span>
                                         
                                         <!-- Fully Responsive Card Container with Aspect Ratio 3:4 -->
-                                        <div class="relative bg-white aspect-3-4 w-full max-w-[260px] mx-auto rounded-2xl border border-slate-200/80 shadow-lg overflow-hidden flex flex-col justify-between p-5 transition-colors duration-300" id="live-card-canvas">
+                                        <div class="relative bg-white aspect-3-4 w-full max-w-[260px] mx-auto rounded-3xl border border-slate-300 shadow-2xl overflow-hidden flex flex-col justify-between p-6 transition-all duration-300" id="live-card-canvas">
                                             
                                             <!-- Top Header in Card -->
                                             <div class="text-center">
-                                                <span class="text-[8px] uppercase font-mono tracking-widest text-indigo-500 font-bold block mb-1">SCANFLOW Premium</span>
-                                                <h3 id="card-dynamic-title" class="text-xs font-extrabold uppercase tracking-wide leading-tight text-slate-800">SCAN ME</h3>
+                                                <span class="text-[8px] uppercase font-mono tracking-widest text-indigo-600 font-bold block mb-1">SCANFLOW PREMIUM</span>
+                                                <h3 id="card-dynamic-title" class="text-sm font-extrabold uppercase tracking-wide leading-tight text-slate-900">SCAN ME</h3>
                                             </div>
 
-                                            <!-- Middle QR Code Box (Auto Center Align) -->
+                                            <!-- Middle QR Code Box (Perfect White Container with drop shadow) -->
                                             <div class="flex-grow flex items-center justify-center py-2">
-                                                <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-100 flex items-center justify-center transition-all overflow-hidden" id="qr-preview-container">
+                                                <div class="bg-white p-3 rounded-2xl shadow-xl border border-slate-100 flex items-center justify-center transition-all overflow-hidden" id="qr-preview-container" style="box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);">
                                                     <!-- Dynamic SVG generated here -->
                                                 </div>
                                             </div>
 
                                             <!-- Bottom Footer in Card -->
                                             <div class="text-center">
-                                                <p id="card-dynamic-subtitle" class="text-[9px] font-bold text-slate-500 leading-relaxed truncate">To view dynamic content</p>
-                                                <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-center gap-1">
-                                                    <i class="fas fa-shield-alt text-[7px] text-emerald-500"></i>
-                                                    <span class="text-[7px] font-mono tracking-wider font-bold text-slate-400">100% SECURED REDIRECT</span>
+                                                <p id="card-dynamic-subtitle" class="text-[10px] font-bold text-slate-500 leading-relaxed truncate">To view dynamic content</p>
+                                                <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-center gap-1.5">
+                                                    <i class="fas fa-lock text-[8px] text-emerald-500"></i>
+                                                    <span class="text-[7.5px] font-mono tracking-wider font-extrabold text-slate-400">SECURED SCAN BY SCANFLOW</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="text-[10px] text-slate-400 mt-4 leading-relaxed">৩:৪ অনুপাতে প্রিন্ট কোয়ালিটি কার্ড জেনারেট হচ্ছে।</p>
+                                        <p class="text-[10px] text-slate-400 mt-4 leading-relaxed">৩:৪ ক্যানভাস লাইভ রেন্ডার হচ্ছে।</p>
                                     </div>
 
                                     <div class="w-full mt-6 space-y-2.5">
@@ -468,7 +476,7 @@
                     </div>
 
                     <!-- Sidebar default view -->
-                    <div id="welcome-panel" class="lg:col-span-8 flex flex-col items-center justify-center p-12 bg-white rounded-2xl text-center premium-border premium-shadow">
+                    <div id="welcome-panel" class="lg:col-span-8 flex flex-col items-center justify-center p-12 bg-white rounded-2xl text-center premium-border-main premium-shadow-sm">
                         <div class="bg-indigo-50 p-4 rounded-full mb-4 border border-indigo-100">
                             <i class="fas fa-qrcode text-3xl text-indigo-500"></i>
                         </div>
@@ -480,7 +488,7 @@
 
             <!-- Professional Public Scan Display -->
             <div id="view-public-scan" class="hidden max-w-md mx-auto my-16">
-                <div class="bg-white p-8 rounded-2xl relative overflow-hidden shadow-xl premium-border">
+                <div class="bg-white p-8 rounded-2xl relative overflow-hidden shadow-xl premium-border-main">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-full blur-3xl"></div>
                     
                     <div class="text-center space-y-5">
