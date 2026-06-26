@@ -4,7 +4,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebas
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithCustomToken, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc, collection, query, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-// Firebase App Config
+// Firebase App Config with your provided Keys
 const firebaseConfig = {
     apiKey: "AIzaSyAtxWWl7Xhy4ueVfQ6TSDiadfx5K_Mo4Dg",
     authDomain: "qrcodegeneratordynamic.firebaseapp.com",
@@ -38,13 +38,13 @@ function showNotification(message, type = 'info') {
     
     if (type === 'success') {
         toastIcon.innerHTML = '<i class="fas fa-check-circle text-emerald-500"></i>';
-        toast.firstElementChild.className = "bg-white text-slate-800 px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-4 border-emerald-500 premium-border";
+        toast.firstElementChild.className = "bg-white text-slate-800 px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-4 border-emerald-500 premium-border-main";
     } else if (type === 'error') {
         toastIcon.innerHTML = '<i class="fas fa-exclamation-triangle text-rose-500"></i>';
-        toast.firstElementChild.className = "bg-white text-slate-800 px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-4 border-rose-500 premium-border";
+        toast.firstElementChild.className = "bg-white text-slate-800 px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-4 border-rose-500 premium-border-main";
     } else {
         toastIcon.innerHTML = '<i class="fas fa-info-circle text-indigo-600"></i>';
-        toast.firstElementChild.className = "bg-white text-slate-800 px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-4 border-indigo-600 premium-border";
+        toast.firstElementChild.className = "bg-white text-slate-800 px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-4 border-indigo-600 premium-border-main";
     }
 
     toast.classList.remove('opacity-0', 'translate-y-[-100px]');
@@ -56,7 +56,7 @@ function showNotification(message, type = 'info') {
     }, 4000);
 }
 
-// Router View State Changer
+// Router State Changer
 function switchView(viewName) {
     const views = {
         loading: document.getElementById('view-loading'),
@@ -91,7 +91,7 @@ async function setupAuthSystem() {
             await signInWithCustomToken(auth, __initial_auth_token);
         }
     } catch (err) {
-        console.warn("Standard auth flow starting.");
+        console.warn("Standard flow running.");
     }
 
     onAuthStateChanged(auth, (user) => {
@@ -120,7 +120,7 @@ function updateAuthStateUI() {
         const avatar = currentUser.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(displayName)}&backgroundType=gradientLinear`;
         
         container.innerHTML = `
-            <div class="flex items-center space-x-3 bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200">
+            <div class="flex items-center space-x-3 bg-slate-50 px-3.5 py-1.5 rounded-xl border border-slate-200">
                 <img src="${avatar}" class="w-6.5 h-6.5 rounded-full border border-indigo-500/20" alt="profile">
                 <div class="hidden md:block text-left">
                     <h4 class="text-xs font-bold text-slate-800">${displayName}</h4>
@@ -157,18 +157,22 @@ async function loadPublicQRDetails(id) {
             const data = docSnap.data();
             const content = data.content || "";
             
-            // Check if content inside QR is a valid Web URL
+            // Regex to check if the data inside QR is a valid Web URL
             const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i;
             const isUrl = urlPattern.test(content.trim());
 
             if (isUrl) {
                 let finalUrl = content.trim();
+                // Ensure protocol is attached for secure instant window.location replace redirect
                 if (!/^https?:\/\//i.test(finalUrl)) {
                     finalUrl = 'https://' + finalUrl;
                 }
+                
+                // Bypass intermediate UI and perform instant redirect
                 window.location.replace(finalUrl);
-                return; 
+                return; // Stop thread execution immediately
             } else {
+                // If it is regular plain text data, render clean fullscreen layout
                 switchView('scan');
                 const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
                 document.getElementById('public-scan-time').innerText = new Date(data.updatedAt || data.createdAt).toLocaleDateString('bn-BD', options);
@@ -203,7 +207,7 @@ function startRealtimeQRListener() {
     });
 }
 
-// Render lists
+// Render dynamic lists
 function renderQRCodesList() {
     const listContainer = document.getElementById('qr-list-container');
     const searchVal = document.getElementById('search-qr').value.toLowerCase();
@@ -292,7 +296,7 @@ function renderQRCodesList() {
     });
 }
 
-// Live Interactive 3:4 QR Preview Engine 
+// Live Interactive 3:4 QR Preview Engine
 function updateLiveQRPreview() {
     const container = document.getElementById('qr-preview-container');
     container.innerHTML = '';
@@ -306,7 +310,7 @@ function updateLiveQRPreview() {
     const iconType = document.getElementById('qr-icon-type').value;
     const content = document.getElementById('qr-input-content').value || 'ScanFlow Pro';
     
-    // Dynamic QR size from slider inside 3:4 canvas view
+    // Size controller slider inside 3:4 canvas view
     const sliderVal = parseInt(document.getElementById('qr-canvas-size').value, 10);
     document.getElementById('qr-size-val').innerText = `${sliderVal}px`;
 
@@ -362,7 +366,7 @@ function updateLiveQRPreview() {
     const canvasText = document.getElementById('canvas-color-text').value;
     
     liveCanvas.style.backgroundColor = canvasBg;
-    liveCanvas.style.color = canvasText;
+    liveCanvas.style.borderColor = canvasText + "22"; // Smooth subtle transparent border matches card text
 
     // Apply Text Live inputs
     const titleVal = document.getElementById('canvas-title-input').value.trim() || "SCAN ME";
@@ -374,7 +378,7 @@ function updateLiveQRPreview() {
     document.getElementById('card-dynamic-subtitle').style.color = canvasText;
 }
 
-// Open Editor Window
+// Open Editor window
 function openQREditor(item = null) {
     document.getElementById('welcome-panel').classList.add('hidden');
     document.getElementById('creator-panel').classList.remove('hidden');
@@ -395,9 +399,9 @@ function openQREditor(item = null) {
         // Load custom 3:4 Canvas elements
         document.getElementById('canvas-color-bg').value = item.canvasBg || "#ffffff";
         document.getElementById('canvas-color-bg-hex').value = item.canvasBg || "#ffffff";
-        document.getElementById('canvas-color-text').value = item.canvasText || "#1e293b";
-        document.getElementById('canvas-color-text-hex').value = item.canvasText || "#1e293b";
-        document.getElementById('qr-canvas-size').value = item.canvasQrSize || "180";
+        document.getElementById('canvas-color-text').value = item.canvasText || "#0f172a";
+        document.getElementById('canvas-color-text-hex').value = item.canvasText || "#0f172a";
+        document.getElementById('qr-canvas-size').value = item.canvasQrSize || "175";
         document.getElementById('canvas-title-input').value = item.canvasTitle || "SCAN ME";
         document.getElementById('canvas-subtitle-input').value = item.canvasSubtitle || "To view dynamic content";
 
@@ -454,9 +458,9 @@ function resetCreatorForm() {
     // Reset Canvas to default
     document.getElementById('canvas-color-bg').value = '#ffffff';
     document.getElementById('canvas-color-bg-hex').value = '#ffffff';
-    document.getElementById('canvas-color-text').value = '#1e293b';
-    document.getElementById('canvas-color-text-hex').value = '#1e293b';
-    document.getElementById('qr-canvas-size').value = '180';
+    document.getElementById('canvas-color-text').value = '#0f172a';
+    document.getElementById('canvas-color-text-hex').value = '#0f172a';
+    document.getElementById('qr-canvas-size').value = '175';
     document.getElementById('canvas-title-input').value = 'SCAN ME';
     document.getElementById('canvas-subtitle-input').value = 'To view dynamic content';
 
@@ -477,6 +481,7 @@ function setQRType(type) {
     } else {
         btnStatic.className = "py-2.5 rounded-xl border-2 border-indigo-600 bg-indigo-50/50 text-indigo-700 font-bold text-xs flex flex-col items-center justify-center transition-all";
         btnDynamic.className = "py-2.5 rounded-xl border-2 border-slate-100 bg-slate-50 text-slate-500 font-bold text-xs flex flex-col items-center justify-center transition-all";
+        // Static has no backend updates, so save/publish button is hidden
         document.getElementById('btn-save-qr').classList.add('hidden');
         showNotification('স্ট্যাটিক কিউআর কোড সরাসরি গ্যালারি ডাউনলোড বাটনে ক্লিক করে ডাউনলোড করুন।', 'info');
     }
@@ -496,7 +501,7 @@ function handleLogoUpload(file) {
     reader.readAsDataURL(file);
 }
 
-// UI Event Listeners
+// UI Event Listeners Binder
 function initAppEvents() {
     document.getElementById('search-qr').addEventListener('input', renderQRCodesList);
 
@@ -510,7 +515,7 @@ function initAppEvents() {
         updateLiveQRPreview();
     });
 
-    // Dynamic icon switcher logic
+    // Dynamic icon switcher layout logic
     document.getElementById('qr-icon-type').addEventListener('change', (e) => {
         const val = e.target.value;
         if (val === 'emoji') {
@@ -643,7 +648,7 @@ function initAppEvents() {
         document.getElementById('name-field-group').classList.remove('hidden');
     });
 
-    // Email/Password entries signin
+    // Email/Password entries signin trigger
     document.getElementById('auth-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const email = document.getElementById('auth-email').value;
@@ -681,7 +686,7 @@ function initAppEvents() {
         }
     });
 
-    // Save/Publish dynamic payload
+    // Save/Publish dynamic payload trigger
     document.getElementById('btn-save-qr').addEventListener('click', async () => {
         const title = document.getElementById('qr-input-title').value.trim();
         const content = document.getElementById('qr-input-content').value.trim();
@@ -693,7 +698,7 @@ function initAppEvents() {
         }
 
         if (qrType === 'static') {
-            showNotification('স্ট্যাটিক কিউআর কোড সেভ করার প্রয়োজন নেই, সরাসরি ডাউনলোড করুন!', 'info');
+            showNotification('স্ট্যাটিক কিউআর কোড সেভ করার প্রয়োজন নেই, সরাসরি ইমেজ ডাউনলোড করুন!', 'info');
             return;
         }
 
@@ -734,6 +739,7 @@ function initAppEvents() {
             updatedAt: Date.now()
         };
 
+        // Conditional additions for custom central icon logic
         if (iconType === 'upload' && uploadedLogoBase64) {
             payload.uploadedLogo = uploadedLogoBase64;
         } else if (iconType === 'emoji') {
@@ -768,7 +774,7 @@ function initAppEvents() {
 
         showNotification('৩:৪ আল্ট্রা-রেজোলিউশন প্রফেশনাল কিউআর ক্যানভাস তৈরি হচ্ছে...', 'info');
 
-        // Target Canvas High Resolution Specs (Standard 3:4 Print Aspect Ratio)
+        // Target Canvas High Resolution Specs (Exact 3:4 Print Aspect Ratio)
         const targetWidth = 1500;
         const targetHeight = 2000;
 
@@ -780,29 +786,40 @@ function initAppEvents() {
         const customSizeValue = parseInt(document.getElementById('qr-canvas-size').value, 10);
 
         // Dynamically scaled QR code size on the downloadable 1500px wide image
+        // Base viewport is 260 width on standard mobile viewports
         const scaledQRWidth = Math.round((customSizeValue / 260) * targetWidth); 
 
         // Create an off-screen HTML canvas to render the final print card
         const finalCanvas = document.createElement('canvas');
         finalCanvas.width = targetWidth;
         finalCanvas.height = targetHeight;
+        
         const ctx = finalCanvas.getContext('2d');
+        
+        // Zero Blurness optimization: Maximum Canvas Smoothing parameters
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
 
         // Fill background color
         ctx.fillStyle = canvasBg;
         ctx.fillRect(0, 0, targetWidth, targetHeight);
 
-        // Top brand logo sub-header
-        ctx.fillStyle = "#6366f1"; // Accent brand color
-        ctx.font = "bold 32px sans-serif";
+        // Draw a beautiful elegant card outer border line (Subtle contrast)
+        ctx.strokeStyle = canvasText + "22"; // 10% opacity border matching card styling
+        ctx.lineWidth = 14;
+        ctx.strokeRect(40, 40, targetWidth - 80, targetHeight - 80);
+
+        // Top Brand Title Header
+        ctx.fillStyle = "#4f46e5"; // Indigo-600
+        ctx.font = "bold 32px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
-        ctx.fillText("SCANFLOW PREMIUM", targetWidth / 2, 100);
+        ctx.fillText("SCANFLOW PREMIUM", targetWidth / 2, 120);
 
-        // Card Title Text
+        // Card Main Header Title Text (High Contrast & Clear)
         ctx.fillStyle = canvasText;
-        ctx.font = "extrabold 75px sans-serif";
-        ctx.fillText(titleText.toUpperCase(), targetWidth / 2, 160);
+        ctx.font = "extrabold 84px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+        ctx.fillText(titleText.toUpperCase(), targetWidth / 2, 180);
 
         // Generate the SVG of the QR Code at high resolution for maximum crispness
         const tempContainer = document.createElement('div');
@@ -872,18 +889,19 @@ function initAppEvents() {
                 const qrX = (targetWidth - scaledQRWidth) / 2;
                 const qrY = (targetHeight - scaledQRWidth) / 2 - 40; // centered and adjusted for texts
                 
-                // Draw nice subtle background card behind QR
+                // Draw nice solid elegant white container box behind QR (High contrast block)
                 ctx.fillStyle = '#ffffff';
-                ctx.shadowColor = 'rgba(0,0,0,0.06)';
-                ctx.shadowBlur = 30;
+                ctx.shadowColor = 'rgba(15, 23, 42, 0.15)';
+                ctx.shadowBlur = 60;
                 ctx.shadowOffsetX = 0;
-                ctx.shadowOffsetY = 10;
+                ctx.shadowOffsetY = 20;
                 
-                // Rounded corner box for high quality QR background
-                const rBoxSize = scaledQRWidth + 40;
-                const rBoxX = qrX - 20;
-                const rBoxY = qrY - 20;
-                const radius = 32;
+                // Rounded corner box for high quality QR background (Card container shape)
+                const rBoxPadding = 50;
+                const rBoxSize = scaledQRWidth + rBoxPadding;
+                const rBoxX = qrX - (rBoxPadding / 2);
+                const rBoxY = qrY - (rBoxPadding / 2);
+                const radius = 48; // Crisp elegant curve
                 
                 ctx.beginPath();
                 ctx.moveTo(rBoxX + radius, rBoxY);
@@ -898,23 +916,26 @@ function initAppEvents() {
                 ctx.closePath();
                 ctx.fill();
 
-                // Draw QR Code
-                ctx.shadowBlur = 0; // Reset shadows
+                // Reset shadow settings for subsequent text draws
+                ctx.shadowBlur = 0;
+                ctx.shadowOffsetY = 0;
+
+                // Draw QR Code onto the white card container area
                 ctx.drawImage(qrImageElement, qrX, qrY, scaledQRWidth, scaledQRWidth);
 
-                // Draw bottom text title
+                // Draw bottom text subtitle (Super crisp with system sans-serif fallback)
                 ctx.fillStyle = canvasText;
-                ctx.font = "bold 55px sans-serif";
-                ctx.fillText(subtitleText, targetWidth / 2, qrY + scaledQRWidth + 120);
+                ctx.font = "bold 58px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+                ctx.fillText(subtitleText, targetWidth / 2, qrY + scaledQRWidth + 140);
 
                 // Draw bottom security footer
                 ctx.fillStyle = "#94a3b8";
                 ctx.font = "bold 26px monospace";
-                ctx.fillText("🔒 SECURED BY SCANFLOW PRO", targetWidth / 2, targetHeight - 120);
+                ctx.fillText("🔒 SECURED SCAN BY SCANFLOW PRO", targetWidth / 2, targetHeight - 130);
 
                 // Trigger download sequence
                 const dlLink = document.createElement('a');
-                dlLink.download = `${cleanTitle}-canvas-3to4.png`;
+                dlLink.download = `${cleanTitle}-premium-canvas-3to4.png`;
                 dlLink.href = finalCanvas.toDataURL('image/png', 1.0);
                 document.body.appendChild(dlLink);
                 dlLink.click();
@@ -927,7 +948,7 @@ function initAppEvents() {
         }, 300);
     });
 
-    // Copy public page data
+    // Copy public page data clipboard handler
     document.getElementById('btn-copy-public-text').addEventListener('click', () => {
         const text = document.getElementById('public-text-content').innerText;
         const temp = document.createElement('textarea');
