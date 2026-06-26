@@ -91,7 +91,7 @@ async function setupAuthSystem() {
             await signInWithCustomToken(auth, __initial_auth_token);
         }
     } catch (err) {
-        console.warn("Standard flow running without Custom Token.");
+        console.warn("Standard flow running.");
     }
 
     onAuthStateChanged(auth, (user) => {
@@ -243,6 +243,7 @@ function renderQRCodesList() {
                     <h4 class="text-xs font-bold text-slate-300 truncate">${item.title || 'Untitled'}</h4>
                 </div>
                 <p class="text-[10px] text-slate-500 truncate">${item.content}</p>
+                <span class="text-[8px] px-1.5 py-0.5 rounded bg-slate-900 text-indigo-400 font-mono font-bold tracking-wider uppercase">${item.qrType || 'dynamic'}</span>
             </div>
             <div class="flex items-center space-x-1 z-10">
                 <button class="btn-copy-link p-1 text-slate-500 hover:text-indigo-400 transition-colors" data-link="${scanLink}">
@@ -282,7 +283,7 @@ function renderQRCodesList() {
         btn.addEventListener('click', async (e) => {
             e.stopPropagation();
             const id = btn.getAttribute('data-id');
-            const confirmDel = confirm('আপনি কি এই কিউআর কোডটি চিরতরে ডিলিট করতে চান? প্রিন্ট করা কিউআর কোড কিন্তু অকেজো হয়ে যাবে!');
+            const confirmDel = confirm('আপনি কি এই কিউআর কোডটি চিরতরে ডিলিট করতে চান?');
             if (confirmDel) {
                 const docRef = doc(db, 'artifacts', appId, 'public', 'data', CONFIG_PUBLIC_COLL, id);
                 await deleteDoc(docRef);
@@ -300,22 +301,31 @@ function updateLiveQRPreview() {
     const container = document.getElementById('qr-preview-container');
     container.innerHTML = '';
 
+    const qrType = document.getElementById('qr-input-type').value;
     const fgColor = document.getElementById('qr-color-foreground').value;
     const bgColor = document.getElementById('qr-color-background').value;
     const dotType = document.getElementById('qr-style-dots').value;
     const cornerType = document.getElementById('qr-style-corners').value;
     const paddingVal = parseInt(document.getElementById('qr-padding').value, 10);
     const iconType = document.getElementById('qr-icon-type').value;
+    const content = document.getElementById('qr-input-content').value || 'ScanFlow Pro';
 
-    const activeId = document.getElementById('edit-qr-id').value || 'placeholder';
-    const previewUrl = `${window.location.origin}${window.location.pathname}?id=${activeId}`;
+    let qrData = '';
+    if (qrType === 'static') {
+        // Static: directly embed content inside the QR dots
+        qrData = content;
+    } else {
+        // Dynamic: route via our system ID resolver
+        const activeId = document.getElementById('edit-qr-id').value || 'placeholder';
+        qrData = `${window.location.origin}${window.location.pathname}?id=${activeId}`;
+    }
 
     // Construct configurations
     const qrConfig = {
         width: 180,
         height: 180,
         type: "svg", // Render as high-fidelity SVG inside preview
-        data: previewUrl,
+        data: qrData,
         margin: paddingVal, // Strict safe margin configuration
         dotsOptions: { color: fgColor, type: dotType },
         backgroundOptions: { color: bgColor }, // Pure solid background color configuration
@@ -355,14 +365,17 @@ function openQREditor(item = null) {
         document.getElementById('edit-qr-id').value = item.id;
         document.getElementById('qr-input-title').value = item.title || "";
         document.getElementById('qr-input-content').value = item.content || "";
-        document.getElementById('qr-color-foreground').value = item.color || "#00ffff";
-        document.getElementById('qr-color-foreground-hex').value = item.color || "#00ffff";
+        document.getElementById('qr-color-foreground').value = item.color || "#030712";
+        document.getElementById('qr-color-foreground-hex').value = item.color || "#030712";
         document.getElementById('qr-color-background').value = item.bgColor || "#ffffff";
         document.getElementById('qr-color-background-hex').value = item.bgColor || "#ffffff";
-        document.getElementById('qr-style-dots').value = item.dotType || "dots";
-        document.getElementById('qr-style-corners').value = item.cornerType || "extra-rounded";
-        document.getElementById('qr-padding').value = item.padding || "15";
+        document.getElementById('qr-style-dots').value = item.dotType || "square";
+        document.getElementById('qr-style-corners').value = item.cornerType || "square";
+        document.getElementById('qr-padding').value = item.padding || "20";
         
+        const type = item.qrType || 'dynamic';
+        setQRType(type);
+
         // Restore custom logo upload or emoji inputs safely
         if (item.logoType === 'upload' && item.uploadedLogo) {
             document.getElementById('qr-icon-type').value = 'upload';
@@ -392,17 +405,17 @@ function openQREditor(item = null) {
 }
 
 function resetCreatorForm() {
-    document.getElementById('creator-title').innerText = "নতুন ডাইনামিক কিউআর কাস্টমাইজেশন";
+    document.getElementById('creator-title').innerText = "নতুন কিউআর কোড কাস্টমাইজেশন";
     document.getElementById('edit-qr-id').value = '';
     document.getElementById('qr-input-title').value = '';
     document.getElementById('qr-input-content').value = '';
-    document.getElementById('qr-color-foreground').value = '#00ffff';
-    document.getElementById('qr-color-foreground-hex').value = '#00ffff';
+    document.getElementById('qr-color-foreground').value = '#030712';
+    document.getElementById('qr-color-foreground-hex').value = '#030712';
     document.getElementById('qr-color-background').value = '#ffffff';
     document.getElementById('qr-color-background-hex').value = '#ffffff';
-    document.getElementById('qr-style-dots').value = 'dots';
-    document.getElementById('qr-style-corners').value = 'extra-rounded';
-    document.getElementById('qr-padding').value = '15';
+    document.getElementById('qr-style-dots').value = 'square';
+    document.getElementById('qr-style-corners').value = 'square';
+    document.getElementById('qr-padding').value = '20';
     document.getElementById('qr-icon-type').value = 'none';
     document.getElementById('qr-custom-emoji-input').value = '';
     document.getElementById('emoji-custom-area').classList.add('hidden');
@@ -410,8 +423,27 @@ function resetCreatorForm() {
     document.getElementById('upload-preview-meta').classList.add('hidden');
     document.getElementById('qr-logo-upload-file').value = "";
     uploadedLogoBase64 = "";
+    setQRType('dynamic');
     document.getElementById('save-btn-text').innerText = "পাবলিশ করুন";
     updateLiveQRPreview();
+}
+
+function setQRType(type) {
+    document.getElementById('qr-input-type').value = type;
+    const btnDynamic = document.getElementById('btn-type-dynamic');
+    const btnStatic = document.getElementById('btn-type-static');
+    
+    if (type === 'dynamic') {
+        btnDynamic.className = "py-2.5 rounded-lg border-2 border-indigo-500 bg-indigo-500/10 text-white font-bold text-xs flex flex-col items-center justify-center transition-all";
+        btnStatic.className = "py-2.5 rounded-lg border-2 border-white/5 bg-slate-950/40 text-slate-400 font-bold text-xs flex flex-col items-center justify-center transition-all";
+        document.getElementById('btn-save-qr').classList.remove('hidden');
+    } else {
+        btnStatic.className = "py-2.5 rounded-lg border-2 border-indigo-500 bg-indigo-500/10 text-white font-bold text-xs flex flex-col items-center justify-center transition-all";
+        btnDynamic.className = "py-2.5 rounded-lg border-2 border-white/5 bg-slate-950/40 text-slate-400 font-bold text-xs flex flex-col items-center justify-center transition-all";
+        // Static has no backend updates, so save/publish button is hidden
+        document.getElementById('btn-save-qr').classList.add('hidden');
+        showNotification('স্ট্যাটিক কিউআর কোড সরাসরি নিচের গ্যালারি ডাউনলোড বাটনে ক্লিক করে ডাউনলোড করুন। এটি ব্যাকএন্ডে সেভ হবে না।', 'info');
+    }
 }
 
 // Handle Custom Logo Upload File reader base64 conversion
@@ -431,6 +463,16 @@ function handleLogoUpload(file) {
 // UI Event Listeners Binder
 function initAppEvents() {
     document.getElementById('search-qr').addEventListener('input', renderQRCodesList);
+
+    // Dynamic type switches
+    document.getElementById('btn-type-dynamic').addEventListener('click', () => {
+        setQRType('dynamic');
+        updateLiveQRPreview();
+    });
+    document.getElementById('btn-type-static').addEventListener('click', () => {
+        setQRType('static');
+        updateLiveQRPreview();
+    });
 
     // Dynamic icon switcher layout logic
     document.getElementById('qr-icon-type').addEventListener('change', (e) => {
@@ -474,6 +516,11 @@ function initAppEvents() {
         document.getElementById('upload-preview-meta').classList.add('hidden');
         updateLiveQRPreview();
         showNotification('কাস্টম ইমেজ রিমুভ করা হয়েছে।');
+    });
+
+    // Content live rendering update
+    document.getElementById('qr-input-content').addEventListener('input', () => {
+        updateLiveQRPreview();
     });
 
     // Configuration live state changes observer
@@ -565,9 +612,15 @@ function initAppEvents() {
     document.getElementById('btn-save-qr').addEventListener('click', async () => {
         const title = document.getElementById('qr-input-title').value.trim();
         const content = document.getElementById('qr-input-content').value.trim();
+        const qrType = document.getElementById('qr-input-type').value;
         
         if (!title || !content) {
             showNotification('দয়া করে টাইটেল এবং কিউআর কনটেন্ট পূরণ করুন!', 'error');
+            return;
+        }
+
+        if (qrType === 'static') {
+            showNotification('স্ট্যাটিক কিউআর কোড ফায়ারবেসে সেভ করার প্রয়োজন নেই, সরাসরি ইমেজ ডাউনলোড করুন!', 'info');
             return;
         }
 
@@ -592,6 +645,7 @@ function initAppEvents() {
             cornerType: cornerType,
             padding: paddingVal,
             logoType: iconType,
+            qrType: qrType,
             updatedAt: Date.now()
         };
 
@@ -624,7 +678,7 @@ function initAppEvents() {
             const title = document.getElementById('qr-input-title').value || 'dynamic-qr';
             const cleanTitle = title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
             
-            showNotification('১:১ হাই-রেজোলিউশন সলিড কিউআর কোড জেনারেট হচ্ছে...', 'info');
+            showNotification('১:১ হাই-রেজোলিউশন প্রফেশনাল কিউআর কোড তৈরি হচ্ছে...', 'info');
 
             // Pro Tip: Temporarily scale up to 1000x1000 for extremely crisp print quality
             await currentQRStylingInstance.update({
@@ -634,7 +688,7 @@ function initAppEvents() {
 
             // Trigger the native downloader
             await currentQRStylingInstance.download({ 
-                name: `${cleanTitle}-pwa-1to1`, 
+                name: `${cleanTitle}-scanflow-1to1`, 
                 extension: "png"
             });
 
@@ -644,7 +698,7 @@ function initAppEvents() {
                 height: 180
             });
 
-            showNotification('১:১ প্রফেশনাল পিএনজি ডাউনলোড সফল হয়েছে!', 'success');
+            showNotification('১:১ প্রফেশনাল পিএনজি ডাউনলোড সফল হয়েছে এবং গ্যালারিতে সেভ হয়েছে!', 'success');
         }
     });
 
