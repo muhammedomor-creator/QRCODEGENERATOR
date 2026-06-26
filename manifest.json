@@ -1,0 +1,24 @@
+{
+  "name": "ScanFlow Pro - Dynamic QR",
+  "short_name": "ScanFlow",
+  "description": "প্রিমিয়াম ডাইনামিক কিউআর কোড প্ল্যাটফর্ম",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#090d16",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://dynamicqrcodegenerator.vercel.app/i.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://dynamicqrcodegenerator.vercel.app/i.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
