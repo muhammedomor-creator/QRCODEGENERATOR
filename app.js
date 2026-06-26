@@ -1,3 +1,4 @@
+
 // Firebase Imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithCustomToken, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -24,6 +25,7 @@ let currentUser = null;
 let authMode = 'login';
 let currentQRStylingInstance = null;
 let myQrCodesList = [];
+let uploadedLogoBase64 = ""; // Holds base64 of custom uploaded image logo
 const CONFIG_PUBLIC_COLL = "qrcodes";
 
 // Toast Notification Manager
@@ -36,13 +38,13 @@ function showNotification(message, type = 'info') {
     
     if (type === 'success') {
         toastIcon.innerHTML = '<i class="fas fa-check-circle text-emerald-400"></i>';
-        toast.firstElementChild.className = "premium-blur text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-2 border-emerald-500";
+        toast.firstElementChild.className = "premium-bg text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-2 border-emerald-500 premium-border";
     } else if (type === 'error') {
         toastIcon.innerHTML = '<i class="fas fa-exclamation-triangle text-rose-400"></i>';
-        toast.firstElementChild.className = "premium-blur text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-2 border-rose-500";
+        toast.firstElementChild.className = "premium-bg text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-2 border-rose-500 premium-border";
     } else {
         toastIcon.innerHTML = '<i class="fas fa-info-circle text-indigo-400"></i>';
-        toast.firstElementChild.className = "premium-blur text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-2 border-indigo-500";
+        toast.firstElementChild.className = "premium-bg text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-2 border-indigo-500 premium-border";
     }
 
     toast.classList.remove('opacity-0', 'translate-y-[-100px]');
@@ -200,6 +202,7 @@ function startRealtimeQRListener() {
                 myQrCodesList.push({ id: doc.id, ...data });
             }
         });
+        document.getElementById('qr-count-badge').innerText = myQrCodesList.length;
         renderQRCodesList();
     }, (error) => {
         showNotification("ডেটাবেজ কানেকশন করতে সমস্যা হচ্ছে।", "error");
@@ -218,7 +221,7 @@ function renderQRCodesList() {
     if (filtered.length === 0) {
         listContainer.innerHTML = `
             <div class="text-center py-10 text-slate-600">
-                <i class="fas fa-qrcode text-2xl mb-2 block opacity-20"></i>
+                <i class="fas fa-qrcode text-xl mb-2 block opacity-20"></i>
                 <p class="text-[10px] uppercase font-bold tracking-wider">Empty Collection</p>
             </div>
         `;
@@ -228,7 +231,9 @@ function renderQRCodesList() {
     listContainer.innerHTML = '';
     filtered.forEach(item => {
         const card = document.createElement('div');
-        card.className = "premium-card p-3 rounded-lg cursor-pointer flex justify-between items-center group relative overflow-hidden";
+        const activeId = document.getElementById('edit-qr-id').value;
+        const isActive = activeId === item.id;
+        card.className = `sidebar-card p-3 rounded-lg cursor-pointer flex justify-between items-center group relative overflow-hidden ${isActive ? 'active-card' : ''}`;
         card.setAttribute('data-id', item.id);
         
         const scanLink = `${window.location.origin}${window.location.pathname}?id=${item.id}`;
@@ -236,7 +241,7 @@ function renderQRCodesList() {
         card.innerHTML = `
             <div class="space-y-0.5 pr-4 flex-grow truncate">
                 <div class="flex items-center space-x-2">
-                    <span class="w-1.5 h-1.5 rounded-full" style="background-color: ${item.color || '#4f46e5'}"></span>
+                    <span class="w-1.5 h-1.5 rounded-full" style="background-color: ${item.color || '#00ffff'}"></span>
                     <h4 class="text-xs font-bold text-slate-300 truncate">${item.title || 'Untitled'}</h4>
                 </div>
                 <p class="text-[10px] text-slate-500 truncate">${item.content}</p>
@@ -261,7 +266,8 @@ function renderQRCodesList() {
 
     // Copy links action
     document.querySelectorAll('.btn-copy-link').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
             const link = btn.getAttribute('data-link');
             const temp = document.createElement('input');
             temp.value = link;
@@ -275,9 +281,10 @@ function renderQRCodesList() {
 
     // Delete dynamic qr items
     document.querySelectorAll('.btn-delete-qr').forEach(btn => {
-        btn.addEventListener('click', async () => {
+        btn.addEventListener('click', async (e) => {
+            e.stopPropagation();
             const id = btn.getAttribute('data-id');
-            const confirmDel = confirm('আপনি কি এই কিউআর কোডটি চিরতরে ডিলিট করতে চান?');
+            const confirmDel = confirm('আপনি কি এই কিউআর কোডটি চিরতরে ডিলিট করতে চান? প্রিন্ট করা কিউআর কোড কিন্তু অকেজো হয়ে যাবে!');
             if (confirmDel) {
                 const docRef = doc(db, 'artifacts', appId, 'public', 'data', CONFIG_PUBLIC_COLL, id);
                 await deleteDoc(docRef);
@@ -290,7 +297,7 @@ function renderQRCodesList() {
     });
 }
 
-// Premium Live QR Renderer Engine
+// Premium Live QR Renderer Engine (SAVES SOLID BACKGROUND & SAFE PADDING)
 function updateLiveQRPreview() {
     const container = document.getElementById('qr-preview-container');
     container.innerHTML = '';
@@ -299,34 +306,42 @@ function updateLiveQRPreview() {
     const bgColor = document.getElementById('qr-color-background').value;
     const dotType = document.getElementById('qr-style-dots').value;
     const cornerType = document.getElementById('qr-style-corners').value;
-    const logoEmoji = document.getElementById('qr-logo-emoji').value;
+    const paddingVal = parseInt(document.getElementById('qr-padding').value, 10);
+    const iconType = document.getElementById('qr-icon-type').value;
 
     const activeId = document.getElementById('edit-qr-id').value || 'placeholder';
     const previewUrl = `${window.location.origin}${window.location.pathname}?id=${activeId}`;
 
-    currentQRStylingInstance = new QRCodeStyling({
+    // Construct configurations
+    const qrConfig = {
         width: 180,
         height: 180,
-        type: "svg",
+        type: "svg", // Render as high-fidelity SVG inside preview
         data: previewUrl,
+        margin: paddingVal, // Strict safe margin configuration
         dotsOptions: { color: fgColor, type: dotType },
-        backgroundOptions: { color: bgColor },
+        backgroundOptions: { color: bgColor }, // Pure solid background color configuration
         cornersSquareOptions: { color: fgColor, type: cornerType },
         cornersDotOptions: { color: fgColor, type: dotType },
-        imageOptions: { crossOrigin: "anonymous", margin: 2, imageSize: 0.35 }
-    });
+        imageOptions: { crossOrigin: "anonymous", margin: 3, imageSize: 0.4 }
+    };
 
-    // Handle emoji center icon creation gracefully using canvas
-    if (logoEmoji) {
+    currentQRStylingInstance = new QRCodeStyling(qrConfig);
+
+    // Apply icon rules dynamically
+    if (iconType === 'emoji') {
+        const logoEmoji = document.getElementById('qr-custom-emoji-input').value.trim() || "⭐";
         const canvas = document.createElement('canvas');
-        canvas.width = 64;
-        canvas.height = 64;
+        canvas.width = 128;
+        canvas.height = 128;
         const ctx = canvas.getContext('2d');
-        ctx.font = '44px serif';
+        ctx.font = '84px Arial';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(logoEmoji, 32, 32);
+        ctx.fillText(logoEmoji, 64, 64);
         currentQRStylingInstance.update({ image: canvas.toDataURL() });
+    } else if (iconType === 'upload' && uploadedLogoBase64) {
+        currentQRStylingInstance.update({ image: uploadedLogoBase64 });
     }
 
     currentQRStylingInstance.append(container);
@@ -342,15 +357,36 @@ function openQREditor(item = null) {
         document.getElementById('edit-qr-id').value = item.id;
         document.getElementById('qr-input-title').value = item.title || "";
         document.getElementById('qr-input-content').value = item.content || "";
-        document.getElementById('qr-color-foreground').value = item.color || "#4f46e5";
-        document.getElementById('qr-color-foreground-hex').value = item.color || "#4f46e5";
+        document.getElementById('qr-color-foreground').value = item.color || "#00ffff";
+        document.getElementById('qr-color-foreground-hex').value = item.color || "#00ffff";
         document.getElementById('qr-color-background').value = item.bgColor || "#ffffff";
         document.getElementById('qr-color-background-hex').value = item.bgColor || "#ffffff";
         document.getElementById('qr-style-dots').value = item.dotType || "dots";
         document.getElementById('qr-style-corners').value = item.cornerType || "extra-rounded";
-        document.getElementById('qr-logo-emoji').value = item.logoEmoji || "";
+        document.getElementById('qr-padding').value = item.padding || "15";
+        
+        // Restore custom logo upload or emoji inputs safely
+        if (item.logoType === 'upload' && item.uploadedLogo) {
+            document.getElementById('qr-icon-type').value = 'upload';
+            uploadedLogoBase64 = item.uploadedLogo;
+            document.getElementById('upload-custom-area').classList.remove('hidden');
+            document.getElementById('emoji-custom-area').classList.add('hidden');
+            document.getElementById('upload-preview-meta').classList.remove('hidden');
+            document.getElementById('upload-file-name').innerText = "সংরক্ষিত কাস্টম লোগো";
+        } else if (item.logoType === 'emoji') {
+            document.getElementById('qr-icon-type').value = 'emoji';
+            document.getElementById('qr-custom-emoji-input').value = item.emojiVal || "⭐";
+            document.getElementById('emoji-custom-area').classList.remove('hidden');
+            document.getElementById('upload-custom-area').classList.add('hidden');
+            uploadedLogoBase64 = "";
+        } else {
+            document.getElementById('qr-icon-type').value = 'none';
+            document.getElementById('emoji-custom-area').classList.add('hidden');
+            document.getElementById('upload-custom-area').classList.add('hidden');
+            uploadedLogoBase64 = "";
+        }
+
         document.getElementById('save-btn-text').innerText = "আপডেট করুন";
-        updatePresetEmojiHighlight(item.logoEmoji || "");
     } else {
         resetCreatorForm();
     }
@@ -362,43 +398,88 @@ function resetCreatorForm() {
     document.getElementById('edit-qr-id').value = '';
     document.getElementById('qr-input-title').value = '';
     document.getElementById('qr-input-content').value = '';
-    document.getElementById('qr-color-foreground').value = '#4f46e5';
-    document.getElementById('qr-color-foreground-hex').value = '#4f46e5';
+    document.getElementById('qr-color-foreground').value = '#00ffff';
+    document.getElementById('qr-color-foreground-hex').value = '#00ffff';
     document.getElementById('qr-color-background').value = '#ffffff';
     document.getElementById('qr-color-background-hex').value = '#ffffff';
     document.getElementById('qr-style-dots').value = 'dots';
     document.getElementById('qr-style-corners').value = 'extra-rounded';
-    document.getElementById('qr-logo-emoji').value = '';
+    document.getElementById('qr-padding').value = '15';
+    document.getElementById('qr-icon-type').value = 'none';
+    document.getElementById('qr-custom-emoji-input').value = '';
+    document.getElementById('emoji-custom-area').classList.add('hidden');
+    document.getElementById('upload-custom-area').classList.add('hidden');
+    document.getElementById('upload-preview-meta').classList.add('hidden');
+    document.getElementById('qr-logo-upload-file').value = "";
+    uploadedLogoBase64 = "";
     document.getElementById('save-btn-text').innerText = "পাবলিশ করুন";
-    updatePresetEmojiHighlight("");
     updateLiveQRPreview();
 }
 
-function updatePresetEmojiHighlight(activeEmoji) {
-    document.querySelectorAll('.btn-logo-preset').forEach(btn => {
-        const emoji = btn.getAttribute('data-emoji');
-        if (emoji === activeEmoji && emoji !== "") {
-            btn.classList.add('border-indigo-500/50', 'bg-indigo-500/10');
-        } else {
-            btn.classList.remove('border-indigo-500/50', 'bg-indigo-500/10');
-        }
-    });
+// Handle Custom Logo Upload File reader base64 conversion
+function handleLogoUpload(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        uploadedLogoBase64 = e.target.result;
+        document.getElementById('upload-preview-meta').classList.remove('hidden');
+        document.getElementById('upload-file-name').innerText = file.name;
+        updateLiveQRPreview();
+        showNotification('কাস্টম ইমেজ লোগো সফলভাবে লোড হয়েছে!', 'success');
+    };
+    reader.readAsDataURL(file);
 }
 
 // UI Event Listeners Binder
 function initAppEvents() {
     document.getElementById('search-qr').addEventListener('input', renderQRCodesList);
 
-    document.querySelectorAll('.btn-logo-preset').forEach(btn => {
+    // Dynamic icon switcher layout logic
+    document.getElementById('qr-icon-type').addEventListener('change', (e) => {
+        const val = e.target.value;
+        if (val === 'emoji') {
+            document.getElementById('emoji-custom-area').classList.remove('hidden');
+            document.getElementById('upload-custom-area').classList.add('hidden');
+        } else if (val === 'upload') {
+            document.getElementById('upload-custom-area').classList.remove('hidden');
+            document.getElementById('emoji-custom-area').classList.add('hidden');
+        } else {
+            document.getElementById('emoji-custom-area').classList.add('hidden');
+            document.getElementById('upload-custom-area').classList.add('hidden');
+        }
+        updateLiveQRPreview();
+    });
+
+    // Preset Emojis trigger
+    document.querySelectorAll('.btn-emoji-preset').forEach(btn => {
         btn.addEventListener('click', () => {
-            const emoji = btn.getAttribute('data-emoji');
-            document.getElementById('qr-logo-emoji').value = emoji;
-            updatePresetEmojiHighlight(emoji);
+            const val = btn.getAttribute('data-val');
+            document.getElementById('qr-custom-emoji-input').value = val;
             updateLiveQRPreview();
         });
     });
 
-    const configFields = ['qr-color-foreground', 'qr-color-background', 'qr-style-dots', 'qr-style-corners'];
+    // Custom emoji typed input trigger
+    document.getElementById('qr-custom-emoji-input').addEventListener('input', () => {
+        updateLiveQRPreview();
+    });
+
+    // Custom Image Logo Upload file listener
+    document.getElementById('qr-logo-upload-file').addEventListener('change', (e) => {
+        handleLogoUpload(e.target.files[0]);
+    });
+
+    // Remove uploaded logo icon
+    document.getElementById('btn-remove-uploaded-logo').addEventListener('click', () => {
+        uploadedLogoBase64 = "";
+        document.getElementById('qr-logo-upload-file').value = "";
+        document.getElementById('upload-preview-meta').classList.add('hidden');
+        updateLiveQRPreview();
+        showNotification('কাস্টম ইমেজ রিমুভ করা হয়েছে।');
+    });
+
+    // Configuration live state changes observer
+    const configFields = ['qr-color-foreground', 'qr-color-background', 'qr-style-dots', 'qr-style-corners', 'qr-padding'];
     configFields.forEach(id => {
         document.getElementById(id).addEventListener('change', () => {
             if (id === 'qr-color-foreground') document.getElementById('qr-color-foreground-hex').value = document.getElementById(id).value;
@@ -407,7 +488,7 @@ function initAppEvents() {
         });
     });
 
-    // Custom hex entries
+    // Hex Manual adjustments
     document.getElementById('qr-color-foreground-hex').addEventListener('input', (e) => {
         const val = e.target.value;
         if (/^#[0-9A-F]{6}$/i.test(val)) {
@@ -429,22 +510,22 @@ function initAppEvents() {
         document.getElementById('welcome-panel').classList.remove('hidden');
     });
 
-    // Registration Tabs
+    // Auth Login vs Signup
     document.getElementById('tab-login').addEventListener('click', () => {
         authMode = 'login';
-        document.getElementById('tab-login').className = "w-1/2 py-2 text-xs font-semibold rounded text-white bg-indigo-600/90 shadow transition-all";
-        document.getElementById('tab-register').className = "w-1/2 py-2 text-xs font-semibold rounded text-slate-400 hover:text-white transition-all";
+        document.getElementById('tab-login').className = "w-1/2 py-2 text-xs font-bold rounded text-white bg-indigo-600/90 shadow transition-all";
+        document.getElementById('tab-register').className = "w-1/2 py-2 text-xs font-bold rounded text-slate-400 hover:text-white transition-all";
         document.getElementById('name-field-group').classList.add('hidden');
     });
 
     document.getElementById('tab-register').addEventListener('click', () => {
         authMode = 'register';
-        document.getElementById('tab-register').className = "w-1/2 py-2 text-xs font-semibold rounded text-white bg-indigo-600/90 shadow transition-all";
-        document.getElementById('tab-login').className = "w-1/2 py-2 text-xs font-semibold rounded text-slate-400 hover:text-white transition-all";
+        document.getElementById('tab-register').className = "w-1/2 py-2 text-xs font-bold rounded text-white bg-indigo-600/90 shadow transition-all";
+        document.getElementById('tab-login').className = "w-1/2 py-2 text-xs font-bold rounded text-slate-400 hover:text-white transition-all";
         document.getElementById('name-field-group').classList.remove('hidden');
     });
 
-    // Form sign in submission
+    // Email/Password entries signin trigger
     document.getElementById('auth-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const email = document.getElementById('auth-email').value;
@@ -469,7 +550,7 @@ function initAppEvents() {
         }
     });
 
-    // Google Pop-up entry trigger
+    // Google SignIn trigger button
     document.getElementById('btn-google-login').addEventListener('click', async () => {
         const provider = new GoogleAuthProvider();
         switchView('loading');
@@ -482,13 +563,13 @@ function initAppEvents() {
         }
     });
 
-    // Write dynamic QR configurations
+    // Save/Publish dynamic payload trigger
     document.getElementById('btn-save-qr').addEventListener('click', async () => {
         const title = document.getElementById('qr-input-title').value.trim();
         const content = document.getElementById('qr-input-content').value.trim();
         
         if (!title || !content) {
-            showNotification('দয়া করে সব ফিল্ড পূরণ করুন!', 'error');
+            showNotification('দয়া করে টাইটেল এবং কিউআর কনটেন্ট পূরণ করুন!', 'error');
             return;
         }
 
@@ -496,7 +577,8 @@ function initAppEvents() {
         const bgColor = document.getElementById('qr-color-background').value;
         const dotType = document.getElementById('qr-style-dots').value;
         const cornerType = document.getElementById('qr-style-corners').value;
-        const logoEmoji = document.getElementById('qr-logo-emoji').value;
+        const paddingVal = document.getElementById('qr-padding').value;
+        const iconType = document.getElementById('qr-icon-type').value;
         const existingId = document.getElementById('edit-qr-id').value;
 
         if (!currentUser) return;
@@ -510,9 +592,17 @@ function initAppEvents() {
             bgColor: bgColor,
             dotType: dotType,
             cornerType: cornerType,
-            logoEmoji: logoEmoji,
+            padding: paddingVal,
+            logoType: iconType,
             updatedAt: Date.now()
         };
+
+        // Conditional additions for custom central icon logic
+        if (iconType === 'upload' && uploadedLogoBase64) {
+            payload.uploadedLogo = uploadedLogoBase64;
+        } else if (iconType === 'emoji') {
+            payload.emojiVal = document.getElementById('qr-custom-emoji-input').value.trim() || "⭐";
+        }
 
         if (!existingId) {
             payload.createdAt = Date.now();
@@ -530,16 +620,23 @@ function initAppEvents() {
         }
     });
 
-    // Downloader execution
+    // Image PNG Downloader trigger
     document.getElementById('btn-download-qr').addEventListener('click', () => {
         if (currentQRStylingInstance) {
             const title = document.getElementById('qr-input-title').value || 'dynamic-qr';
-            currentQRStylingInstance.download({ name: `${title}-scanflow-pro`, extension: "png" });
-            showNotification('ডাউনলোড শুরু হয়েছে!', 'success');
+            const cleanTitle = title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+            
+            // To guarantee that background options are preserved and NO transparency issue occurs,
+            // we configure the exact same specifications inside the download wrapper.
+            currentQRStylingInstance.download({ 
+                name: `${cleanTitle}-scanflow-pro`, 
+                extension: "png"
+            });
+            showNotification('হাই-কোয়ালিটি PNG ডাউনলোড শুরু হয়েছে!', 'success');
         }
     });
 
-    // Copy public outputs
+    // Copy public page data clipboard handler
     document.getElementById('btn-copy-public-text').addEventListener('click', () => {
         const text = document.getElementById('public-text-content').innerText;
         const temp = document.createElement('textarea');
