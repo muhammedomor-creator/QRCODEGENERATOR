@@ -7,78 +7,76 @@
     <!-- Primary SEO Meta Tags -->
     <title>ScanFlow Pro | প্রফেশনাল ডাইনামিক ও স্ট্যাটিক কিউআর হাব</title>
     <meta name="title" content="ScanFlow Pro | প্রফেশনাল ডাইনামিক ও স্ট্যাটিক কিউআর হাব">
-    <meta name="description" content="আন্তর্জাতিক মানের ডাইনামিক এবং স্ট্যাটিক কিউআর কোড জেনারেটর। কাস্টম লোগো, আল্ট্রা-রেজোলিউশন ১:১ ডাউনলোডার এবং লাইভ সিঙ্ক সুবিধা।">
-    <meta name="keywords" content="Dynamic QR Code, Static QR, ScanFlow Pro, Enterprise QR Generator, QR styling">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#030712">
-
-    <!-- Open Graph / Facebook (Social Media Share Preview) -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dynamicqrcodegenerator.vercel.app/">
-    <meta property="og:title" content="ScanFlow Pro | এন্টারপ্রাইজ কিউআর জেনারেটর">
-    <meta property="og:description" content="১:১ নিখুঁত সলিড ইমেজ ডাউনলোডার সহ বিশ্বের সবচেয়ে আধুনিক কিউআর কোড স্যুট।">
-    <meta property="og:image" content="https://dynamicqrcodegenerator.vercel.app/t.jpg">
-
-    <!-- Twitter Meta Tags -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:image" content="https://dynamicqrcodegenerator.vercel.app/t.jpg">
-
-    <!-- PWA Config -->
-    <link rel="icon" type="image/jpeg" href="https://dynamicqrcodegenerator.vercel.app/i.jpg">
-    <link rel="apple-touch-icon" href="https://dynamicqrcodegenerator.vercel.app/i.jpg">
-    <link rel="manifest" href="manifest.json">
+    <meta name="description" content="আন্তর্জাতিক মানের ডাইনামিক এবং স্ট্যাটিক কিউআর কোড জেনারেটর। কাস্টম ৩:৪ কার্ড ক্যানভাস এবং আল্ট্রা-রেজোলিউশন প্রিন্ট রেডি ডাউনলোডার।">
+    <meta name="theme-color" content="#f8fafc">
 
     <!-- Tailwind CSS & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- QR Code Styling Engine (Premium CDN) -->
     <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '"Noto Sans Bengali"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         body {
-            font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
-            background-color: #030712;
+            font-family: "Plus Jakarta Sans", "Noto Sans Bengali", sans-serif;
+            background-color: #f1f5f9;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.03) 0, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.03) 0, transparent 50%);
-            color: #f3f4f6;
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.04) 0, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.04) 0, transparent 50%);
+            color: #1e293b;
             min-height: 100vh;
         }
-        .premium-border {
-            border: 1px solid rgba(255, 255, 255, 0.03);
+        .premium-shadow {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
         }
-        .premium-bg {
-            background: rgba(11, 15, 26, 0.9);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+        .premium-border {
+            border: 1px solid rgba(226, 232, 240, 0.8);
         }
         .sidebar-card {
-            background: rgba(17, 24, 39, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.01);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.7);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .sidebar-card:hover {
-            border-color: rgba(99, 102, 241, 0.2);
-            background: rgba(17, 24, 39, 0.5);
+            border-color: rgba(99, 102, 241, 0.3);
+            background: #f8fafc;
+            transform: translateY(-1px);
         }
         .sidebar-card.active-card {
-            border-color: rgba(99, 102, 241, 0.5);
-            background: rgba(99, 102, 241, 0.08);
+            border-color: #4f46e5;
+            background: rgba(79, 70, 229, 0.04);
+            box-shadow: 0 4px 12px -2px rgba(79, 70, 229, 0.05);
         }
         .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
+            width: 5px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
+            background: #f1f5f9;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.05);
+            background: #cbd5e1;
             border-radius: 99px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: #94a3b8;
+        }
+        /* Fixed Aspect Ratio for 3:4 canvas container */
+        .aspect-3-4 {
+            aspect-ratio: 3 / 4;
         }
     </style>
 </head>
@@ -86,28 +84,28 @@
 
     <!-- Toast Notification -->
     <div id="toast" class="fixed top-6 right-6 z-50 transform translate-y-[-100px] opacity-0 transition-all duration-500 max-w-sm pointer-events-none">
-        <div class="premium-bg text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-2 border-indigo-500 premium-border">
-            <span id="toast-icon" class="text-indigo-400"><i class="fas fa-info-circle"></i></span>
-            <p id="toast-message" class="text-xs font-semibold text-slate-300"></p>
+        <div class="bg-white text-slate-800 px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-4 border-indigo-600 premium-border">
+            <span id="toast-icon" class="text-indigo-600 text-lg"><i class="fas fa-info-circle"></i></span>
+            <p id="toast-message" class="text-xs font-semibold text-slate-700"></p>
         </div>
     </div>
 
     <div id="app" class="flex flex-col min-h-screen">
         
         <!-- Header -->
-        <header id="app-header" class="w-full border-b border-white/5 py-4 px-8 flex justify-between items-center premium-bg sticky top-0 z-40">
+        <header id="app-header" class="w-full border-b border-slate-200 py-4 px-6 md:px-12 flex justify-between items-center bg-white/80 backdrop-blur-md sticky top-0 z-40">
             <div class="flex items-center space-x-3">
-                <div class="bg-gradient-to-tr from-indigo-500 to-violet-600 p-2 rounded-lg shadow-lg shadow-indigo-500/10">
-                    <i class="fas fa-qrcode text-white text-sm"></i>
+                <div class="bg-gradient-to-tr from-indigo-500 to-violet-600 p-2.5 rounded-xl shadow-md shadow-indigo-500/10">
+                    <i class="fas fa-qrcode text-white text-base"></i>
                 </div>
                 <div>
-                    <span class="font-extrabold text-base tracking-tight text-white">ScanFlow<span class="text-indigo-400 font-light">Pro</span></span>
-                    <span class="text-[8px] block text-indigo-400/80 font-mono tracking-widest uppercase font-semibold">Enterprise Solution</span>
+                    <span class="font-extrabold text-lg tracking-tight text-slate-900">ScanFlow<span class="text-indigo-600 font-medium">Pro</span></span>
+                    <span class="text-[9px] block text-indigo-600 font-mono tracking-widest uppercase font-bold">Premium Canvas Suite</span>
                 </div>
             </div>
             
             <div id="auth-state-area" class="flex items-center space-x-4">
-                <div class="animate-pulse bg-slate-900 h-8 w-24 rounded-lg"></div>
+                <div class="animate-pulse bg-slate-100 h-9 w-28 rounded-lg"></div>
             </div>
         </header>
 
@@ -116,52 +114,55 @@
             
             <!-- Global Loader -->
             <div id="view-loading" class="flex flex-col items-center justify-center py-24">
-                <div class="w-8 h-8 border-2 border-indigo-500/10 border-t-indigo-500 rounded-full animate-spin"></div>
+                <div class="w-9 h-9 border-3 border-indigo-600/10 border-t-indigo-600 rounded-full animate-spin"></div>
                 <p class="mt-4 text-[11px] text-slate-500 font-mono tracking-wider">Loading System Engine...</p>
             </div>
 
             <!-- Authentication View -->
             <div id="view-auth" class="hidden max-w-md mx-auto my-12">
-                <div class="premium-bg p-8 rounded-2xl shadow-2xl premium-border">
+                <div class="bg-white p-8 rounded-2xl shadow-xl premium-border">
                     <div class="text-center mb-6">
-                        <h2 class="text-lg font-bold text-white tracking-tight">সিস্টেমে প্রবেশ করুন</h2>
-                        <p class="text-slate-400 text-xs mt-1">বিশ্বমানের কিউআর জেনারেশন স্যুট চালু করুন</p>
+                        <div class="bg-indigo-50 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-shield-alt text-indigo-600 text-lg"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-slate-900 tracking-tight">সিস্টেমে প্রবেশ করুন</h2>
+                        <p class="text-slate-500 text-xs mt-1">বিশ্বমানের কিউআর জেনারেশন স্যুট চালু করুন</p>
                     </div>
 
                     <!-- Tabs -->
-                    <div class="flex p-0.5 bg-slate-950/60 rounded-lg mb-6 border border-white/5">
-                        <button id="tab-login" class="w-1/2 py-2 text-xs font-bold rounded text-white bg-indigo-600/90 shadow transition-all">সাইন ইন</button>
-                        <button id="tab-register" class="w-1/2 py-2 text-xs font-bold rounded text-slate-400 hover:text-white transition-all">সাইন আপ</button>
+                    <div class="flex p-1 bg-slate-100 rounded-xl mb-6 border border-slate-200">
+                        <button id="tab-login" class="w-1/2 py-2 text-xs font-bold rounded-lg text-slate-800 bg-white shadow-sm transition-all">সাইন ইন</button>
+                        <button id="tab-register" class="w-1/2 py-2 text-xs font-bold rounded-lg text-slate-500 hover:text-slate-800 transition-all">সাইন আপ</button>
                     </div>
 
                     <form id="auth-form" class="space-y-4">
                         <div id="name-field-group" class="hidden">
-                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">আপনার নাম</label>
-                            <input type="text" id="auth-name" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="যেমন: ওমর">
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">আপনার নাম</label>
+                            <input type="text" id="auth-name" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white text-xs transition-all" placeholder="যেমন: ওমর">
                         </div>
 
                         <div>
-                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">ইমেইল ঠিকানা</label>
-                            <input type="email" id="auth-email" required class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="name@domain.com">
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">ইমেইল ঠিকানা</label>
+                            <input type="email" id="auth-email" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white text-xs transition-all" placeholder="name@domain.com">
                         </div>
 
                         <div>
-                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">পাসওয়ার্ড</label>
-                            <input type="password" id="auth-password" required class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="••••••••">
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">পাসওয়ার্ড</label>
+                            <input type="password" id="auth-password" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white text-xs transition-all" placeholder="••••••••">
                         </div>
 
-                        <button type="submit" id="btn-submit-auth" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all duration-300 flex items-center justify-center space-x-2">
+                        <button type="submit" id="btn-submit-auth" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-xl text-xs transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-indigo-600/10">
                             <span>অ্যাক্সেস করুন</span> <i class="fas fa-arrow-right text-[10px]"></i>
                         </button>
                     </form>
 
                     <div class="relative flex py-4 items-center">
-                        <div class="flex-grow border-t border-white/5"></div>
-                        <span class="flex-shrink mx-4 text-[9px] text-slate-500 font-bold uppercase tracking-widest">অথবা</span>
-                        <div class="flex-grow border-t border-white/5"></div>
+                        <div class="flex-grow border-t border-slate-100"></div>
+                        <span class="flex-shrink mx-4 text-[9px] text-slate-400 font-bold uppercase tracking-widest">অথবা</span>
+                        <div class="flex-grow border-t border-slate-100"></div>
                     </div>
 
-                    <button id="btn-google-login" class="w-full bg-slate-900/60 hover:bg-slate-900 text-slate-300 border border-white/5 font-semibold py-2.5 rounded-lg transition-all duration-300 text-xs flex items-center justify-center space-x-2">
+                    <button id="btn-google-login" class="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-semibold py-3 rounded-xl transition-all duration-300 text-xs flex items-center justify-center space-x-2">
                         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" class="w-4 h-4" alt="Google">
                         <span>গুগল অ্যাকাউন্ট দিয়ে প্রবেশ</span>
                     </button>
@@ -170,35 +171,35 @@
 
             <!-- Professional Dashboard View -->
             <div id="view-dashboard" class="hidden">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 border-b border-white/5 pb-4">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 border-b border-slate-200 pb-5">
                     <div>
-                        <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                        <h1 class="text-2xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
                             <span>কন্ট্রোল ড্যাশবোর্ড</span>
-                            <span class="text-[9px] bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded font-mono font-bold">PRO ACCOUNT</span>
+                            <span class="text-[9px] bg-indigo-50 text-indigo-600 border border-indigo-200 px-2 py-1 rounded font-mono font-bold uppercase">PRO ACCESS</span>
                         </h1>
-                        <p class="text-xs text-slate-400">স্ট্যাটিক এবং ডাইনামিক কিউআর জেনারেট ও রিয়েলটাইমে পরিচালনা করুন</p>
+                        <p class="text-xs text-slate-500 mt-1">৩:৪ আল্ট্রা-রেজোলিউশন ক্যানভাস কার্ড জেনারেটর এবং রিয়েলটাইম পোর্টাল</p>
                     </div>
-                    <button id="btn-open-creator" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all shadow-lg shadow-indigo-600/10">
+                    <button id="btn-open-creator" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-3 rounded-xl text-xs font-semibold flex items-center space-x-2 transition-all shadow-md shadow-indigo-600/10">
                         <i class="fas fa-plus"></i>
-                        <span>নতুন কিউআর তৈরি করুন</span>
+                        <span>নতুন কিউআর কার্ড তৈরি করুন</span>
                     </button>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     <!-- Left Sidebar - QR list -->
                     <div class="lg:col-span-4 flex flex-col space-y-4">
-                        <div class="premium-bg p-5 rounded-xl flex flex-col max-h-[72vh] premium-border">
+                        <div class="bg-white p-5 rounded-2xl flex flex-col max-h-[78vh] premium-border premium-shadow">
                             <div class="mb-3 flex justify-between items-center">
                                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">আমার ডাইনামিক কালেকশন</h3>
-                                <span id="qr-count-badge" class="text-[10px] bg-slate-900 px-2 py-0.5 rounded text-indigo-400 font-mono">0</span>
+                                <span id="qr-count-badge" class="text-[10px] bg-slate-100 px-2.5 py-0.5 rounded-full font-bold text-indigo-600 font-mono">0</span>
                             </div>
 
                             <div class="relative mb-4">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500"><i class="fas fa-search text-[10px]"></i></span>
-                                <input type="text" id="search-qr" class="w-full bg-slate-950/40 border border-white/5 rounded-lg pl-8 pr-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="অনুসন্ধান...">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400"><i class="fas fa-search text-[10px]"></i></span>
+                                <input type="text" id="search-qr" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500/50 focus:bg-white text-xs transition-all" placeholder="অনুসন্ধান...">
                             </div>
 
-                            <div id="qr-list-container" class="flex-grow overflow-y-auto space-y-2 pr-1 custom-scrollbar">
+                            <div id="qr-list-container" class="flex-grow overflow-y-auto space-y-2.5 pr-1 custom-scrollbar">
                                 <!-- Dynamic items inject here -->
                             </div>
                         </div>
@@ -206,26 +207,26 @@
 
                     <!-- Right Main Workdesk - Creator / Editor -->
                     <div id="creator-panel" class="lg:col-span-8 hidden">
-                        <div class="premium-bg p-6 rounded-xl border border-white/5 relative premium-border">
-                            <button id="btn-close-creator" class="absolute top-4 right-4 text-slate-500 hover:text-white lg:hidden"><i class="fas fa-times"></i></button>
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 relative premium-shadow">
+                            <button id="btn-close-creator" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 lg:hidden"><i class="fas fa-times"></i></button>
 
-                            <h2 id="creator-title" class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 border-b border-white/5 pb-2">নতুন কিউআর কোড কাস্টমাইজেশন</h2>
+                            <h2 id="creator-title" class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 border-b border-slate-100 pb-3">নতুন কিউআর কাস্টমাইজেশন</h2>
 
                             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                                <div class="md:col-span-7 space-y-4">
+                                <div class="md:col-span-7 space-y-5">
                                     <input type="hidden" id="edit-qr-id">
 
                                     <!-- QR Type Selector -->
                                     <div>
-                                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">কিউআর কোডের ধরন (QR Code Type)</label>
+                                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">কিউআর কোডের ধরন (QR Code Type)</label>
                                         <div class="grid grid-cols-2 gap-3" id="qr-type-switch-group">
-                                            <button type="button" id="btn-type-dynamic" class="py-2.5 rounded-lg border-2 border-indigo-500 bg-indigo-500/10 text-white font-bold text-xs flex flex-col items-center justify-center transition-all">
-                                                <span>ডায়নামিক কিউআর (Dynamic)</span>
-                                                <span class="text-[8px] opacity-75 font-normal">পরিবর্তনযোগ্য এবং ট্র্যাকিং সুবিধাযুক্ত</span>
+                                            <button type="button" id="btn-type-dynamic" class="py-2.5 rounded-xl border-2 border-indigo-600 bg-indigo-50/50 text-indigo-700 font-bold text-xs flex flex-col items-center justify-center transition-all">
+                                                <span>ডায়নামিক কিউআর</span>
+                                                <span class="text-[8px] opacity-75 font-normal">পরিবর্তনযোগ্য এবং ট্র্যাকিংযুক্ত</span>
                                             </button>
-                                            <button type="button" id="btn-type-static" class="py-2.5 rounded-lg border-2 border-white/5 bg-slate-950/40 text-slate-400 font-bold text-xs flex flex-col items-center justify-center transition-all">
-                                                <span>স্ট্যাটিক কিউআর (Static)</span>
-                                                <span class="text-[8px] opacity-75 font-normal">অফলাইন স্টোরেজ, এডিট করা যাবে না</span>
+                                            <button type="button" id="btn-type-static" class="py-2.5 rounded-xl border-2 border-slate-100 bg-slate-50 text-slate-500 font-bold text-xs flex flex-col items-center justify-center transition-all">
+                                                <span>স্ট্যাটিক কিউআর</span>
+                                                <span class="text-[8px] opacity-75 font-normal">অফলাইন স্টোরেজ, ফিক্সড ডেটা</span>
                                             </button>
                                         </div>
                                         <input type="hidden" id="qr-input-type" value="dynamic">
@@ -233,41 +234,41 @@
 
                                     <div>
                                         <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">কিউআর কোডের টাইটেল</label>
-                                        <input type="text" id="qr-input-title" required class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="যেমন: আমার বিজনেস ওয়েবসাইট">
+                                        <input type="text" id="qr-input-title" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white text-xs transition-all" placeholder="যেমন: আমার রেস্টুরেন্ট মেনু">
                                     </div>
 
                                     <div>
-                                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">কিউআর কোডের মূল লিঙ্ক / তথ্য</label>
-                                        <textarea id="qr-input-content" required rows="2" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="যেকোনো টেক্সট বা ওয়েবসাইট লিঙ্ক (যেমন: https://yourdomain.com)"></textarea>
+                                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">কিউআর কোডের লিঙ্ক / তথ্য</label>
+                                        <textarea id="qr-input-content" required rows="2" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white text-xs transition-all" placeholder="যেমন: https://yourrestaurant.com"></textarea>
                                     </div>
 
                                     <!-- Styling Engine -->
-                                    <div class="border-t border-white/5 pt-4 space-y-4">
-                                        <h4 class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">ডিজাইন ও কালার কাস্টমাইজেশন</h4>
+                                    <div class="border-t border-slate-100 pt-4 space-y-4">
+                                        <h4 class="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">১. কিউআর কোড কালার ও ডিজাইন</h4>
                                         
                                         <div class="grid grid-cols-2 gap-4">
                                             <div>
-                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ডটের রঙ (Foreground Color)</label>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ডটের রঙ (Foreground)</label>
                                                 <div class="flex items-center space-x-2">
                                                     <input type="color" id="qr-color-foreground" value="#030712" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0">
-                                                    <input type="text" id="qr-color-foreground-hex" value="#030712" class="w-full bg-slate-950/40 border border-white/5 rounded px-2 py-1 text-[11px] text-white uppercase focus:outline-none font-mono">
+                                                    <input type="text" id="qr-color-foreground-hex" value="#030712" class="w-full bg-slate-50 border border-slate-200 rounded px-2 py-1 text-[11px] text-slate-700 uppercase focus:outline-none font-mono">
                                                 </div>
                                             </div>
 
                                             <div>
-                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ব্যাকগ্রাউন্ড রঙ (Solid Only)</label>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">কিউআর ব্যাকগ্রাউন্ড (Solid)</label>
                                                 <div class="flex items-center space-x-2">
                                                     <input type="color" id="qr-color-background" value="#ffffff" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0">
-                                                    <input type="text" id="qr-color-background-hex" value="#ffffff" class="w-full bg-slate-950/40 border border-white/5 rounded px-2 py-1 text-[11px] text-white uppercase focus:outline-none font-mono">
+                                                    <input type="text" id="qr-color-background-hex" value="#ffffff" class="w-full bg-slate-50 border border-slate-200 rounded px-2 py-1 text-[11px] text-slate-700 uppercase focus:outline-none font-mono">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="grid grid-cols-2 gap-4">
                                             <div>
-                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ডটের ধরন (Dots)</label>
-                                                <select id="qr-style-dots" class="w-full bg-slate-950/60 border border-white/5 rounded px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
-                                                    <option value="square" selected>Square (প্রফেশনাল চারকোণা)</option>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ডটের ধরন (Dots Style)</label>
+                                                <select id="qr-style-dots" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 text-xs text-slate-700 focus:outline-none focus:bg-white">
+                                                    <option value="square" selected>Square (চারকোণা)</option>
                                                     <option value="dots">Dots (বৃত্তাকার)</option>
                                                     <option value="rounded">Rounded (মৃদু কার্ভ)</option>
                                                     <option value="classy">Classy (মডার্ন)</option>
@@ -276,8 +277,8 @@
                                             </div>
 
                                             <div>
-                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">আই ফ্রেম (Corners Design)</label>
-                                                <select id="qr-style-corners" class="w-full bg-slate-950/60 border border-white/5 rounded px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">আই ফ্রেম (Corners Eye)</label>
+                                                <select id="qr-style-corners" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 text-xs text-slate-700 focus:outline-none focus:bg-white">
                                                     <option value="square" selected>Square</option>
                                                     <option value="dot">Dot</option>
                                                     <option value="extra-rounded">Extra Rounded</option>
@@ -287,79 +288,178 @@
 
                                         <div class="grid grid-cols-2 gap-4">
                                             <div>
-                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">সেফ মার্জিন প্যাডিং (Padding)</label>
-                                                <select id="qr-padding" class="w-full bg-slate-950/60 border border-white/5 rounded px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ভিতরের সেফ প্যাডিং</label>
+                                                <select id="qr-padding" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 text-xs text-slate-700 focus:outline-none focus:bg-white">
                                                     <option value="10">Compact Space (10px)</option>
-                                                    <option value="20" selected>Standard White Space (20px)</option>
-                                                    <option value="30">Wide Border (30px)</option>
+                                                    <option value="15" selected>Standard Space (15px)</option>
+                                                    <option value="25">Wide Space (25px)</option>
                                                 </select>
                                             </div>
                                             <div>
                                                 <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">মাঝখানের কাস্টম আইকন</label>
-                                                <select id="qr-icon-type" class="w-full bg-slate-950/60 border border-white/5 rounded px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
+                                                <select id="qr-icon-type" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 text-xs text-slate-700 focus:outline-none focus:bg-white">
                                                     <option value="none" selected>কোনো আইকন নেই</option>
-                                                    <option value="emoji">কাস্টম ইমোজি</option>
-                                                    <option value="upload">কাস্টম ইমেজ লোগো আপলোড</option>
+                                                    <option value="emoji">কাস্টম ইমোজি (কিবোর্ড দিয়ে)</option>
+                                                    <option value="upload">কাস্টম লোগো আপলোড</option>
                                                 </select>
                                             </div>
                                         </div>
 
-                                        <!-- Custom Emoji Area -->
-                                        <div id="emoji-custom-area" class="hidden space-y-2">
-                                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest">কাস্টম ইমোজি দিন</label>
-                                            <div class="flex gap-2">
-                                                <input type="text" id="qr-custom-emoji-input" maxlength="2" class="w-16 bg-slate-950/40 border border-white/5 rounded-lg px-2 py-2 text-center text-lg text-white focus:outline-none focus:border-indigo-500/50" placeholder="⭐">
-                                                <div class="flex-grow flex items-center gap-1.5 overflow-x-auto py-1">
-                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="⚡">⚡</button>
-                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="🔥">🔥</button>
-                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="👑">👑</button>
-                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="🎯">🎯</button>
+                                        <!-- Custom Keyboard Emoji Input Area -->
+                                        <div id="emoji-custom-area" class="hidden bg-slate-50 p-3.5 rounded-xl border border-slate-100 space-y-2">
+                                            <div class="flex items-center justify-between">
+                                                <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">কিবোর্ড থেকে যেকোনো ইমোজি লিখুন বা নিচেরটি সিলেক্ট করুন</label>
+                                            </div>
+                                            <div class="flex gap-3">
+                                                <input type="text" id="qr-custom-emoji-input" maxlength="4" class="w-20 bg-white border border-slate-200 rounded-xl px-2 py-2 text-center text-xl focus:outline-none focus:border-indigo-500" placeholder="⭐">
+                                                <div class="flex-grow flex items-center gap-2 overflow-x-auto py-1">
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1.5 bg-white rounded-lg border border-slate-200 hover:border-indigo-300 transition" data-val="⚡">⚡</button>
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1.5 bg-white rounded-lg border border-slate-200 hover:border-indigo-300 transition" data-val="🔥">🔥</button>
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1.5 bg-white rounded-lg border border-slate-200 hover:border-indigo-300 transition" data-val="🎯">🎯</button>
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1.5 bg-white rounded-lg border border-slate-200 hover:border-indigo-300 transition" data-val="🚀">🚀</button>
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1.5 bg-white rounded-lg border border-slate-200 hover:border-indigo-300 transition" data-val="❤️">❤️</button>
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1.5 bg-white rounded-lg border border-slate-200 hover:border-indigo-300 transition" data-val="⭐">⭐</button>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!-- Custom Upload Area -->
+                                        <!-- Custom Logo Upload Area -->
                                         <div id="upload-custom-area" class="hidden space-y-2">
                                             <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest">লোগো আপলোড করুন (.png, .jpg)</label>
                                             <div class="flex items-center justify-center w-full">
-                                                <label class="flex flex-col items-center justify-center w-full h-20 border border-dashed border-white/10 rounded-lg cursor-pointer bg-slate-950/20 hover:bg-slate-950/40 transition-all">
+                                                <label class="flex flex-col items-center justify-center w-full h-20 border border-dashed border-slate-200 rounded-xl cursor-pointer bg-slate-50 hover:bg-slate-100 transition-all">
                                                     <div class="flex flex-col items-center justify-center pt-3 pb-3">
-                                                        <i class="fas fa-cloud-upload-alt text-slate-500 text-sm mb-1"></i>
-                                                        <p class="text-[10px] text-slate-400 font-semibold">লোগো সিলেক্ট করুন</p>
+                                                        <i class="fas fa-cloud-upload-alt text-slate-400 text-sm mb-1"></i>
+                                                        <p class="text-[10px] text-slate-500 font-semibold">লোগো সিলেক্ট করুন</p>
                                                     </div>
                                                     <input id="qr-logo-upload-file" type="file" accept="image/*" class="hidden" />
                                                 </label>
                                             </div>
-                                            <div id="upload-preview-meta" class="hidden flex items-center justify-between text-[10px] bg-slate-950/40 p-2 rounded border border-white/5">
-                                                <span class="text-emerald-400 truncate max-w-[150px]" id="upload-file-name">logo.png</span>
-                                                <button type="button" id="btn-remove-uploaded-logo" class="text-rose-400 hover:underline">রিমুভ করুন</button>
+                                            <div id="upload-preview-meta" class="hidden flex items-center justify-between text-[10px] bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                                <span class="text-emerald-600 font-medium truncate max-w-[150px]" id="upload-file-name">logo.png</span>
+                                                <button type="button" id="btn-remove-uploaded-logo" class="text-rose-500 hover:underline">রিমুভ করুন</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 3:4 Aspect Premium Canvas Layout Editor -->
+                                    <div class="border-t border-slate-100 pt-4 space-y-4">
+                                        <h4 class="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">২. ক্যানভাস কার্ড কাস্টমাইজেশন (৩:৪ রেশিও)</h4>
+                                        
+                                        <!-- Preset Themes -->
+                                        <div>
+                                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">ডিফল্ট চমৎকার কালার কম্বিনেশন (Preset Themes)</label>
+                                            <div class="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#ffffff] text-slate-800" data-canvas-bg="#ffffff" data-canvas-text="#1e293b">
+                                                    <span class="w-2.5 h-2.5 rounded-full border border-slate-200" style="background-color: #ffffff"></span> Pure Clean
+                                                </button>
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#EEF2FF] text-slate-800" data-canvas-bg="#EEF2FF" data-canvas-text="#312E81">
+                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #EEF2FF"></span> Soft Blue
+                                                </button>
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#F5F3FF] text-slate-800" data-canvas-bg="#F5F3FF" data-canvas-text="#4C1D95">
+                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #F5F3FF"></span> Soft Purple
+                                                </button>
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#FEF2F2] text-slate-800" data-canvas-bg="#FEF2F2" data-canvas-text="#7F1D1D">
+                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #FEF2F2"></span> Soft Red
+                                                </button>
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#ECFDF5] text-slate-800" data-canvas-bg="#ECFDF5" data-canvas-text="#064E3B">
+                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #ECFDF5"></span> Emerald Light
+                                                </button>
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#FFFBEB] text-slate-800" data-canvas-bg="#FFFBEB" data-canvas-text="#78350F">
+                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #FFFBEB"></span> Amber Soft
+                                                </button>
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#FFF1F2] text-slate-800" data-canvas-bg="#FFF1F2" data-canvas-text="#881337">
+                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #FFF1F2"></span> Rose Pearl
+                                                </button>
+                                                <button type="button" class="btn-theme-preset text-[10px] font-bold py-2 px-1.5 rounded-lg border border-slate-100 flex items-center justify-center gap-1 bg-[#1E293B] text-white" data-canvas-bg="#1E293B" data-canvas-text="#F8FAFC">
+                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: #1E293B"></span> Slate Deep
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Custom Canvas Colors -->
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ক্যানভাস ব্যাকগ্রাউন্ড কালার</label>
+                                                <div class="flex items-center space-x-2">
+                                                    <input type="color" id="canvas-color-bg" value="#ffffff" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0">
+                                                    <input type="text" id="canvas-color-bg-hex" value="#ffffff" class="w-full bg-slate-50 border border-slate-200 rounded px-2 py-1 text-[11px] text-slate-700 uppercase focus:outline-none font-mono">
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ক্যানভাস টেক্সট কালার</label>
+                                                <div class="flex items-center space-x-2">
+                                                    <input type="color" id="canvas-color-text" value="#1e293b" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0">
+                                                    <input type="text" id="canvas-color-text-hex" value="#1e293b" class="w-full bg-slate-50 border border-slate-200 rounded px-2 py-1 text-[11px] text-slate-700 uppercase focus:outline-none font-mono">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- QR Size Selector & Card Copy -->
+                                        <div>
+                                            <div class="flex justify-between items-center mb-1">
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest">ক্যানভাসে কিউআর কোডের আকার (QR Code Size)</label>
+                                                <span id="qr-size-val" class="text-xs font-mono font-bold text-indigo-600">180px</span>
+                                            </div>
+                                            <input type="range" id="qr-canvas-size" min="120" max="230" value="180" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                                        </div>
+
+                                        <!-- Custom Text on Card -->
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">কার্ড টাইটেল (যেমন: SCAN ME)</label>
+                                                <input type="text" id="canvas-title-input" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500/50" placeholder="SCAN ME">
+                                            </div>
+                                            <div>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">কার্ড সাবটাইটেল (যেমন: To visit website)</label>
+                                                <input type="text" id="canvas-subtitle-input" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500/50" placeholder="To visit website">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Live Interactive Preview -->
-                                <div class="md:col-span-5 flex flex-col justify-between items-center bg-slate-950/40 border border-white/5 p-4 rounded-xl">
+                                <div class="md:col-span-5 flex flex-col justify-between items-center bg-slate-50 border border-slate-200 p-4 rounded-2xl">
                                     <div class="text-center w-full">
-                                        <span class="text-[9px] text-slate-500 font-bold uppercase tracking-widest block mb-4">রিয়েল-টাইম প্রিভিউ</span>
+                                        <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest block mb-4">৩:৪ ক্যানভাস লাইভ প্রিভিউ</span>
                                         
-                                        <!-- Solid Frame Wrapper for 100% Quality Assurance -->
-                                        <div class="relative bg-slate-900 p-4 rounded-xl border border-white/5 shadow-inner">
-                                            <div class="bg-white p-2 rounded-lg aspect-square max-w-[180px] mx-auto shadow-2xl transition-all" id="qr-preview-container">
-                                                <!-- Dynamic SVG generated here -->
+                                        <!-- Fully Responsive Card Container with Aspect Ratio 3:4 -->
+                                        <div class="relative bg-white aspect-3-4 w-full max-w-[260px] mx-auto rounded-2xl border border-slate-200/80 shadow-lg overflow-hidden flex flex-col justify-between p-5 transition-colors duration-300" id="live-card-canvas">
+                                            
+                                            <!-- Top Header in Card -->
+                                            <div class="text-center">
+                                                <span class="text-[8px] uppercase font-mono tracking-widest text-indigo-500 font-bold block mb-1">SCANFLOW Premium</span>
+                                                <h3 id="card-dynamic-title" class="text-xs font-extrabold uppercase tracking-wide leading-tight text-slate-800">SCAN ME</h3>
+                                            </div>
+
+                                            <!-- Middle QR Code Box (Auto Center Align) -->
+                                            <div class="flex-grow flex items-center justify-center py-2">
+                                                <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-100 flex items-center justify-center transition-all overflow-hidden" id="qr-preview-container">
+                                                    <!-- Dynamic SVG generated here -->
+                                                </div>
+                                            </div>
+
+                                            <!-- Bottom Footer in Card -->
+                                            <div class="text-center">
+                                                <p id="card-dynamic-subtitle" class="text-[9px] font-bold text-slate-500 leading-relaxed truncate">To view dynamic content</p>
+                                                <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-center gap-1">
+                                                    <i class="fas fa-shield-alt text-[7px] text-emerald-500"></i>
+                                                    <span class="text-[7px] font-mono tracking-wider font-bold text-slate-400">100% SECURED REDIRECT</span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <p class="text-[10px] text-slate-500 mt-3 leading-relaxed">১:১ রেশিওতে আন্তর্জাতিক মানের ক্রিস্প কিউআর কোড জেনারেট হচ্ছে।</p>
+                                        <p class="text-[10px] text-slate-400 mt-4 leading-relaxed">৩:৪ অনুপাতে প্রিন্ট কোয়ালিটি কার্ড জেনারেট হচ্ছে।</p>
                                     </div>
 
-                                    <div class="w-full mt-6 space-y-2">
-                                        <button id="btn-save-qr" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all flex items-center justify-center space-x-1 shadow-lg shadow-indigo-600/10">
+                                    <div class="w-full mt-6 space-y-2.5">
+                                        <button id="btn-save-qr" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-xl text-xs transition-all flex items-center justify-center space-x-1.5 shadow-md shadow-indigo-600/10">
                                             <i class="fas fa-check-circle"></i>
                                             <span id="save-btn-text">পাবলিশ করুন</span>
                                         </button>
-                                        <button id="btn-download-qr" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all flex items-center justify-center space-x-1 shadow-lg shadow-emerald-600/10">
+                                        <button id="btn-download-qr" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 rounded-xl text-xs transition-all flex items-center justify-center space-x-1.5 shadow-md shadow-emerald-600/10">
                                             <i class="fas fa-download"></i>
-                                            <span>ডাউনলোড করুন (১:১ হাই-রেজ PNG)</span>
+                                            <span>ডাউনলোড করুন (৩:৪ হাই-রেজ PNG)</span>
                                         </button>
                                     </div>
                                 </div>
@@ -368,45 +468,45 @@
                     </div>
 
                     <!-- Sidebar default view -->
-                    <div id="welcome-panel" class="lg:col-span-8 flex flex-col items-center justify-center p-12 premium-bg rounded-xl text-center premium-border">
-                        <div class="bg-indigo-500/5 p-4 rounded-full mb-4 border border-indigo-500/10">
-                            <i class="fas fa-qrcode text-3xl text-indigo-400/80"></i>
+                    <div id="welcome-panel" class="lg:col-span-8 flex flex-col items-center justify-center p-12 bg-white rounded-2xl text-center premium-border premium-shadow">
+                        <div class="bg-indigo-50 p-4 rounded-full mb-4 border border-indigo-100">
+                            <i class="fas fa-qrcode text-3xl text-indigo-500"></i>
                         </div>
-                        <h2 class="text-sm font-bold text-white mb-1 uppercase tracking-wider">ড্যাশবোর্ড প্যানেল</h2>
-                        <p class="text-xs text-slate-400 max-w-sm leading-relaxed mb-4">যেকোনো কিউআর কোড এডিট করতে বামদিকের তালিকা থেকে সিলেক্ট করুন অথবা নতুন কিউআর কোড তৈরি করুন।</p>
+                        <h2 class="text-sm font-bold text-slate-800 mb-1.5 uppercase tracking-wider">ড্যাশবোর্ড প্যানেল</h2>
+                        <p class="text-xs text-slate-500 max-w-sm leading-relaxed mb-4">যেকোনো কিউআর কোড এডিট করতে বামদিকের তালিকা থেকে সিলেক্ট করুন অথবা নতুন কিউআর কোড তৈরি করুন।</p>
                     </div>
                 </div>
             </div>
 
             <!-- Professional Public Scan Display -->
             <div id="view-public-scan" class="hidden max-w-md mx-auto my-16">
-                <div class="premium-bg p-8 rounded-2xl relative overflow-hidden shadow-2xl premium-border">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-full blur-3xl"></div>
+                <div class="bg-white p-8 rounded-2xl relative overflow-hidden shadow-xl premium-border">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-full blur-3xl"></div>
                     
                     <div class="text-center space-y-5">
-                        <div class="mx-auto w-12 h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center border border-indigo-500/10">
-                            <i id="public-content-icon" class="fas fa-file-alt text-lg text-indigo-400"></i>
+                        <div class="mx-auto w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center border border-indigo-100">
+                            <i id="public-content-icon" class="fas fa-file-alt text-lg text-indigo-600"></i>
                         </div>
 
                         <div>
-                            <span class="text-[9px] bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full font-mono font-bold tracking-widest border border-indigo-500/20">LIVE DATA DISPLAY</span>
-                            <h2 class="text-base font-bold text-slate-100 mt-3 tracking-tight">ScanFlow Smart Output</h2>
+                            <span class="text-[9px] bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full font-mono font-bold tracking-widest border border-indigo-100">LIVE DATA DISPLAY</span>
+                            <h2 class="text-lg font-bold text-slate-900 mt-3 tracking-tight">ScanFlow Smart Output</h2>
                         </div>
 
-                        <div class="bg-slate-950/60 border border-white/5 p-5 rounded-xl text-left">
-                            <label class="block text-[9px] text-slate-500 font-bold uppercase tracking-widest mb-2">সক্রিয় তথ্য (Active Text):</label>
+                        <div class="bg-slate-50 border border-slate-100 p-5 rounded-xl text-left">
+                            <label class="block text-[9px] text-slate-400 font-bold uppercase tracking-widest mb-2">সক্রিয় তথ্য (Active Text):</label>
                             
                             <div id="public-text-wrapper">
-                                <p id="public-text-content" class="text-slate-300 text-xs font-semibold break-words whitespace-pre-line"></p>
-                                <button id="btn-copy-public-text" class="mt-3 flex items-center space-x-1 text-[10px] text-indigo-400 hover:text-indigo-300 font-semibold">
+                                <p id="public-text-content" class="text-slate-800 text-xs font-semibold break-words whitespace-pre-line"></p>
+                                <button id="btn-copy-public-text" class="mt-3 flex items-center space-x-1.5 text-[10px] text-indigo-600 hover:text-indigo-500 font-semibold">
                                     <i class="fas fa-copy"></i>
                                     <span>কপি করুন</span>
                                 </button>
                             </div>
                         </div>
 
-                        <div class="pt-4 border-t border-white/5 flex justify-between items-center text-slate-500 text-[10px]">
-                            <span>পাওয়ার্ড বাই <span class="text-slate-400 font-bold">ScanFlow</span></span>
+                        <div class="pt-4 border-t border-slate-100 flex justify-between items-center text-slate-400 text-[10px]">
+                            <span>পাওয়ার্ড বাই <span class="text-slate-600 font-bold">ScanFlow</span></span>
                             <span id="public-scan-time" class="font-mono"></span>
                         </div>
                     </div>
@@ -415,7 +515,7 @@
         </main>
 
         <!-- Premium Footer -->
-        <footer id="app-footer" class="w-full border-t border-white/5 py-4 px-8 text-center text-[10px] text-slate-500 premium-bg">
+        <footer id="app-footer" class="w-full border-t border-slate-200 py-5 px-8 text-center text-[11px] text-slate-400 bg-white">
             <p>© ২০২৬ ScanFlow Pro - ওমর দ্বারা ডিজাইনকৃত ও ডেভেলপকৃত।</p>
         </footer>
     </div>
