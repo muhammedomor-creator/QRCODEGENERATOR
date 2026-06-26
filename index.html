@@ -4,40 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Primary SEO Meta Tags -->
-    <title>ScanFlow Pro | প্রিমিয়াম ডাইনামিক কিউআর কোড প্ল্যাটফর্ম</title>
-    <meta name="title" content="ScanFlow Pro | প্রিমিয়াম ডাইনামিক কিউআর কোড প্ল্যাটফর্ম">
-    <meta name="description" content="আনলিমিটেড প্রফেশনাল ডাইনামিক কিউআর কোড তৈরি করুন। প্রিন্ট করার পরেও কিউআর কোডের ভেতরের তথ্য যেকোনো সময় পরিবর্তন করুন রিয়েল-টাইমে।">
-    <meta name="keywords" content="Dynamic QR Code, QR Code Generator, Smart QR, ScanFlow, PWA QR, ফায়ারবেস কিউআর, ডাইনামিক কিউআর">
+    <!-- Premium SEO Meta Tags -->
+    <title>ScanFlow Pro | এন্টারপ্রাইজ ডাইনামিক কিউআর ইঞ্জিন</title>
+    <meta name="title" content="ScanFlow Pro | এন্টারপ্রাইজ ডাইনামিক কিউআর ইঞ্জিন">
+    <meta name="description" content="পেশাদার ডাইনামিক কিউআর কোড জেনারেটর। কাস্টম লোগো, ইমোজি এবং আল্ট্রা-কাস্টমাইজেশন সহ আনলিমিটেড এডিটেবল কিউআর কোড।">
+    <meta name="keywords" content="Dynamic QR Code, Enterprise QR, ScanFlow, Custom Logo QR, PWA QR, ফায়ারবেস কিউআর">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="Bengali">
-    <meta name="author" content="Omar">
+    <meta name="theme-color" content="#030712">
 
     <!-- Open Graph / Facebook (Social Media Share Preview) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://dynamicqrcodegenerator.vercel.app/">
     <meta property="og:title" content="ScanFlow Pro | ডাইনামিক কিউআর কোড পাওয়ার হাউজ">
-    <meta property="og:description" content="প্রিন্ট করার পরেও কিউআর কোডের ভেতরের তথ্য যেকোনো সময় পরিবর্তন করুন রিয়েল-টাইমে। সর্বোচ্চ কাস্টমাইজেশন সুবিধা।">
+    <meta property="og:description" content="প্রিন্ট করার পরেও কিউআর কোডের ভেতরের তথ্য যেকোনো সময় পরিবর্তন করুন রিয়েল-টাইমে।">
     <meta property="og:image" content="https://dynamicqrcodegenerator.vercel.app/t.jpg">
 
-    <!-- Twitter Card Meta Tags -->
+    <!-- Twitter Meta Tags -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://dynamicqrcodegenerator.vercel.app/">
-    <meta property="twitter:title" content="ScanFlow Pro | ডাইনামিক কিউআর কোড">
-    <meta property="twitter:description" content="প্রিন্ট করা কিউআর কোড পরিবর্তন না করে ব্যাকএন্ড থেকে যেকোনো লেখা বা লিঙ্ক আপডেট করার প্রফেশনাল সমাধান।">
     <meta property="twitter:image" content="https://dynamicqrcodegenerator.vercel.app/t.jpg">
 
-    <!-- Theme & Mobile App Capability -->
-    <meta name="theme-color" content="#090d16">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="ScanFlow">
-
-    <!-- Favicon & PWA Icons -->
+    <!-- PWA Config -->
     <link rel="icon" type="image/jpeg" href="https://dynamicqrcodegenerator.vercel.app/i.jpg">
     <link rel="apple-touch-icon" href="https://dynamicqrcodegenerator.vercel.app/i.jpg">
-    
-    <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.json">
 
     <!-- Tailwind CSS & Fonts -->
@@ -45,76 +33,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- QR Code Styling Engine (Premium Core) -->
+    <!-- QR Code Styling Engine -->
     <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     
     <style>
         body {
             font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
-            background-color: #090d16;
+            background-color: #030712;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.08) 0, transparent 50%),
-                radial-gradient(at 50% 0%, rgba(147, 51, 234, 0.05) 0, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.08) 0, transparent 50%);
-            color: #f1f5f9;
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.05) 0, transparent 50%);
+            color: #f3f4f6;
             min-height: 100vh;
         }
-        .premium-blur {
-            background: rgba(13, 18, 30, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+        .premium-border {
+            border: 1px solid rgba(255, 255, 255, 0.04);
         }
-        .premium-card {
-            background: rgba(20, 26, 43, 0.4);
+        .premium-bg {
+            background: rgba(11, 15, 26, 0.8);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .sidebar-card {
+            background: rgba(17, 24, 39, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.02);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .premium-card:hover {
-            border-color: rgba(99, 102, 241, 0.2);
-            background: rgba(20, 26, 43, 0.6);
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.7);
+        .sidebar-card:hover {
+            border-color: rgba(99, 102, 241, 0.25);
+            background: rgba(17, 24, 39, 0.7);
         }
-        /* Custom UI Scrollbar */
-        ::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #090d16;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 99px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #334155;
+        .sidebar-card.active-card {
+            border-color: rgba(99, 102, 241, 0.6);
+            background: rgba(99, 102, 241, 0.08);
         }
     </style>
 </head>
-<body class="flex flex-col justify-between overflow-x-hidden">
+<body class="flex flex-col justify-between min-h-screen overflow-x-hidden">
 
-    <!-- Notification Toast System -->
+    <!-- Toast Notification -->
     <div id="toast" class="fixed top-6 right-6 z-50 transform translate-y-[-100px] opacity-0 transition-all duration-500 max-w-sm pointer-events-none">
-        <div class="premium-blur text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-2 border-indigo-500">
+        <div class="premium-bg text-white px-5 py-4 rounded-xl shadow-2xl flex items-center space-x-3.5 border-l-2 border-indigo-500 premium-border">
             <span id="toast-icon" class="text-indigo-400"><i class="fas fa-info-circle"></i></span>
             <p id="toast-message" class="text-xs font-semibold text-slate-300"></p>
         </div>
     </div>
 
-    <!-- Layout Wrapper -->
     <div id="app" class="flex flex-col min-h-screen">
         
-        <!-- Premium Navigation Header -->
-        <header id="app-header" class="w-full border-b border-white/5 py-4 px-8 flex justify-between items-center premium-blur sticky top-0 z-40">
-            <div class="flex items-center space-x-3.5">
-                <div class="bg-gradient-to-tr from-indigo-500 to-indigo-700 p-2 rounded-lg shadow-xl shadow-indigo-500/10">
-                    <i class="fas fa-qrcode text-white text-base"></i>
+        <!-- Header -->
+        <header id="app-header" class="w-full border-b border-white/5 py-4 px-8 flex justify-between items-center premium-bg sticky top-0 z-40">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-indigo-500 to-violet-600 p-2 rounded-lg shadow-lg shadow-indigo-500/10">
+                    <i class="fas fa-qrcode text-white text-sm"></i>
                 </div>
                 <div>
-                    <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">ScanFlow</span>
-                    <span class="text-[9px] block text-indigo-400/80 font-mono tracking-widest uppercase font-semibold">Dynamic Engine</span>
+                    <span class="font-extrabold text-base tracking-tight text-white">ScanFlow<span class="text-indigo-400 font-light">Pro</span></span>
+                    <span class="text-[8px] block text-indigo-400/80 font-mono tracking-widest uppercase font-semibold">Enterprise Solution</span>
                 </div>
             </div>
             
@@ -123,46 +98,46 @@
             </div>
         </header>
 
-        <!-- Main Workplace -->
+        <!-- Main Workspace -->
         <main class="flex-grow container mx-auto px-4 py-8 max-w-7xl">
             
             <!-- Global Loader -->
             <div id="view-loading" class="flex flex-col items-center justify-center py-24">
-                <div class="w-10 h-10 border-2 border-indigo-500/10 border-t-indigo-500 rounded-full animate-spin"></div>
-                <p class="mt-4 text-xs text-slate-400 font-medium font-mono">Loading Enterprise Core...</p>
+                <div class="w-8 h-8 border-2 border-indigo-500/10 border-t-indigo-500 rounded-full animate-spin"></div>
+                <p class="mt-4 text-[11px] text-slate-500 font-mono tracking-wider">Syncing Secure Database...</p>
             </div>
 
-            <!-- 1. Enterprise Authentication View -->
+            <!-- Authentication View -->
             <div id="view-auth" class="hidden max-w-md mx-auto my-12">
-                <div class="premium-blur p-8 rounded-2xl shadow-2xl">
+                <div class="premium-bg p-8 rounded-2xl shadow-2xl premium-border">
                     <div class="text-center mb-6">
-                        <h2 class="text-xl font-bold text-white tracking-tight">সিস্টেমে লগইন করুন</h2>
-                        <p class="text-slate-400 text-xs mt-1.5">প্রফেশনাল ডাইনামিক কিউআর ইঞ্জিন অ্যাক্সেস করুন</p>
+                        <h2 class="text-lg font-bold text-white tracking-tight">সিস্টেমে প্রবেশ করুন</h2>
+                        <p class="text-slate-400 text-xs mt-1">প্রফেশনাল ডাইনামিক কিউআর ইঞ্জিন অ্যাক্সেস করুন</p>
                     </div>
 
-                    <!-- Auth Tabs -->
+                    <!-- Tabs -->
                     <div class="flex p-0.5 bg-slate-950/60 rounded-lg mb-6 border border-white/5">
-                        <button id="tab-login" class="w-1/2 py-2 text-xs font-semibold rounded text-white bg-indigo-600/90 shadow transition-all">সাইন ইন</button>
-                        <button id="tab-register" class="w-1/2 py-2 text-xs font-semibold rounded text-slate-400 hover:text-white transition-all">নতুন অ্যাকাউন্ট</button>
+                        <button id="tab-login" class="w-1/2 py-2 text-xs font-bold rounded text-white bg-indigo-600/90 shadow transition-all">সাইন ইন</button>
+                        <button id="tab-register" class="w-1/2 py-2 text-xs font-bold rounded text-slate-400 hover:text-white transition-all">সাইন আপ</button>
                     </div>
 
                     <form id="auth-form" class="space-y-4">
                         <div id="name-field-group" class="hidden">
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">আপনার নাম</label>
+                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">আপনার নাম</label>
                             <input type="text" id="auth-name" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="যেমন: ওমর">
                         </div>
 
                         <div>
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">ইমেইল ঠিকানা</label>
+                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">ইমেইল ঠিকানা</label>
                             <input type="email" id="auth-email" required class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="name@domain.com">
                         </div>
 
                         <div>
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">পাসওয়ার্ড</label>
+                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">পাসওয়ার্ড</label>
                             <input type="password" id="auth-password" required class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="••••••••">
                         </div>
 
-                        <button type="submit" id="btn-submit-auth" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-indigo-600/10">
+                        <button type="submit" id="btn-submit-auth" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all duration-300 flex items-center justify-center space-x-2">
                             <span>অ্যাক্সেস করুন</span> <i class="fas fa-arrow-right text-[10px]"></i>
                         </button>
                     </form>
@@ -173,35 +148,36 @@
                         <div class="flex-grow border-t border-white/5"></div>
                     </div>
 
-                    <button id="btn-google-login" class="w-full bg-slate-900/50 hover:bg-slate-900 text-slate-300 border border-white/5 font-semibold py-2.5 rounded-lg transition-all duration-300 text-xs flex items-center justify-center space-x-2">
+                    <button id="btn-google-login" class="w-full bg-slate-900/60 hover:bg-slate-900 text-slate-300 border border-white/5 font-semibold py-2.5 rounded-lg transition-all duration-300 text-xs flex items-center justify-center space-x-2">
                         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" class="w-4 h-4" alt="Google">
-                        <span>গুগল অ্যাকাউন্ট দিয়ে প্রবেশ করুন</span>
+                        <span>গুগল অ্যাকাউন্ট দিয়ে প্রবেশ</span>
                     </button>
                 </div>
             </div>
 
-            <!-- 2. Professional Dashboard View -->
+            <!-- Professional Dashboard View -->
             <div id="view-dashboard" class="hidden">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 border-b border-white/5 pb-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 border-b border-white/5 pb-4">
                     <div>
-                        <h1 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-                            <span>ড্যাশবোর্ড</span>
-                            <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-mono font-bold uppercase">SaaS Active</span>
+                        <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                            <span>কন্ট্রোল প্যানেল</span>
+                            <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono font-bold">LIVE SYNC</span>
                         </h1>
-                        <p class="text-xs text-slate-400 mt-1">প্রফেশনাল ডাইনামিক কিউআর কোড রিয়েল-টাইমে নিয়ন্ত্রণ করুন</p>
+                        <p class="text-xs text-slate-400">রিয়েল-টাইমে কিউআর কোড কাস্টমাইজ ও আপডেট করুন</p>
                     </div>
-                    <button id="btn-open-creator" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-lg text-xs font-semibold shadow-lg shadow-indigo-600/10 flex items-center space-x-1.5 transition-all">
+                    <button id="btn-open-creator" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all shadow-lg shadow-indigo-600/10">
                         <i class="fas fa-plus"></i>
-                        <span>নতুন ডাইনামিক কিউআর</span>
+                        <span>নতুন কিউআর তৈরি করুন</span>
                     </button>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     <!-- Left Sidebar - QR list -->
                     <div class="lg:col-span-4 flex flex-col space-y-4">
-                        <div class="premium-blur p-5 rounded-xl flex flex-col max-h-[70vh]">
-                            <div class="mb-4">
-                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">আমার কিউআর ফাইলসমূহ</h3>
+                        <div class="premium-bg p-5 rounded-xl flex flex-col max-h-[72vh] premium-border">
+                            <div class="mb-3 flex justify-between items-center">
+                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">আমার ডাইনামিক কিউআর</h3>
+                                <span id="qr-count-badge" class="text-[10px] bg-slate-900 px-2 py-0.5 rounded text-indigo-400 font-mono">0</span>
                             </div>
 
                             <div class="relative mb-4">
@@ -209,18 +185,18 @@
                                 <input type="text" id="search-qr" class="w-full bg-slate-950/40 border border-white/5 rounded-lg pl-8 pr-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="অনুসন্ধান...">
                             </div>
 
-                            <div id="qr-list-container" class="flex-grow overflow-y-auto space-y-2 pr-1">
-                                <!-- Dynamic injected list items -->
+                            <div id="qr-list-container" class="flex-grow overflow-y-auto space-y-2 pr-1 custom-scrollbar">
+                                <!-- Dynamic items inject here -->
                             </div>
                         </div>
                     </div>
 
                     <!-- Right Main Workdesk - Creator / Editor -->
                     <div id="creator-panel" class="lg:col-span-8 hidden">
-                        <div class="premium-blur p-6 rounded-xl border border-white/5 relative">
+                        <div class="premium-bg p-6 rounded-xl border border-white/5 relative premium-border">
                             <button id="btn-close-creator" class="absolute top-4 right-4 text-slate-500 hover:text-white lg:hidden"><i class="fas fa-times"></i></button>
 
-                            <h2 id="creator-title" class="text-sm font-bold text-slate-300 uppercase tracking-widest mb-6">নতুন ডাইনামিক কিউআর কাস্টমাইজেশন</h2>
+                            <h2 id="creator-title" class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 border-b border-white/5 pb-2">নতুন ডাইনামিক কিউআর কাস্টমাইজেশন</h2>
 
                             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                                 <div class="md:col-span-7 space-y-4">
@@ -228,32 +204,32 @@
 
                                     <div>
                                         <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">কিউআর কোডের টাইটেল</label>
-                                        <input type="text" id="qr-input-title" required class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="যেমন: ফেসবুক বিজনেস পেজ">
+                                        <input type="text" id="qr-input-title" required class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="যেমন: আমার ফেসবুক পেজ বা গুগল ড্রাইভ">
                                     </div>
 
                                     <div>
                                         <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">কিউআর কোডের ভেতরের তথ্য (Dynamic Data)</label>
-                                        <textarea id="qr-input-content" required rows="2" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="যেকোনো টেক্সট বা ওয়েবসাইট লিঙ্ক (যেমন: GUJJ)"></textarea>
+                                        <textarea id="qr-input-content" required rows="2" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 text-xs transition-all" placeholder="যেকোনো টেক্সট বা ওয়েবসাইট লিঙ্ক (যেমন: S বা GUJJ)"></textarea>
                                     </div>
 
-                                    <!-- Ultra Styling Config -->
+                                    <!-- Styling Engine -->
                                     <div class="border-t border-white/5 pt-4 space-y-4">
-                                        <h4 class="text-[11px] font-bold text-indigo-400 uppercase tracking-widest">কালার ও ডিজাইন প্যালেট</h4>
+                                        <h4 class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">কালার ও ডিজাইন প্যালেট</h4>
                                         
                                         <div class="grid grid-cols-2 gap-4">
                                             <div>
                                                 <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ফোরগ্রাউন্ড কালার</label>
                                                 <div class="flex items-center space-x-2">
-                                                    <input type="color" id="qr-color-foreground" value="#4f46e5" class="w-8 h-8 rounded-lg cursor-pointer bg-transparent border-0">
-                                                    <input type="text" id="qr-color-foreground-hex" value="#4f46e5" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-2 py-1 text-[11px] text-white uppercase focus:outline-none font-mono">
+                                                    <input type="color" id="qr-color-foreground" value="#00ffff" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0">
+                                                    <input type="text" id="qr-color-foreground-hex" value="#00ffff" class="w-full bg-slate-950/40 border border-white/5 rounded px-2 py-1 text-[11px] text-white uppercase focus:outline-none font-mono">
                                                 </div>
                                             </div>
 
                                             <div>
                                                 <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ব্যাকগ্রাউন্ড কালার</label>
                                                 <div class="flex items-center space-x-2">
-                                                    <input type="color" id="qr-color-background" value="#ffffff" class="w-8 h-8 rounded-lg cursor-pointer bg-transparent border-0">
-                                                    <input type="text" id="qr-color-background-hex" value="#ffffff" class="w-full bg-slate-950/40 border border-white/5 rounded-lg px-2 py-1 text-[11px] text-white uppercase focus:outline-none font-mono">
+                                                    <input type="color" id="qr-color-background" value="#ffffff" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0">
+                                                    <input type="text" id="qr-color-background-hex" value="#ffffff" class="w-full bg-slate-950/40 border border-white/5 rounded px-2 py-1 text-[11px] text-white uppercase focus:outline-none font-mono">
                                                 </div>
                                             </div>
                                         </div>
@@ -261,34 +237,76 @@
                                         <div class="grid grid-cols-2 gap-4">
                                             <div>
                                                 <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">ডটের ধরন (Dots)</label>
-                                                <select id="qr-style-dots" class="w-full bg-slate-950/60 border border-white/5 rounded-lg px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
-                                                    <option value="square">Square</option>
-                                                    <option value="dots" selected>Dots</option>
-                                                    <option value="rounded">Rounded</option>
-                                                    <option value="classy">Classy</option>
+                                                <select id="qr-style-dots" class="w-full bg-slate-950/60 border border-white/5 rounded px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
+                                                    <option value="square">Square (চারকোণা)</option>
+                                                    <option value="dots" selected>Dots (বৃত্তাকার ডট)</option>
+                                                    <option value="rounded">Rounded (মৃদু বাঁকানো)</option>
+                                                    <option value="classy">Classy (মডার্ন)</option>
+                                                    <option value="classy-rounded">Classy Rounded</option>
                                                 </select>
                                             </div>
 
                                             <div>
                                                 <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">আই ফ্রেম (Eye Design)</label>
-                                                <select id="qr-style-corners" class="w-full bg-slate-950/60 border border-white/5 rounded-lg px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
+                                                <select id="qr-style-corners" class="w-full bg-slate-950/60 border border-white/5 rounded px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
                                                     <option value="square">Square</option>
-                                                    <option value="dot">Dot</option>
+                                                    <option value="dot">Dot (বৃত্তাকার)</option>
                                                     <option value="extra-rounded" selected>Extra Rounded</option>
                                                 </select>
                                             </div>
                                         </div>
 
-                                        <div>
-                                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">মাঝখানের আইকন লোগো (অপশনাল)</label>
-                                            <div class="grid grid-cols-5 gap-2">
-                                                <button type="button" class="btn-logo-preset py-1.5 rounded-lg border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-base" data-emoji="">❌</button>
-                                                <button type="button" class="btn-logo-preset py-1.5 rounded-lg border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-base" data-emoji="🔥">🔥</button>
-                                                <button type="button" class="btn-logo-preset py-1.5 rounded-lg border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-base" data-emoji="⚡">⚡</button>
-                                                <button type="button" class="btn-logo-preset py-1.5 rounded-lg border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-base" data-emoji="💼">💼</button>
-                                                <button type="button" class="btn-logo-preset py-1.5 rounded-lg border border-white/5 bg-slate-950/40 hover:bg-slate-900 text-base" data-emoji="🌍">🌍</button>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">সেফ জোন প্যাডিং (Padding/Margin)</label>
+                                                <select id="qr-padding" class="w-full bg-slate-950/60 border border-white/5 rounded px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
+                                                    <option value="0">No Padding (0px)</option>
+                                                    <option value="10">Standard (10px)</option>
+                                                    <option value="15" selected>Safe Margin (15px) - Recommended</option>
+                                                    <option value="25">Wide (25px)</option>
+                                                </select>
                                             </div>
-                                            <input type="hidden" id="qr-logo-emoji" value="">
+                                            <div>
+                                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">মাঝখানের আইকন টাইপ</label>
+                                                <select id="qr-icon-type" class="w-full bg-slate-950/60 border border-white/5 rounded px-2 py-1.5 text-xs text-slate-300 focus:outline-none">
+                                                    <option value="none" selected>No Icon</option>
+                                                    <option value="emoji">Custom Emoji</option>
+                                                    <option value="upload">Upload Custom Image/Logo</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Custom Emoji Area -->
+                                        <div id="emoji-custom-area" class="hidden space-y-2">
+                                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest">কাস্টম ইমোজি লিখুন</label>
+                                            <div class="flex gap-2">
+                                                <input type="text" id="qr-custom-emoji-input" maxlength="2" class="w-20 bg-slate-950/40 border border-white/5 rounded-lg px-3 py-2 text-center text-lg text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50" placeholder="🔥">
+                                                <div class="flex-grow flex items-center gap-1.5 overflow-x-auto py-1">
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="⚡">⚡</button>
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="🔥">🔥</button>
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="💼">💼</button>
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="🎯">🎯</button>
+                                                    <button type="button" class="btn-emoji-preset text-lg p-1 bg-slate-950/40 rounded border border-white/5" data-val="⭐">⭐</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Custom Upload Area -->
+                                        <div id="upload-custom-area" class="hidden space-y-2">
+                                            <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-widest">কাস্টম ইমেজ লোগো আপলোড (.png, .jpg)</label>
+                                            <div class="flex items-center justify-center w-full">
+                                                <label class="flex flex-col items-center justify-center w-full h-20 border border-dashed border-white/10 rounded-lg cursor-pointer bg-slate-950/20 hover:bg-slate-950/40 transition-all">
+                                                    <div class="flex flex-col items-center justify-center pt-3 pb-3">
+                                                        <i class="fas fa-cloud-upload-alt text-slate-500 text-sm mb-1"></i>
+                                                        <p class="text-[10px] text-slate-400 font-semibold">ক্লিক করে ইমেজ আপলোড করুন</p>
+                                                    </div>
+                                                    <input id="qr-logo-upload-file" type="file" accept="image/*" class="hidden" />
+                                                </label>
+                                            </div>
+                                            <div id="upload-preview-meta" class="hidden flex items-center justify-between text-[10px] bg-slate-950/40 p-2 rounded border border-white/5">
+                                                <span class="text-emerald-400 truncate max-w-[150px]" id="upload-file-name">file.png</span>
+                                                <button type="button" id="btn-remove-uploaded-logo" class="text-rose-400 hover:underline">রিমুভ করুন</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -297,9 +315,14 @@
                                 <div class="md:col-span-5 flex flex-col justify-between items-center bg-slate-950/40 border border-white/5 p-4 rounded-xl">
                                     <div class="text-center w-full">
                                         <span class="text-[9px] text-slate-500 font-bold uppercase tracking-widest block mb-4">রিয়েল-টাইম প্রিভিউ</span>
-                                        <div class="bg-white p-3 rounded-lg w-full aspect-square max-w-[180px] mx-auto shadow-2xl" id="qr-preview-container">
-                                            <!-- Dynamically injected SVG QR canvas -->
+                                        
+                                        <!-- Solid Frame to check actual transparency and spacing -->
+                                        <div class="relative bg-slate-900 p-4 rounded-xl border border-white/5 shadow-inner">
+                                            <div class="bg-white p-2 rounded-lg aspect-square max-w-[180px] mx-auto shadow-2xl transition-all" id="qr-preview-container">
+                                                <!-- Dynamic generated SVG QR canvas -->
+                                            </div>
                                         </div>
+                                        <p class="text-[10px] text-slate-500 mt-3 leading-relaxed">উপরের ফ্রেমে যেমন মার্জিন এবং কালার প্রিভিউ দেখছেন, ঠিক এভাবেই ইমেজটি ডাউনলোড হবে।</p>
                                     </div>
 
                                     <div class="w-full mt-6 space-y-2">
@@ -307,7 +330,7 @@
                                             <i class="fas fa-check-circle"></i>
                                             <span id="save-btn-text">পাবলিশ করুন</span>
                                         </button>
-                                        <button id="btn-download-qr" class="w-full bg-slate-900 hover:bg-slate-800 text-white border border-white/5 font-semibold py-2.5 rounded-lg text-xs transition-all flex items-center justify-center space-x-1">
+                                        <button id="btn-download-qr" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 rounded-lg text-xs transition-all flex items-center justify-center space-x-1 shadow-lg shadow-emerald-600/10">
                                             <i class="fas fa-download"></i>
                                             <span>ডাউনলোড (High-Res PNG)</span>
                                         </button>
@@ -318,36 +341,36 @@
                     </div>
 
                     <!-- Sidebar default view -->
-                    <div id="welcome-panel" class="lg:col-span-8 flex flex-col items-center justify-center p-12 premium-blur rounded-xl text-center">
-                        <div class="bg-indigo-500/5 p-4 rounded-full mb-4">
+                    <div id="welcome-panel" class="lg:col-span-8 flex flex-col items-center justify-center p-12 premium-bg rounded-xl text-center premium-border">
+                        <div class="bg-indigo-500/5 p-4 rounded-full mb-4 border border-indigo-500/10 animate-pulse">
                             <i class="fas fa-qrcode text-3xl text-indigo-400/80"></i>
                         </div>
-                        <h2 class="text-base font-bold text-white mb-1">প্রোফাইল প্যানেল</h2>
-                        <p class="text-xs text-slate-400 max-w-sm leading-relaxed mb-4">আপনার যেকোনো কিউআর কোড কাস্টমাইজ করতে বামদিকের তালিকা থেকে সিলেক্ট করুন অথবা নতুন কিউআর কোড জেনারেট করুন।</p>
+                        <h2 class="text-sm font-bold text-white mb-1 uppercase tracking-wider">ড্যাশবোর্ড প্যানেল</h2>
+                        <p class="text-xs text-slate-400 max-w-sm leading-relaxed mb-4">আপনার যেকোনো কিউআর কোড এডিট করতে বামদিকের তালিকা থেকে সিলেক্ট করুন অথবা নতুন কিউআর কোড তৈরি করুন।</p>
                     </div>
                 </div>
             </div>
 
-            <!-- 3. Professional Public Scan Redirector -->
+            <!-- Professional Public Scan Redirector -->
             <div id="view-public-scan" class="hidden max-w-md mx-auto my-16">
-                <div class="premium-blur p-8 rounded-2xl relative overflow-hidden shadow-2xl">
+                <div class="premium-bg p-8 rounded-2xl relative overflow-hidden shadow-2xl premium-border">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-full blur-3xl"></div>
                     
                     <div class="text-center space-y-5">
-                        <div class="mx-auto w-14 h-14 bg-indigo-600/10 rounded-xl flex items-center justify-center border border-indigo-500/10">
-                            <i id="public-content-icon" class="fas fa-network-wired text-xl text-indigo-400"></i>
+                        <div class="mx-auto w-12 h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center border border-indigo-500/10">
+                            <i id="public-content-icon" class="fas fa-network-wired text-lg text-indigo-400"></i>
                         </div>
 
                         <div>
-                            <span class="text-[9px] bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full font-mono font-bold tracking-widest border border-indigo-500/20">DYNAMIC ROUTE</span>
-                            <h2 class="text-lg font-bold text-slate-100 mt-3 tracking-tight">ScanFlow Smart Routing</h2>
+                            <span class="text-[9px] bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full font-mono font-bold tracking-widest border border-indigo-500/20">SECURED ROUTE</span>
+                            <h2 class="text-base font-bold text-slate-100 mt-3 tracking-tight">ScanFlow Dynamic System</h2>
                         </div>
 
                         <div class="bg-slate-950/60 border border-white/5 p-5 rounded-xl text-left">
-                            <label class="block text-[9px] text-slate-500 font-bold uppercase tracking-widest mb-2">সক্রিয় ডেটা (Live Output):</label>
+                            <label class="block text-[9px] text-slate-500 font-bold uppercase tracking-widest mb-2">সক্রিয় ডেটা (Active Data):</label>
                             
                             <div id="public-text-wrapper" class="hidden">
-                                <p id="public-text-content" class="text-slate-300 text-sm font-semibold break-words whitespace-pre-line"></p>
+                                <p id="public-text-content" class="text-slate-300 text-xs font-semibold break-words whitespace-pre-line"></p>
                                 <button id="btn-copy-public-text" class="mt-3 flex items-center space-x-1 text-[10px] text-indigo-400 hover:text-indigo-300 font-semibold">
                                     <i class="fas fa-copy"></i>
                                     <span>কপি করুন</span>
@@ -355,7 +378,7 @@
                             </div>
 
                             <div id="public-link-wrapper" class="hidden text-center py-2 space-y-3">
-                                <span class="inline-flex items-center space-x-1.5 text-emerald-400 bg-emerald-500/5 px-2.5 py-1 rounded text-[10px] font-bold">
+                                <span class="inline-flex items-center space-x-1.5 text-emerald-400 bg-emerald-500/5 px-2.5 py-1 rounded text-[9px] font-bold">
                                     <span class="relative flex h-1.5 w-1.5">
                                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                                         <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
@@ -379,7 +402,7 @@
         </main>
 
         <!-- Premium Footer -->
-        <footer id="app-footer" class="w-full border-t border-white/5 py-4 px-8 text-center text-[10px] text-slate-500 premium-blur">
+        <footer id="app-footer" class="w-full border-t border-white/5 py-4 px-8 text-center text-[10px] text-slate-500 premium-bg">
             <p>© ২০২৬ ScanFlow Pro - ওমর দ্বারা ডিজাইনকৃত ও ডেভেলপকৃত।</p>
         </footer>
     </div>
@@ -387,7 +410,6 @@
     <!-- PWA & Modular JS Loader -->
     <script type="module" src="app.js"></script>
     <script>
-        // Service Worker registration for "Add to Home Screen"
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js')
